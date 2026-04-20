@@ -22,18 +22,18 @@ const personalityTaxonomy = {
   ZHUANBS: { category: '学历落差系', keywords: ['专升本', '逆袭', '本科', '补票'] },
   DAZHUAN: { category: '学历落差系', keywords: ['大专', '反打', '学历', '战狼'] },
   ZHONGZWH: { category: '学历落差系', keywords: ['中专', '文豪', '评论区', '感悟'] },
+  ZHIGAO: { category: '学历落差系', keywords: ['职高', '分流', '技能', '现实'] },
+  CHENGKAO: { category: '学历落差系', keywords: ['成考', '补票', '非应届', '上岸'] },
   LIUSHUI: { category: '学历包装系', keywords: ['留学', '水硕', '海归', '包装'] },
   MINBAN: { category: '学历包装系', keywords: ['民办', '学费', '贵族', '性质'] },
   YEJIZH: { category: '学历包装系', keywords: ['野鸡院校', '校名', '包装', '翻车'] },
   WENMANG: { category: '学历包装系', keywords: ['文盲', '认知', '规则', '掉线'] },
   SHUOSHI: { category: '学位进阶系', keywords: ['硕士', '保底', '学历升级', '门槛'] },
   BOSHI: { category: '学位进阶系', keywords: ['博士', '论文', '深造', '头发'] },
-  BOHOU: { category: '学位进阶系', keywords: ['博后', '候补', '深造', '悬空'] },
   BENSHBO: { category: '学位进阶系', keywords: ['本硕博', '连读', '直通车', '丝滑'] },
   CHANGJ: { category: '学术神坛系', keywords: ['长江学者', '学界', '头衔', '文献'] },
   YUANSH: { category: '学术神坛系', keywords: ['院士', '封神', '天花板', '学界'] },
   NUOJIA: { category: '学术神坛系', keywords: ['诺奖', '教材', '传说', '得主'] },
-  JIEQIN: { category: '学术神坛系', keywords: ['杰青', '帽子', '资源', '苗子'] },
   XUEFAS: { category: '学术神坛系', keywords: ['学阀', '世家', '家学', '资源'] }
 };
 const libraryCategoryMeta = {
@@ -240,11 +240,21 @@ function showResult(result) {
   showPage('result');
 
   const personality = result.personality;
+  const meta = getPersonalityMeta(personality);
+  const rarityMeta = getRarityMeta(personality.rarity);
   currentResultCode = personality.code;
   const rarityBadge = document.getElementById('rarity-badge');
   rarityBadge.textContent = personality.rarity;
   rarityBadge.setAttribute('data-rarity', personality.rarity);
+  const personalityCard = document.getElementById('personality-card');
+  personalityCard.setAttribute('data-rarity', personality.rarity);
 
+  document.getElementById('personality-series').textContent = '互联网学历头衔卡';
+  document.getElementById('personality-code').textContent = personality.code;
+  document.getElementById('personality-rank-label').textContent = rarityMeta.label;
+  document.getElementById('personality-image-caption').textContent = meta.label;
+  document.getElementById('personality-category').textContent = meta.category;
+  document.getElementById('personality-rarity-text').textContent = `${personality.rarity} · ${rarityMeta.label}`;
   document.getElementById('personality-name').textContent = personality.name;
   document.getElementById('personality-slogan').textContent = personality.slogan;
   document.getElementById('personality-desc').textContent = personality.description;
@@ -278,6 +288,7 @@ function showResult(result) {
     imageContainer.innerHTML = `<span class="placeholder-img personality-initials">${getPersonalityInitials(personality)}</span>`;
   }
 
+  renderResultHighlights(personality, meta, rarityMeta);
   renderDimensionRadar(result.dimensionScores);
   renderPersonalityLibrary();
 }
@@ -338,6 +349,34 @@ function getPersonalityMeta(personality) {
     ...taxonomy,
     ...categoryMeta
   };
+}
+
+function getRarityMeta(rarity) {
+  return rarityGuide[rarity] || {
+    label: '未定级',
+    chance: '--'
+  };
+}
+
+function renderResultHighlights(personality, meta, rarityMeta) {
+  const highlightGrid = document.getElementById('personality-highlights');
+  if (!highlightGrid) {
+    return;
+  }
+
+  const items = [
+    { label: '人格代号', value: personality.code },
+    { label: '图鉴分区', value: meta.label },
+    { label: '分类归属', value: meta.category },
+    { label: '稀有评级', value: `${personality.rarity} · ${rarityMeta.label}` }
+  ];
+
+  highlightGrid.innerHTML = items.map((item) => `
+    <div class="personality-highlight-item">
+      <span>${item.label}</span>
+      <strong>${item.value}</strong>
+    </div>
+  `).join('');
 }
 
 function getPersonalityInitials(personality) {

@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>互联网学历测试 | 21种互联网学历人格对号入座</title>
-    <meta name="description" content="互联网学历测试：21种互联网学历人格，30道场景题，测测你在985、211、硕博、长江学者、院士、诺奖和学历鄙视链里到底是哪一号人物。">
-    <meta name="keywords" content="互联网学历测试,学历人格,人格测试,SBTI,学历梗,985,211,博士,长江学者,院士,诺奖得主">
+    <meta name="description" content="互联网学历测试：21种互联网学历人格，30道场景题，测测你从职高、中专、大专到985、211、硕博、院士、诺奖，究竟是哪一号互联网学历人设。">
+    <meta name="keywords" content="互联网学历测试,学历人格,人格测试,SBTI,学历梗,985,211,职高,中专,大专,博士,长江学者,院士,诺奖得主">
     <meta name="application-name" content="互联网学历测试">
     <meta name="site-url" content="https://347goodnight.github.io/hulianwangxueli-bti/">
     <link rel="canonical" href="https://347goodnight.github.io/hulianwangxueli-bti/">
-    <link rel="stylesheet" href="style.css?v=20260421-7">
+    <link rel="stylesheet" href="style.css?v=20260421-8">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
 </head>
 <body>
@@ -23,8 +23,8 @@
                     <div class="hero-copy">
                         <span class="eyebrow">SBTI风格 · 互联网学历梗测试</span>
                         <h1 class="title">互联网学历测试</h1>
-                        <p class="subtitle"><span data-personality-count>21</span>种互联网学历人格，测测你在985、211、硕博、院士和学历鄙视链里，到底是哪一号人物。</p>
-                        <p class="hero-description">不是测智商，也不是给你做心理量表，而是把学校层级、学位高低、学术头衔和学历包装里的那点学历味儿，全都给你扒出来。</p>
+                        <p class="subtitle"><span data-personality-count>21</span>种互联网学历人格，测测你从职高、中专、大专一路到硕博、院士、诺奖，到底是哪一号互联网学历人设。</p>
+                        <p class="hero-description">不是测智商，也不是做心理量表，而是把学历层级、升学补票、学位进阶、学术头衔和互联网鄙视链里的那股学历味，全都做成一套能截图发出去的结果卡。</p>
 
                         <div class="hero-actions">
                             <button class="btn btn-primary" onclick="startTest()">开始对号入座</button>
@@ -81,17 +81,48 @@
                 <div class="result-container">
                     <div class="result-header">
                         <div class="rarity-badge" id="rarity-badge">SSR</div>
-                        <h2 class="result-title">你的互联网学历人格结果</h2>
+                        <h2 class="result-title">你的互联网学历头衔已生成</h2>
                     </div>
 
-                    <div class="personality-card">
-                        <div class="personality-image" id="personality-image">
-                            <span class="placeholder-img">🎭</span>
+                    <div class="personality-card" id="personality-card">
+                        <div class="personality-card-top">
+                            <div class="personality-card-kicker">
+                                <span class="personality-card-series" id="personality-series">互联网学历头衔卡</span>
+                                <span class="personality-card-code" id="personality-code">CODE</span>
+                            </div>
+                            <span class="personality-card-stamp" id="personality-rank-label">评级</span>
                         </div>
-                        <h3 class="personality-name" id="personality-name"></h3>
-                        <p class="personality-slogan" id="personality-slogan"></p>
-                        <p class="personality-desc" id="personality-desc"></p>
-                        <div class="personality-traits" id="personality-traits"></div>
+
+                        <div class="personality-card-hero">
+                            <div class="personality-image-shell">
+                                <div class="personality-image" id="personality-image">
+                                    <span class="placeholder-img">🎓</span>
+                                </div>
+                                <p class="personality-image-caption" id="personality-image-caption">结果图鉴封面</p>
+                            </div>
+
+                            <div class="personality-main">
+                                <div class="personality-meta-row">
+                                    <span class="personality-category" id="personality-category"></span>
+                                    <span class="personality-rarity-text" id="personality-rarity-text"></span>
+                                </div>
+                                <h3 class="personality-name" id="personality-name"></h3>
+                                <p class="personality-slogan" id="personality-slogan"></p>
+                                <p class="personality-desc" id="personality-desc"></p>
+                            </div>
+                        </div>
+
+                        <div class="personality-card-footer">
+                            <div class="personality-block">
+                                <span class="personality-block-label">学术标签</span>
+                                <div class="personality-traits" id="personality-traits"></div>
+                            </div>
+
+                            <div class="personality-block personality-block-sheet">
+                                <span class="personality-block-label">结果档案</span>
+                                <div class="personality-highlight-grid" id="personality-highlights"></div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="dimension-radar">
@@ -153,9 +184,9 @@
         </div>
     </div>
 
-    <script src="js/dimensions.js?v=20260421-7"></script>
-    <script src="js/questions.js?v=20260421-7"></script>
-    <script src="js/types.js?v=20260421-7"></script>
-    <script src="js/app.js?v=20260421-7"></script>
+    <script src="js/dimensions.js?v=20260421-8"></script>
+    <script src="js/questions.js?v=20260421-8"></script>
+    <script src="js/types.js?v=20260421-8"></script>
+    <script src="js/app.js?v=20260421-8"></script>
 </body>
 </html>

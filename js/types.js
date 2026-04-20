@@ -52,7 +52,7 @@ const personalityTypes = [
     image: 'yibenyilao.png'
   },
 
-  // ===== 学历落差系（5种） =====
+  // ===== 学历落差系（7种） =====
   {
     code: 'ERBENCI',
     name: '二本刺客',
@@ -133,6 +133,38 @@ const personalityTypes = [
     rarity: 'R',
     image: 'zhongzhuanwenhao.png'
   },
+  {
+    code: 'ZHIGAO',
+    name: '职高战士',
+    pattern: {
+      L1: 'L', L2: 'M', L3: 'M',
+      E1: 'L', E2: 'M', E3: 'M',
+      A1: 'M', A2: 'M', A3: 'M',
+      S1: 'M', S2: 'M', S3: 'H',
+      B1: 'H', B2: 'M', B3: 'L'
+    },
+    slogan: '分流那天像被提前判了线，后来才发现社会根本不按统招卷子出题',
+    description: '职高战士很早就被学历秩序分出去过，所以比起谈学校牌面，他更熟练的是先学一门手艺、先见一层现实。聊学历时容易先吃闷亏，聊落地能力时又未必真比谁差。',
+    traits: ['早分流选手', '技能上线', '现实预习', '落地派'],
+    rarity: 'R',
+    image: 'zhigaozhanshi.png'
+  },
+  {
+    code: 'CHENGKAO',
+    name: '成考补票哥',
+    pattern: {
+      L1: 'M', L2: 'M', L3: 'M',
+      E1: 'M', E2: 'M', E3: 'L',
+      A1: 'H', A2: 'H', A3: 'M',
+      S1: 'L', S2: 'M', S3: 'M',
+      B1: 'H', B2: 'H', B3: 'L'
+    },
+    slogan: '白天上班晚上刷题，主打一个人生进度条自己补',
+    description: '成考补票哥的人生和应届生不是一条时间线。别人拿学历是按部就班，他拿学历更像下班后给自己续命，嘴上不一定最响，但行动里全是“这张票我得自己补回来”。',
+    traits: ['下班上岸', '非应届续费', '学历补票', '进度自救'],
+    rarity: 'R',
+    image: 'chengkaobupiaoge.png'
+  },
 
   // ===== 学历包装系（4种） =====
   {
@@ -200,7 +232,7 @@ const personalityTypes = [
     image: 'wenmang.png'
   },
 
-  // ===== 学位进阶系（4种） =====
+  // ===== 学位进阶系（3种） =====
   {
     code: 'SHUOSHI',
     name: '硕士保底哥',
@@ -234,22 +266,6 @@ const personalityTypes = [
     image: 'boshi.png'
   },
   {
-    code: 'BOHOU',
-    name: '博后候补',
-    pattern: {
-      L1: 'H', L2: 'H', L3: 'H',
-      E1: 'M', E2: 'M', E3: 'L',
-      A1: 'H', A2: 'H', A3: 'H',
-      S1: 'L', S2: 'L', S3: 'M',
-      B1: 'M', B2: 'H', B3: 'L'
-    },
-    slogan: '学历已经快卷到头了，人生却还没找到落点',
-    description: '博后候补最扎心的地方，是书已经读到天花板附近，现实却还在问接下来怎么办。学历这条线是够长了，可工作、去向和归属感还是像悬空状态。',
-    traits: ['学历超长', '悬空生存', '继续深造', '上岸延迟'],
-    rarity: 'SR',
-    image: 'bohouhoubu.png'
-  },
-  {
     code: 'BENSHBO',
     name: '本硕博直通车',
     pattern: {
@@ -266,7 +282,7 @@ const personalityTypes = [
     image: 'benshuobozhitongche.png'
   },
 
-  // ===== 学术神坛系（5种） =====
+  // ===== 学术神坛系（4种） =====
   {
     code: 'CHANGJ',
     name: '长江学者',
@@ -314,22 +330,6 @@ const personalityTypes = [
     traits: ['教材在逃', '学界神话', '人类高配', '传说皮肤'],
     rarity: 'UR',
     image: 'nuojiangdezhu.png'
-  },
-  {
-    code: 'JIEQIN',
-    name: '杰青苗子',
-    pattern: {
-      L1: 'H', L2: 'H', L3: 'H',
-      E1: 'H', E2: 'M', E3: 'M',
-      A1: 'H', A2: 'H', A3: 'H',
-      S1: 'M', S2: 'M', S3: 'H',
-      B1: 'H', B2: 'H', B3: 'L'
-    },
-    slogan: '帽子还没戴上，口气已经像在准备答辩评审会了',
-    description: '杰青苗子最鲜明的特点，是人还没完全封神，气场已经提前进场。你以为他只是在读书，他其实是奔着学术资源和头衔梯子一路往上爬。',
-    traits: ['帽子预备役', '学术冲榜', '资源意识', '气场先行'],
-    rarity: 'SSR',
-    image: 'jieqingmiaozi.png'
   },
   {
     code: 'XUEFAS',
