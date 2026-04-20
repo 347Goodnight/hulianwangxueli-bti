@@ -30,6 +30,22 @@ const personalityTaxonomy = {
   ZHONGZWH: { category: '学历出身系', keywords: ['中专', '文豪', '评论区', '感悟'] },
   JINGSLH: { category: '高端赛道系', keywords: ['竞赛', '省一', '国奖', '履历'] }
 };
+const libraryCategoryMeta = {
+  全部: { icon: '总', label: '完整图鉴' },
+  学业高压系: { icon: '学', label: '高压赛道' },
+  成绩断层系: { icon: '偏', label: '断层成绩' },
+  摆烂躺平系: { icon: '躺', label: '躺平样本' },
+  考试玄学系: { icon: '考', label: '考场玄学' },
+  学历资源系: { icon: '资', label: '资源路线' },
+  中段生存系: { icon: '稳', label: '卡线求生' },
+  校园关系系: { icon: '校', label: '关系样本' },
+  升学执念系: { icon: '升', label: '升学补票' },
+  学历出身系: { icon: '历', label: '出身标签' },
+  学历包装系: { icon: '包', label: '学历包装' },
+  就业现实系: { icon: '职', label: '就业求生' },
+  高端赛道系: { icon: '竞', label: '高端履历' },
+  未分类: { icon: '册', label: '图鉴卡' }
+};
 
 const pages = {
   home: document.getElementById('home-page'),
@@ -300,19 +316,39 @@ function syncPersonalityCount() {
   });
 }
 
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+}
+
 function getPersonalityMeta(personality) {
-  return personalityTaxonomy[personality.code] || {
+  const taxonomy = personalityTaxonomy[personality.code] || {
     category: '未分类',
     keywords: []
   };
+  const categoryMeta = libraryCategoryMeta[taxonomy.category] || libraryCategoryMeta.未分类;
+  return {
+    ...taxonomy,
+    ...categoryMeta
+  };
 }
 
-function getLibraryImageMarkup(personality) {
+function getLibraryImageMarkup(personality, meta, serialLabel) {
   const initials = personality.name.slice(0, 2);
   return `
-    <div class="library-card-avatar">
-      <img src="image/${personality.image}" alt="${personality.name}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.hidden=false;">
-      <span class="library-card-avatar-fallback" hidden>${initials}</span>
+    <div class="library-card-cover">
+      <div class="library-card-cover-top">
+        <span class="library-card-index">${serialLabel}</span>
+        <span class="library-card-mini-tag">${meta.icon} ${meta.label}</span>
+      </div>
+      <div class="library-card-avatar">
+        <img src="image/${personality.image}" alt="${personality.name}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.hidden=false;">
+        <span class="library-card-avatar-fallback" hidden>${initials}</span>
+      </div>
     </div>
   `;
 }
@@ -327,12 +363,15 @@ function renderLibraryFilters() {
 
   filterContainer.innerHTML = '';
   categories.forEach((category) => {
+    const count = category === '全部'
+      ? personalityTypes.length
+      : personalityTypes.filter((personality) => getPersonalityMeta(personality).category === category).length;
     const button = document.createElement('button');
     button.className = 'library-filter-chip';
     if (category === activeLibraryCategory) {
       button.classList.add('active');
     }
-    button.textContent = category;
+    button.innerHTML = `<span>${category}</span><strong>${count}</strong>`;
     button.onclick = () => {
       activeLibraryCategory = category;
       renderLibraryFilters();
@@ -340,6 +379,30 @@ function renderLibraryFilters() {
     };
     filterContainer.appendChild(button);
   });
+}
+
+function renderLibrarySummary(filteredCount) {
+  const summary = document.getElementById('personality-library-summary');
+  if (!summary) {
+    return;
+  }
+
+  const totalCount = personalityTypes.length;
+  const categoryLabel = activeLibraryCategory === '全部' ? '全部分类' : activeLibraryCategory;
+  const queryLabel = librarySearchQuery.trim();
+
+  summary.innerHTML = `
+    <div class="library-summary-card">
+      <span class="library-summary-label">当前图鉴</span>
+      <strong>${filteredCount}</strong>
+      <span class="library-summary-text">共 ${totalCount} 种</span>
+    </div>
+    <div class="library-summary-card">
+      <span class="library-summary-label">筛选范围</span>
+      <strong>${categoryLabel}</strong>
+      <span class="library-summary-text">${queryLabel ? `关键词：${escapeHtml(queryLabel)}` : '未输入关键词'}</span>
+    </div>
+  `;
 }
 
 function renderPersonalityLibrary() {
@@ -374,35 +437,37 @@ function renderPersonalityLibrary() {
   });
 
   grid.innerHTML = '';
+  renderLibrarySummary(filteredPersonalities.length);
 
-  filteredPersonalities.forEach((personality) => {
+  filteredPersonalities.forEach((personality, index) => {
     const meta = getPersonalityMeta(personality);
     const card = document.createElement('article');
     card.className = 'library-card';
+    card.dataset.category = meta.category;
 
     if (personality.code === currentResultCode) {
       card.classList.add('active');
     }
 
+    const serialLabel = `No.${String(index + 1).padStart(2, '0')}`;
     const traits = personality.traits
       .map((trait) => `<span>${trait}</span>`)
       .join('');
 
     card.innerHTML = `
+      ${getLibraryImageMarkup(personality, meta, serialLabel)}
       <div class="library-card-header">
-        <div>
-          <div class="library-card-title-row">
-            ${getLibraryImageMarkup(personality)}
-            <div>
-              <h3>${personality.name}</h3>
-              <p class="library-card-code">${personality.code}</p>
-            </div>
+        <div class="library-card-title-row">
+          <div>
+            <h3>${personality.name}</h3>
+            <p class="library-card-code">${personality.code}</p>
           </div>
         </div>
         <span class="library-card-rarity" data-rarity="${personality.rarity}">${personality.rarity}</span>
       </div>
       <div class="library-card-meta">
         <span class="library-card-category">${meta.category}</span>
+        <span class="library-card-category light-tag">${meta.label}</span>
         ${personality.code === currentResultCode ? '<span class="library-card-current">你的结果</span>' : ''}
       </div>
       <p class="library-card-slogan">${personality.slogan}</p>
@@ -414,6 +479,7 @@ function renderPersonalityLibrary() {
   });
 
   if (filteredPersonalities.length === 0) {
+    renderLibrarySummary(0);
     grid.innerHTML = '<div class="library-empty">没有搜到匹配的人格，换个关键词试试。</div>';
   }
 }

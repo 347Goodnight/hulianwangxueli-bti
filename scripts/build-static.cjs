@@ -29,12 +29,20 @@ function copyDir(src, dest) {
   }
 }
 
-fs.rmSync(dist, { recursive: true, force: true });
 ensureDir(dist);
+
+function safeRemove(target) {
+  try {
+    fs.rmSync(target, { recursive: true, force: true });
+  } catch (error) {
+    console.warn(`Skip removing ${target}: ${error.code || error.message}`);
+  }
+}
 
 for (const file of rootFiles) {
   const src = path.join(root, file);
   if (fs.existsSync(src)) {
+    safeRemove(path.join(dist, file));
     copyFile(src, path.join(dist, file));
   }
 }
@@ -42,6 +50,7 @@ for (const file of rootFiles) {
 for (const dir of rootDirs) {
   const src = path.join(root, dir);
   if (fs.existsSync(src)) {
+    safeRemove(path.join(dist, dir));
     copyDir(src, path.join(dist, dir));
   }
 }
