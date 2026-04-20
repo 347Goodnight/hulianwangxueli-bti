@@ -52,7 +52,7 @@ const personalityTypes = [
     image: 'yibenyilao.png'
   },
 
-  // ===== 学历落差系（7种） =====
+  // ===== 学历落差系（9种） =====
   {
     code: 'ERBENCI',
     name: '二本刺客',
@@ -70,20 +70,20 @@ const personalityTypes = [
     image: 'erbencike.png'
   },
   {
-    code: 'JINGSH',
-    name: '精神本科生',
+    code: 'XIAOXUE',
+    name: '小学毕业',
     pattern: {
-      L1: 'M', L2: 'M', L3: 'M',
-      E1: 'M', E2: 'M', E3: 'M',
-      A1: 'M', A2: 'M', A3: 'M',
-      S1: 'H', S2: 'H', S3: 'H',
-      B1: 'H', B2: 'H', B3: 'L'
+      L1: 'L', L2: 'L', L3: 'L',
+      E1: 'L', E2: 'L', E3: 'M',
+      A1: 'L', A2: 'L', A3: 'L',
+      S1: 'M', S2: 'M', S3: 'L',
+      B1: 'M', B2: 'L', B3: 'L'
     },
-    slogan: '学历未必够硬，气势必须先拉满',
-    description: '精神本科生最会的不是学习，是把一般学历说出重点院校的语气。学校也许普通，姿态不能普通，主打一个牌面不够，口风来凑。',
-    traits: ['气势包装', '嘴上升本', '牌面管理', '态度补票'],
-    rarity: 'R',
-    image: 'jingshenbenkesheng.png'
+    slogan: '再往上那几本教材，他的人生大概率只翻过目录',
+    description: '小学毕业这型人最突出的不是学历低，而是互联网发言特别敢。世界多复杂先不管，反正一句“我觉得”就能顶上来，主打一个知识面没展开，气势先铺满。',
+    traits: ['基础款学历', '目录型阅读', '认知起步', '嘴先出场'],
+    rarity: 'N',
+    image: 'xiaoxuebiye.png'
   },
   {
     code: 'ZHUANBS',
@@ -134,6 +134,38 @@ const personalityTypes = [
     image: 'zhongzhuanwenhao.png'
   },
   {
+    code: 'CHUZHONG',
+    name: '初中毕业',
+    pattern: {
+      L1: 'L', L2: 'M', L3: 'L',
+      E1: 'L', E2: 'M', E3: 'M',
+      A1: 'L', A2: 'M', A3: 'L',
+      S1: 'M', S2: 'M', S3: 'M',
+      B1: 'M', B2: 'L', B3: 'L'
+    },
+    slogan: '九年义务教育算是勉强收尾，再往上全靠社会大学续费',
+    description: '初中毕业这挂人设卡在一个很微妙的位置，文化课不算完全没碰过，但也远没到能支撑体面学历叙事的程度。所以最常见的状态，就是对门槛略懂一点，对上限基本随缘。',
+    traits: ['义务教育收尾', '半懂不懂', '门槛旁听', '社会续费'],
+    rarity: 'N',
+    image: 'chuzhongbiye.png'
+  },
+  {
+    code: 'GAOZHONG',
+    name: '高中毕业',
+    pattern: {
+      L1: 'M', L2: 'M', L3: 'M',
+      E1: 'M', E2: 'M', E3: 'M',
+      A1: 'M', A2: 'M', A3: 'L',
+      S1: 'M', S2: 'M', S3: 'M',
+      B1: 'M', B2: 'M', B3: 'L'
+    },
+    slogan: '学历停在高三那年，嘴上却还保留着冲本科的余温',
+    description: '高中毕业最容易自带一种“差一点就上去了”的悬停感。书不是没读过，卷也不是没卷过，只是最后那张门票没拿到，于是整个人设长期停在一种临门一脚没进的余震里。',
+    traits: ['高三残响', '半步本科', '门票擦肩', '悬停状态'],
+    rarity: 'R',
+    image: 'gaozhongbiye.png'
+  },
+  {
     code: 'ZHIGAO',
     name: '职高战士',
     pattern: {
@@ -150,23 +182,23 @@ const personalityTypes = [
     image: 'zhigaozhanshi.png'
   },
   {
-    code: 'CHENGKAO',
-    name: '成考补票哥',
+    code: 'JIULOU',
+    name: '九漏鱼',
     pattern: {
-      L1: 'M', L2: 'M', L3: 'M',
-      E1: 'M', E2: 'M', E3: 'L',
-      A1: 'H', A2: 'H', A3: 'M',
-      S1: 'L', S2: 'M', S3: 'M',
-      B1: 'H', B2: 'H', B3: 'L'
+      L1: 'L', L2: 'L', L3: 'L',
+      E1: 'L', E2: 'L', E3: 'L',
+      A1: 'L', A2: 'L', A3: 'L',
+      S1: 'H', S2: 'M', S3: 'M',
+      B1: 'M', B2: 'L', B3: 'H'
     },
-    slogan: '白天上班晚上刷题，主打一个人生进度条自己补',
-    description: '成考补票哥的人生和应届生不是一条时间线。别人拿学历是按部就班，他拿学历更像下班后给自己续命，嘴上不一定最响，但行动里全是“这张票我得自己补回来”。',
-    traits: ['下班上岸', '非应届续费', '学历补票', '进度自救'],
-    rarity: 'R',
-    image: 'chengkaobupiaoge.png'
+    slogan: '字都认识几个，句子能不能看懂全看当天状态',
+    description: '九漏鱼属于低学历梗里的重量级常客。不是单纯学历短，而是常常连最基础的信息理解都能拐着弯跑偏，偏偏输出欲还格外旺盛，主打一个知识没补完，观点先上市。',
+    traits: ['漏网气质', '阅读漂移', '输出过剩', '理解断层'],
+    rarity: 'N',
+    image: 'jiulouyu.png'
   },
 
-  // ===== 学历包装系（4种） =====
+  // ===== 学历包装系（3种） =====
   {
     code: 'LIUSHUI',
     name: '留学水硕',
@@ -198,22 +230,6 @@ const personalityTypes = [
     traits: ['学费战士', '牌面浮动', '环境不错', '认可摇摆'],
     rarity: 'R',
     image: 'minbanguizu.png'
-  },
-  {
-    code: 'YEJIZH',
-    name: '野鸡院校受害者',
-    pattern: {
-      L1: 'M', L2: 'M', L3: 'M',
-      E1: 'M', E2: 'M', E3: 'M',
-      A1: 'M', A2: 'M', A3: 'M',
-      S1: 'L', S2: 'L', S3: 'L',
-      B1: 'L', B2: 'M', B3: 'L'
-    },
-    slogan: '校名听着像联合国，查起来像写字楼二层',
-    description: '野鸡院校受害者的尴尬在于，介绍学校时还有点派头，一旦别人认真查，场面就立刻安静。人还没正式翻车，校名已经先替他社死一轮。',
-    traits: ['校名诈骗', '背景翻车', '简历冒汗', '场面尴尬'],
-    rarity: 'R',
-    image: 'yejiyuanxiaoshouhaizhe.png'
   },
   {
     code: 'WENMANG',
@@ -282,23 +298,7 @@ const personalityTypes = [
     image: 'benshuobozhitongche.png'
   },
 
-  // ===== 学术神坛系（4种） =====
-  {
-    code: 'CHANGJ',
-    name: '长江学者',
-    pattern: {
-      L1: 'H', L2: 'H', L3: 'H',
-      E1: 'H', E2: 'H', E3: 'M',
-      A1: 'H', A2: 'H', A3: 'H',
-      S1: 'H', S2: 'M', S3: 'H',
-      B1: 'H', B2: 'H', B3: 'L'
-    },
-    slogan: '别人还在读文献，他已经快被写进文献里了',
-    description: '长江学者这种人格，已经不只是学历高，而是学术名头本身就带压迫感。普通人写简历列教育背景，他这类人直接开始列学术江湖地位。',
-    traits: ['学界名号', '头衔压人', '履历离谱', '圈内通关'],
-    rarity: 'SSR',
-    image: 'changjiangxuezhe.png'
-  },
+  // ===== 学术神坛系（3种） =====
   {
     code: 'YUANSH',
     name: '院士',

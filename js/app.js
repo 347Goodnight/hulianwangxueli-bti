@@ -3,6 +3,7 @@
 let currentQuestionIndex = 0;
 let answers = [];
 let currentResultCode = '';
+let autoAdvanceTimer = null;
 let activeLibraryCategory = '全部';
 let librarySearchQuery = '';
 const appName = document.querySelector('meta[name="application-name"]')?.content || '互联网学历测试';
@@ -18,20 +19,20 @@ const personalityTaxonomy = {
   ERYIYI: { category: '名校光环系', keywords: ['211', '守门员', '保底', '卡位'] },
   YIBENYI: { category: '名校光环系', keywords: ['一本', '旧制', '老黄历', '资历'] },
   ERBENCI: { category: '学历落差系', keywords: ['二本', '尴尬', '落差', '滤镜'] },
-  JINGSH: { category: '学历落差系', keywords: ['精神本科生', '包装', '气势', '牌面'] },
+  XIAOXUE: { category: '学历落差系', keywords: ['小学毕业', '低学历', '基础款', '起步'] },
   ZHUANBS: { category: '学历落差系', keywords: ['专升本', '逆袭', '本科', '补票'] },
   DAZHUAN: { category: '学历落差系', keywords: ['大专', '反打', '学历', '战狼'] },
   ZHONGZWH: { category: '学历落差系', keywords: ['中专', '文豪', '评论区', '感悟'] },
+  CHUZHONG: { category: '学历落差系', keywords: ['初中毕业', '义务教育', '社会大学', '门槛'] },
+  GAOZHONG: { category: '学历落差系', keywords: ['高中毕业', '高三', '差一点', '门票'] },
   ZHIGAO: { category: '学历落差系', keywords: ['职高', '分流', '技能', '现实'] },
-  CHENGKAO: { category: '学历落差系', keywords: ['成考', '补票', '非应届', '上岸'] },
+  JIULOU: { category: '学历落差系', keywords: ['九漏鱼', '九年义务教育', '漏网', '理解断层'] },
   LIUSHUI: { category: '学历包装系', keywords: ['留学', '水硕', '海归', '包装'] },
   MINBAN: { category: '学历包装系', keywords: ['民办', '学费', '贵族', '性质'] },
-  YEJIZH: { category: '学历包装系', keywords: ['野鸡院校', '校名', '包装', '翻车'] },
   WENMANG: { category: '学历包装系', keywords: ['文盲', '认知', '规则', '掉线'] },
   SHUOSHI: { category: '学位进阶系', keywords: ['硕士', '保底', '学历升级', '门槛'] },
   BOSHI: { category: '学位进阶系', keywords: ['博士', '论文', '深造', '头发'] },
   BENSHBO: { category: '学位进阶系', keywords: ['本硕博', '连读', '直通车', '丝滑'] },
-  CHANGJ: { category: '学术神坛系', keywords: ['长江学者', '学界', '头衔', '文献'] },
   YUANSH: { category: '学术神坛系', keywords: ['院士', '封神', '天花板', '学界'] },
   NUOJIA: { category: '学术神坛系', keywords: ['诺奖', '教材', '传说', '得主'] },
   XUEFAS: { category: '学术神坛系', keywords: ['学阀', '世家', '家学', '资源'] }
@@ -62,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function startTest() {
+  clearAutoAdvanceTimer();
   currentQuestionIndex = 0;
   answers = new Array(questions.length).fill(null);
   showPage('test');
@@ -76,6 +78,7 @@ function showPage(pageName) {
 }
 
 function renderQuestion() {
+  clearAutoAdvanceTimer();
   const question = questions[currentQuestionIndex];
   const questionText = document.getElementById('question-text');
   const optionsContainer = document.getElementById('options');
@@ -129,6 +132,7 @@ function selectOption(optionIndex) {
   });
 
   updateQuestionActions();
+  scheduleAutoAdvance();
 }
 
 function updateQuestionActions() {
@@ -143,6 +147,7 @@ function updateQuestionActions() {
 }
 
 function goToPreviousQuestion() {
+  clearAutoAdvanceTimer();
   if (currentQuestionIndex === 0) {
     return;
   }
@@ -152,6 +157,7 @@ function goToPreviousQuestion() {
 }
 
 function goToNextQuestion() {
+  clearAutoAdvanceTimer();
   if (!answers[currentQuestionIndex]) {
     return;
   }
@@ -166,6 +172,7 @@ function goToNextQuestion() {
 }
 
 function finishTest() {
+  clearAutoAdvanceTimer();
   showPage('loading');
 
   setTimeout(() => {
@@ -314,10 +321,26 @@ function renderDimensionRadar(scores) {
 }
 
 function restartTest() {
+  clearAutoAdvanceTimer();
   currentQuestionIndex = 0;
   answers = [];
   currentResultCode = '';
   showPage('home');
+}
+
+function clearAutoAdvanceTimer() {
+  if (autoAdvanceTimer) {
+    clearTimeout(autoAdvanceTimer);
+    autoAdvanceTimer = null;
+  }
+}
+
+function scheduleAutoAdvance() {
+  clearAutoAdvanceTimer();
+  autoAdvanceTimer = setTimeout(() => {
+    autoAdvanceTimer = null;
+    goToNextQuestion();
+  }, 240);
 }
 
 function syncPersonalityCount() {
