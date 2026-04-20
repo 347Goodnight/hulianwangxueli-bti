@@ -2,38 +2,38 @@
 // 分为 5 个模型，每个模型包含 3 个子维度
 
 const dimensionMeta = {
-  // 学习能力模型
-  L1: { name: '记忆力', model: '学习能力', icon: '🧠' },
-  L2: { name: '理解力', model: '学习能力', icon: '💡' },
-  L3: { name: '专注力', model: '学习能力', icon: '🎯' },
+  // 信息处理模型
+  L1: { name: '信息留存', model: '信息处理', icon: '🧠' },
+  L2: { name: '逻辑拆解', model: '信息处理', icon: '💡' },
+  L3: { name: '注意稳定', model: '信息处理', icon: '🎯' },
   
-  // 考试能力模型
-  E1: { name: '应试技巧', model: '考试能力', icon: '📝' },
-  E2: { name: '临场发挥', model: '考试能力', icon: '⚡' },
-  E3: { name: '运气成分', model: '考试能力', icon: '🍀' },
+  // 上岸博弈模型
+  E1: { name: '策略判断', model: '上岸博弈', icon: '📝' },
+  E2: { name: '现场应对', model: '上岸博弈', icon: '⚡' },
+  E3: { name: '风口手气', model: '上岸博弈', icon: '🍀' },
   
-  // 学习态度模型
-  A1: { name: '自觉性', model: '学习态度', icon: '📚' },
-  A2: { name: '勤奋度', model: '学习态度', icon: '💪' },
-  A3: { name: '求知欲', model: '学习态度', icon: '🔍' },
+  // 行动驱动模型
+  A1: { name: '主动推进', model: '行动驱动', icon: '📚' },
+  A2: { name: '执行密度', model: '行动驱动', icon: '💪' },
+  A3: { name: '求证欲', model: '行动驱动', icon: '🔍' },
   
-  // 社交能力模型
-  S1: { name: '师生关系', model: '社交能力', icon: '👨‍🏫' },
-  S2: { name: '同学关系', model: '社交能力', icon: '👥' },
-  S3: { name: '团队协作', model: '社交能力', icon: '🤝' },
+  // 互动能力模型
+  S1: { name: '向上沟通', model: '互动能力', icon: '👨‍🏫' },
+  S2: { name: '同辈交流', model: '互动能力', icon: '👥' },
+  S3: { name: '协作输出', model: '互动能力', icon: '🤝' },
   
   // 生存策略模型
   B1: { name: '抗压能力', model: '生存策略', icon: '🛡️' },
-  B2: { name: '时间管理', model: '生存策略', icon: '⏰' },
-  B3: { name: '作弊倾向', model: '生存策略', icon: '🎲' }
+  B2: { name: '节奏管理', model: '生存策略', icon: '⏰' },
+  B3: { name: '包装边界', model: '生存策略', icon: '🎲' }
 };
 
 // 5 个模型的元信息
 const modelMeta = {
-  '学习能力': { icon: '🧠', color: '#FF6B6B' },
-  '考试能力': { icon: '📝', color: '#4ECDC4' },
-  '学习态度': { icon: '📚', color: '#45B7D1' },
-  '社交能力': { icon: '👥', color: '#96CEB4' },
+  '信息处理': { icon: '🧠', color: '#FF6B6B' },
+  '上岸博弈': { icon: '📝', color: '#4ECDC4' },
+  '行动驱动': { icon: '📚', color: '#45B7D1' },
+  '互动能力': { icon: '👥', color: '#96CEB4' },
   '生存策略': { icon: '🛡️', color: '#FFEAA7' }
 };
 
