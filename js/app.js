@@ -26,7 +26,7 @@ const personalityTaxonomy = {
   CHUZHONG: { category: '学历落差系', keywords: ['初中毕业', '义务教育', '社会大学', '门槛'] },
   GAOZHONG: { category: '学历落差系', keywords: ['高中毕业', '高三', '差一点', '门票'] },
   ZHIGAO: { category: '学历落差系', keywords: ['职高', '分流', '技能', '现实'] },
-  JIULOU: { category: '学历落差系', keywords: ['九漏鱼', '九年义务教育', '漏网', '理解断层'] },
+  SHEHUI: { category: '学历落差系', keywords: ['社会大学', '荣誉校友', '现实', '阅历补票'] },
   LIUSHUI: { category: '学历包装系', keywords: ['留学', '水硕', '海归', '包装'] },
   MINBAN: { category: '学历包装系', keywords: ['民办', '学费', '贵族', '性质'] },
   WENMANG: { category: '学历包装系', keywords: ['文盲', '认知', '规则', '掉线'] },
