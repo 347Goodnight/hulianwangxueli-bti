@@ -1,7 +1,7 @@
 {
   "name": "hulianwangxueli-bti",
   "version": "1.0.0",
-  "description": "学历BTI人格测试 - 测测你是哪种学历人格",
+  "description": "互联网学历测试 - 27种学历人格对号入座",
   "main": "index.html",
   "scripts": {
     "dev": "npx serve . -p 3000",
@@ -20,7 +20,7 @@
     "搞笑",
     "娱乐"
   ],
-  "author": "学历BTI创作组",
+  "author": "互联网学历测试项目组",
   "license": "MIT",
   "devDependencies": {
     "serve": "^14.2.0"

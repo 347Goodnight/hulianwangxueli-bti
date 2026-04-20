@@ -1,7 +1,9 @@
-// 学历BTI - 主应用逻辑
+// 互联网学历测试 - 主应用逻辑
 
 let currentQuestionIndex = 0;
 let answers = [];
+const appName = document.querySelector('meta[name="application-name"]')?.content || '互联网学历测试';
+const configuredSiteUrl = document.querySelector('meta[name="site-url"]')?.content || '';
 
 const pages = {
   home: document.getElementById('home-page'),
@@ -11,7 +13,7 @@ const pages = {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('学历BTI 已加载');
+  console.log(`${appName} 已加载`);
   document.getElementById('total-questions').textContent = questions.length;
   updateProgressBar();
 });
@@ -257,18 +259,31 @@ function restartTest() {
   showPage('home');
 }
 
+function getShareUrl() {
+  if (window.location.protocol === 'file:' && configuredSiteUrl) {
+    return configuredSiteUrl;
+  }
+
+  if (window.location.href.startsWith('http')) {
+    return window.location.href.split('#')[0];
+  }
+
+  return configuredSiteUrl || window.location.href;
+}
+
 function shareResult() {
   const personalityName = document.getElementById('personality-name').textContent;
   const personalitySlogan = document.getElementById('personality-slogan').textContent;
   const similarity = document.getElementById('similarity-percent').textContent;
+  const shareUrl = getShareUrl();
 
-  const shareText = `我在学历BTI测试中测出了【${personalityName}】人格，匹配度${similarity}！\n${personalitySlogan}\n\n快来测测你的学历人格：${window.location.href}`;
+  const shareText = `我在${appName}里测出了【${personalityName}】人格，匹配度${similarity}！\n${personalitySlogan}\n\n快来测测你的学历人设：${shareUrl}`;
 
   if (navigator.share) {
     navigator.share({
-      title: '我的学历BTI测试结果',
+      title: `我的${appName}结果`,
       text: shareText,
-      url: window.location.href
+      url: shareUrl
     }).catch((err) => console.log('分享失败:', err));
   } else {
     navigator.clipboard.writeText(shareText).then(() => {

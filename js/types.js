@@ -1,4 +1,4 @@
-// 学历 BTI - 27 种人格类型定义（SBTI风格版）
+// 互联网学历测试 - 27 种人格类型定义（SBTI风格版）
 // 每种人格由 15 维度的 L/M/H 模式组成
 
 const personalityTypes = [
