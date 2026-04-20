@@ -9,7 +9,7 @@
     <meta name="application-name" content="互联网学历测试">
     <meta name="site-url" content="https://347goodnight.github.io/hulianwangxueli-bti/">
     <link rel="canonical" href="https://347goodnight.github.io/hulianwangxueli-bti/">
-    <link rel="stylesheet" href="style.css?v=20260421-4">
+    <link rel="stylesheet" href="style.css?v=20260421-5">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
 </head>
 <body>
@@ -28,7 +28,7 @@
 
                         <div class="hero-actions">
                             <button class="btn btn-primary" onclick="startTest()">开始对号入座</button>
-                            <a class="btn btn-secondary btn-link" href="#personality-lobby">先看人格名单</a>
+                            <button class="btn btn-secondary btn-link" onclick="togglePersonalityLibrary(true)">先看人格名单</button>
                         </div>
 
                         <div class="hero-metrics">
@@ -52,200 +52,6 @@
 
                         <p class="tip">纯属娱乐，但嘴挺准。测完适合截图发群聊，看看谁先破防。</p>
                     </div>
-
-                    <div class="hero-showcase">
-                        <div class="showcase-card showcase-card-primary">
-                            <span class="showcase-label">结果页预览</span>
-                            <div class="showcase-rarity">SSR</div>
-                            <h2>双非战神</h2>
-                            <p>能力还没展示，学校先被审判。</p>
-                            <div class="showcase-tags">
-                                <span>学历自证</span>
-                                <span>嘴硬心强</span>
-                                <span>逆风求生</span>
-                            </div>
-                        </div>
-
-                        <div class="showcase-card showcase-card-quote">
-                            <span class="showcase-label">用户心声</span>
-                            <p>“草，这个测试也太像我和我室友了。”</p>
-                        </div>
-
-                        <div class="showcase-card showcase-card-mini">
-                            <span class="showcase-label">你会测到</span>
-                            <ul>
-                                <li>卷王 / 天才 / 小镇做题家</li>
-                                <li>专升本逆袭怪 / 复读战神 / 学生会干部</li>
-                                <li>电竞少年 / 创业哥 / 说唱改命哥</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="section section-grid">
-                    <div class="section-heading">
-                        <span class="section-kicker">为什么会想测</span>
-                        <h2>这不是心理测试，是互联网学历人设体检</h2>
-                    </div>
-                    <div class="insight-grid">
-                        <article class="info-card">
-                            <span class="card-index">01</span>
-                            <h3>全是熟人局场景</h3>
-                            <p>题目不跟你聊抽象人格，直接问你上课、考试、宿舍、群聊、社团和简历修罗场里会怎么演。</p>
-                        </article>
-                        <article class="info-card">
-                            <span class="card-index">02</span>
-                            <h3>结果像被人扒底裤</h3>
-                            <p>每个人格都走 SBTI 式结果页路线，一眼能懂，一看就想截图，一发就有人来认领。</p>
-                        </article>
-                        <article class="info-card">
-                            <span class="card-index">03</span>
-                            <h3>梗味够重但不乱骂</h3>
-                            <p>整体是贴吧、评论区、群聊嘴损感，但还保持可传播，不会脏到只能自己偷着乐。</p>
-                        </article>
-                    </div>
-                </section>
-
-                <section class="section process-section">
-                    <div class="section-heading">
-                        <span class="section-kicker">玩法很直接</span>
-                        <h2>三步看清你的学历人设</h2>
-                    </div>
-                    <div class="process-grid">
-                        <article class="process-card">
-                            <strong>STEP 1</strong>
-                            <h3>选场景反应</h3>
-                            <p>30道题，全是你在学校和现实里真会遇到的场景，不用装，也装不太住。</p>
-                        </article>
-                        <article class="process-card">
-                            <strong>STEP 2</strong>
-                            <h3>生成维度画像</h3>
-                            <p>系统会从学习、应试、态度、社交和生存策略五个方向，把你的学历味儿算出来。</p>
-                        </article>
-                        <article class="process-card">
-                            <strong>STEP 3</strong>
-                            <h3>领取结果卡</h3>
-                            <p>得到主人格、标签、匹配度和结果卡，适合拉朋友一起互相审判。</p>
-                        </article>
-                    </div>
-                </section>
-
-                <section id="personality-lobby" class="section personalities-section">
-                    <div class="section-heading">
-                        <span class="section-kicker">人格总览</span>
-                        <h2>27种学历人格，看看你最像哪一类</h2>
-                    </div>
-
-                    <div class="lobby-grid">
-                        <article class="lobby-card">
-                            <h3>学业高压系</h3>
-                            <p>卷王、天才、偏科怪、小镇做题家</p>
-                        </article>
-                        <article class="lobby-card">
-                            <h3>摆烂抽象系</h3>
-                            <p>废物、摆烂王、蒙题高手、作弊大师、破防怪</p>
-                        </article>
-                        <article class="lobby-card">
-                            <h3>中段生存系</h3>
-                            <p>及格战士、抱佛脚、学生会干部</p>
-                        </article>
-                        <article class="lobby-card">
-                            <h3>升学赛道系</h3>
-                            <p>复读战神、双非战神、专升本逆袭怪、野鸡院校受害者</p>
-                        </article>
-                        <article class="lobby-card">
-                            <h3>现实社会系</h3>
-                            <p>厂狗预备役、精神本科生、中专文豪、说唱改命哥</p>
-                        </article>
-                        <article class="lobby-card">
-                            <h3>支线开花系</h3>
-                            <p>体育生、艺术生、电竞少年、撩妹高手、创业哥、竞赛老嗨</p>
-                        </article>
-                    </div>
-
-                    <div class="personality-tags">
-                        <span class="tag tag-ssr">卷王</span>
-                        <span class="tag tag-ssr">天才</span>
-                        <span class="tag tag-sr">偏科怪</span>
-                        <span class="tag tag-sr">小镇做题家</span>
-                        <span class="tag tag-n">废物</span>
-                        <span class="tag tag-n">摆烂王</span>
-                        <span class="tag tag-r">蒙题高手</span>
-                        <span class="tag tag-sr">钞能力者</span>
-                        <span class="tag tag-r">作弊大师</span>
-                        <span class="tag tag-r">破防怪</span>
-                        <span class="tag tag-r">及格战士</span>
-                        <span class="tag tag-r">抱佛脚</span>
-                        <span class="tag tag-sr">学生会干部</span>
-                        <span class="tag tag-r">体育生</span>
-                        <span class="tag tag-r">艺术生</span>
-                        <span class="tag tag-ssr">复读战神</span>
-                        <span class="tag tag-ssr">双非战神</span>
-                        <span class="tag tag-ssr">专升本逆袭怪</span>
-                        <span class="tag tag-r">野鸡院校受害者</span>
-                        <span class="tag tag-r">厂狗预备役</span>
-                        <span class="tag tag-sr">精神本科生</span>
-                        <span class="tag tag-r">中专文豪</span>
-                        <span class="tag tag-r">说唱改命哥</span>
-                        <span class="tag tag-r">电竞少年</span>
-                        <span class="tag tag-r">撩妹高手</span>
-                        <span class="tag tag-sr">创业哥</span>
-                        <span class="tag tag-sr">竞赛老嗨</span>
-                    </div>
-                </section>
-
-                <section class="section result-preview-section">
-                    <div class="section-heading">
-                        <span class="section-kicker">测完你会拿到什么</span>
-                        <h2>一张适合发出去的互联网人格结果卡</h2>
-                    </div>
-                    <div class="preview-grid">
-                        <article class="preview-card">
-                            <h3>主人格</h3>
-                            <p>直接给你一个最像的学历人格，不跟你绕弯子。</p>
-                        </article>
-                        <article class="preview-card">
-                            <h3>人格标签</h3>
-                            <p>把你的气质拆成 3 到 4 个关键词，方便一眼记住。</p>
-                        </article>
-                        <article class="preview-card">
-                            <h3>匹配度</h3>
-                            <p>让结果更像图鉴卡，不只是随手生成一句话。</p>
-                        </article>
-                        <article class="preview-card">
-                            <h3>维度分布</h3>
-                            <p>学习、应试、社交、生存策略都能看到个大概轮廓。</p>
-                        </article>
-                    </div>
-                </section>
-
-                <section class="section faq-section">
-                    <div class="section-heading">
-                        <span class="section-kicker">测试须知</span>
-                        <h2>先说清楚，免得你测完找我们维权</h2>
-                    </div>
-                    <div class="faq-list">
-                        <article class="faq-item">
-                            <h3>这是严肃心理测评吗？</h3>
-                            <p>不是。它是一个娱乐向的人设测试，主打有梗、戳人、适合截图分享。</p>
-                        </article>
-                        <article class="faq-item">
-                            <h3>为什么这么像我？</h3>
-                            <p>因为题目都写的是校园和互联网里真实会发生的场景，你很难一直装成另一个人。</p>
-                        </article>
-                        <article class="faq-item">
-                            <h3>可以拉朋友一起测吗？</h3>
-                            <p>非常适合。一个人测是对号入座，一群人测就会变成公开处刑。</p>
-                        </article>
-                    </div>
-                </section>
-
-                <section class="cta-banner">
-                    <div>
-                        <span class="section-kicker">准备好了吗</span>
-                        <h2>别再嘴上说像，进来测了再认。</h2>
-                    </div>
-                    <button class="btn btn-primary" onclick="startTest()">开始测试</button>
                 </section>
             </div>
 
@@ -301,6 +107,16 @@
                         <button class="btn btn-primary" onclick="restartTest()">再测一次</button>
                         <button class="btn btn-secondary" onclick="shareResult()">分享结果</button>
                     </div>
+
+                    <div class="all-types-section">
+                        <div class="all-types-header">
+                            <div>
+                                <span class="section-kicker">结果延伸</span>
+                                <h3>看看另外 26 种人格都长什么样</h3>
+                            </div>
+                            <button class="btn btn-secondary all-types-toggle" id="all-types-toggle-btn" onclick="togglePersonalityLibrary()">查看全部人格</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -318,9 +134,23 @@
         </footer>
     </div>
 
-    <script src="js/dimensions.js?v=20260421-4"></script>
-    <script src="js/questions.js?v=20260421-4"></script>
-    <script src="js/types.js?v=20260421-4"></script>
-    <script src="js/app.js?v=20260421-4"></script>
+    <div class="personality-library-overlay" id="personality-library-overlay" hidden>
+        <div class="personality-library-backdrop" onclick="togglePersonalityLibrary(false)"></div>
+        <div class="personality-library-panel">
+            <div class="personality-library-head">
+                <div>
+                    <span class="section-kicker">人格总览</span>
+                    <h2>27种互联网学历人格</h2>
+                </div>
+                <button class="library-close" onclick="togglePersonalityLibrary(false)" aria-label="关闭人格列表">×</button>
+            </div>
+            <div class="personality-library-grid" id="personality-library-grid"></div>
+        </div>
+    </div>
+
+    <script src="js/dimensions.js?v=20260421-5"></script>
+    <script src="js/questions.js?v=20260421-5"></script>
+    <script src="js/types.js?v=20260421-5"></script>
+    <script src="js/app.js?v=20260421-5"></script>
 </body>
 </html>

@@ -2,6 +2,7 @@
 
 let currentQuestionIndex = 0;
 let answers = [];
+let currentResultCode = '';
 const appName = document.querySelector('meta[name="application-name"]')?.content || '互联网学历测试';
 const configuredSiteUrl = document.querySelector('meta[name="site-url"]')?.content || '';
 
@@ -15,6 +16,7 @@ const pages = {
 document.addEventListener('DOMContentLoaded', () => {
   console.log(`${appName} 已加载`);
   document.getElementById('total-questions').textContent = questions.length;
+  renderPersonalityLibrary();
   updateProgressBar();
 });
 
@@ -197,6 +199,7 @@ function showResult(result) {
   showPage('result');
 
   const personality = result.personality;
+  currentResultCode = personality.code;
   const rarityBadge = document.getElementById('rarity-badge');
   rarityBadge.textContent = personality.rarity;
   rarityBadge.setAttribute('data-rarity', personality.rarity);
@@ -231,6 +234,7 @@ function showResult(result) {
   img.alt = personality.name;
 
   renderDimensionRadar(result.dimensionScores);
+  renderPersonalityLibrary();
 }
 
 function renderDimensionRadar(scores) {
@@ -256,7 +260,66 @@ function renderDimensionRadar(scores) {
 function restartTest() {
   currentQuestionIndex = 0;
   answers = [];
+  currentResultCode = '';
   showPage('home');
+}
+
+function renderPersonalityLibrary() {
+  const grid = document.getElementById('personality-library-grid');
+  if (!grid) {
+    return;
+  }
+
+  grid.innerHTML = '';
+
+  personalityTypes.forEach((personality) => {
+    const card = document.createElement('article');
+    card.className = 'library-card';
+
+    if (personality.code === currentResultCode) {
+      card.classList.add('active');
+    }
+
+    const traits = personality.traits
+      .map((trait) => `<span>${trait}</span>`)
+      .join('');
+
+    card.innerHTML = `
+      <div class="library-card-header">
+        <div>
+          <h3>${personality.name}</h3>
+          <p class="library-card-code">${personality.code}</p>
+        </div>
+        <span class="library-card-rarity" data-rarity="${personality.rarity}">${personality.rarity}</span>
+      </div>
+      <p class="library-card-slogan">${personality.slogan}</p>
+      <p class="library-card-desc">${personality.description}</p>
+      <div class="library-card-traits">${traits}</div>
+    `;
+
+    grid.appendChild(card);
+  });
+}
+
+function togglePersonalityLibrary(forceOpen) {
+  const overlay = document.getElementById('personality-library-overlay');
+  if (!overlay) {
+    return;
+  }
+
+  const shouldOpen = typeof forceOpen === 'boolean'
+    ? forceOpen
+    : overlay.hasAttribute('hidden');
+
+  if (shouldOpen) {
+    renderPersonalityLibrary();
+    overlay.removeAttribute('hidden');
+    document.body.style.overflow = 'hidden';
+    return;
+  }
+
+  overlay.setAttribute('hidden', '');
+  document.body.style.overflow = '';
 }
 
 function getShareUrl() {
@@ -295,6 +358,10 @@ function shareResult() {
 }
 
 document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    togglePersonalityLibrary(false);
+  }
+
   if (!pages.test.classList.contains('active')) {
     return;
   }
