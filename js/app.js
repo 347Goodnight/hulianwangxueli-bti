@@ -7,6 +7,12 @@ let activeLibraryCategory = '全部';
 let librarySearchQuery = '';
 const appName = document.querySelector('meta[name="application-name"]')?.content || '互联网学历测试';
 const configuredSiteUrl = document.querySelector('meta[name="site-url"]')?.content || '';
+const availablePersonaImages = new Set([
+  'juanwang.png',
+  'piankeguai.png',
+  'tiancai.png',
+  'xiaozhenzuotijia.png'
+]);
 const personalityTaxonomy = {
   QINGJIU: { category: '名校光环系', keywords: ['985', '名校', '光环', '牌面'] },
   ERYIYI: { category: '名校光环系', keywords: ['211', '守门员', '保底', '卡位'] },
@@ -257,16 +263,20 @@ function showResult(result) {
   const imageContainer = document.getElementById('personality-image');
   imageContainer.innerHTML = '';
 
-  const img = new Image();
-  img.onload = () => {
-    imageContainer.innerHTML = '';
-    imageContainer.appendChild(img);
-  };
-  img.onerror = () => {
-    imageContainer.innerHTML = '<span class="placeholder-img">🎓</span>';
-  };
-  img.src = `image/${personality.image}`;
-  img.alt = personality.name;
+  if (hasBundledPersonaImage(personality)) {
+    const img = new Image();
+    img.onload = () => {
+      imageContainer.innerHTML = '';
+      imageContainer.appendChild(img);
+    };
+    img.onerror = () => {
+      imageContainer.innerHTML = `<span class="placeholder-img personality-initials">${getPersonalityInitials(personality)}</span>`;
+    };
+    img.src = `image/${personality.image}`;
+    img.alt = personality.name;
+  } else {
+    imageContainer.innerHTML = `<span class="placeholder-img personality-initials">${getPersonalityInitials(personality)}</span>`;
+  }
 
   renderDimensionRadar(result.dimensionScores);
   renderPersonalityLibrary();
@@ -330,8 +340,19 @@ function getPersonalityMeta(personality) {
   };
 }
 
+function getPersonalityInitials(personality) {
+  return personality.name.slice(0, 2);
+}
+
+function hasBundledPersonaImage(personality) {
+  return Boolean(personality.image && availablePersonaImages.has(personality.image));
+}
+
 function getLibraryImageMarkup(personality, meta, serialLabel) {
-  const initials = personality.name.slice(0, 2);
+  const initials = getPersonalityInitials(personality);
+  const avatarContent = hasBundledPersonaImage(personality)
+    ? `<img src="image/${personality.image}" alt="${personality.name}" loading="lazy">`
+    : `<span class="library-card-avatar-fallback">${initials}</span>`;
   return `
     <div class="library-card-cover">
       <div class="library-card-cover-top">
@@ -339,8 +360,7 @@ function getLibraryImageMarkup(personality, meta, serialLabel) {
         <span class="library-card-mini-tag">${meta.icon} ${meta.label}</span>
       </div>
       <div class="library-card-avatar">
-        <img src="image/${personality.image}" alt="${personality.name}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.hidden=false;">
-        <span class="library-card-avatar-fallback" hidden>${initials}</span>
+        ${avatarContent}
       </div>
     </div>
   `;
