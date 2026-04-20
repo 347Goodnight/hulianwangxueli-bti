@@ -254,6 +254,17 @@ body {
     gap: 15px;
 }
 
+.question-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 32px;
+}
+
+.question-actions .btn {
+    flex: 1;
+}
+
 .option {
     padding: 20px 24px;
     background: var(--bg-color);
@@ -274,6 +285,13 @@ body {
 .option.selected {
     border-color: var(--primary-color);
     background: rgba(108, 92, 231, 0.1);
+}
+
+.btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+    transform: none;
+    box-shadow: none;
 }
 
 /* 结果页面 */
@@ -529,6 +547,10 @@ body {
     .option {
         padding: 16px 20px;
         font-size: 15px;
+    }
+
+    .question-actions {
+        flex-direction: column-reverse;
     }
     
     .personality-name {
