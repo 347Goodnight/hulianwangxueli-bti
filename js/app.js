@@ -3,8 +3,33 @@
 let currentQuestionIndex = 0;
 let answers = [];
 let currentResultCode = '';
+let activeLibraryCategory = '全部';
+let librarySearchQuery = '';
 const appName = document.querySelector('meta[name="application-name"]')?.content || '互联网学历测试';
 const configuredSiteUrl = document.querySelector('meta[name="site-url"]')?.content || '';
+const personalityTaxonomy = {
+  JUANW: { category: '学业高压系', keywords: ['卷', '绩点', '自律', '图书馆'] },
+  TIANCA: { category: '学业高压系', keywords: ['天赋', '轻松', '高分', '智商'] },
+  PIANKA: { category: '成绩断层系', keywords: ['偏科', '单科', '裂开', '成绩单'] },
+  XIAOZH: { category: '学历出身系', keywords: ['做题家', '小镇', '上升', '努力'] },
+  FEIWU: { category: '摆烂躺平系', keywords: ['废物', '躺平', '不学', '放弃'] },
+  BAILAN: { category: '摆烂躺平系', keywords: ['摆烂', '躺着', '佛系', '算了'] },
+  MENGTS: { category: '考试玄学系', keywords: ['蒙题', '玄学', '运气', '猜题'] },
+  CHAONL: { category: '学历资源系', keywords: ['资源', '钞能力', '家境', '门路'] },
+  ZUOBID: { category: '考试玄学系', keywords: ['作弊', '投机', '考场', '小抄'] },
+  POFANG: { category: '摆烂躺平系', keywords: ['破防', '嘴硬', '甩锅', '成绩'] },
+  JIGEZS: { category: '中段生存系', keywords: ['及格', '60分', '低空飞过', '卡线'] },
+  BAOFOJ: { category: '中段生存系', keywords: ['抱佛脚', '突击', 'deadline', '考前'] },
+  GANBU: { category: '校园关系系', keywords: ['学生会', '干部', '通知', '组织'] },
+  FUDUS: { category: '升学执念系', keywords: ['复读', '重开', '高考', '不服'] },
+  SHUANGF: { category: '学历出身系', keywords: ['双非', '学校', '自证', '简历'] },
+  ZHUANBS: { category: '升学执念系', keywords: ['专升本', '逆袭', '本科', '补票'] },
+  YEJIZH: { category: '学历包装系', keywords: ['野鸡院校', '校名', '包装', '翻车'] },
+  CHANGG: { category: '就业现实系', keywords: ['厂狗', '就业', '包住', '现实'] },
+  JINGSH: { category: '学历包装系', keywords: ['精神本科生', '包装', '气势', '牌面'] },
+  ZHONGZWH: { category: '学历出身系', keywords: ['中专', '文豪', '评论区', '感悟'] },
+  JINGSLH: { category: '高端赛道系', keywords: ['竞赛', '省一', '国奖', '履历'] }
+};
 
 const pages = {
   home: document.getElementById('home-page'),
@@ -16,6 +41,7 @@ const pages = {
 document.addEventListener('DOMContentLoaded', () => {
   console.log(`${appName} 已加载`);
   document.getElementById('total-questions').textContent = questions.length;
+  syncPersonalityCount();
   renderPersonalityLibrary();
   updateProgressBar();
 });
@@ -264,15 +290,93 @@ function restartTest() {
   showPage('home');
 }
 
+function syncPersonalityCount() {
+  const count = personalityTypes.length;
+  document.querySelectorAll('[data-personality-count]').forEach((node) => {
+    node.textContent = count;
+  });
+  document.querySelectorAll('[data-remaining-personality-count]').forEach((node) => {
+    node.textContent = Math.max(count - 1, 0);
+  });
+}
+
+function getPersonalityMeta(personality) {
+  return personalityTaxonomy[personality.code] || {
+    category: '未分类',
+    keywords: []
+  };
+}
+
+function getLibraryImageMarkup(personality) {
+  const initials = personality.name.slice(0, 2);
+  return `
+    <div class="library-card-avatar">
+      <img src="image/${personality.image}" alt="${personality.name}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.hidden=false;">
+      <span class="library-card-avatar-fallback" hidden>${initials}</span>
+    </div>
+  `;
+}
+
+function renderLibraryFilters() {
+  const filterContainer = document.getElementById('personality-library-filters');
+  if (!filterContainer) {
+    return;
+  }
+
+  const categories = ['全部', ...new Set(personalityTypes.map((personality) => getPersonalityMeta(personality).category))];
+
+  filterContainer.innerHTML = '';
+  categories.forEach((category) => {
+    const button = document.createElement('button');
+    button.className = 'library-filter-chip';
+    if (category === activeLibraryCategory) {
+      button.classList.add('active');
+    }
+    button.textContent = category;
+    button.onclick = () => {
+      activeLibraryCategory = category;
+      renderLibraryFilters();
+      renderPersonalityLibrary();
+    };
+    filterContainer.appendChild(button);
+  });
+}
+
 function renderPersonalityLibrary() {
   const grid = document.getElementById('personality-library-grid');
   if (!grid) {
     return;
   }
 
+  const normalizedQuery = librarySearchQuery.trim().toLowerCase();
+  const filteredPersonalities = personalityTypes.filter((personality) => {
+    const meta = getPersonalityMeta(personality);
+    const matchesCategory = activeLibraryCategory === '全部' || meta.category === activeLibraryCategory;
+    if (!matchesCategory) {
+      return false;
+    }
+
+    if (!normalizedQuery) {
+      return true;
+    }
+
+    const haystack = [
+      personality.name,
+      personality.code,
+      personality.slogan,
+      personality.description,
+      personality.traits.join(' '),
+      meta.category,
+      meta.keywords.join(' ')
+    ].join(' ').toLowerCase();
+
+    return haystack.includes(normalizedQuery);
+  });
+
   grid.innerHTML = '';
 
-  personalityTypes.forEach((personality) => {
+  filteredPersonalities.forEach((personality) => {
+    const meta = getPersonalityMeta(personality);
     const card = document.createElement('article');
     card.className = 'library-card';
 
@@ -287,10 +391,19 @@ function renderPersonalityLibrary() {
     card.innerHTML = `
       <div class="library-card-header">
         <div>
-          <h3>${personality.name}</h3>
-          <p class="library-card-code">${personality.code}</p>
+          <div class="library-card-title-row">
+            ${getLibraryImageMarkup(personality)}
+            <div>
+              <h3>${personality.name}</h3>
+              <p class="library-card-code">${personality.code}</p>
+            </div>
+          </div>
         </div>
         <span class="library-card-rarity" data-rarity="${personality.rarity}">${personality.rarity}</span>
+      </div>
+      <div class="library-card-meta">
+        <span class="library-card-category">${meta.category}</span>
+        ${personality.code === currentResultCode ? '<span class="library-card-current">你的结果</span>' : ''}
       </div>
       <p class="library-card-slogan">${personality.slogan}</p>
       <p class="library-card-desc">${personality.description}</p>
@@ -299,6 +412,10 @@ function renderPersonalityLibrary() {
 
     grid.appendChild(card);
   });
+
+  if (filteredPersonalities.length === 0) {
+    grid.innerHTML = '<div class="library-empty">没有搜到匹配的人格，换个关键词试试。</div>';
+  }
 }
 
 function togglePersonalityLibrary(forceOpen) {
@@ -312,6 +429,7 @@ function togglePersonalityLibrary(forceOpen) {
     : overlay.hasAttribute('hidden');
 
   if (shouldOpen) {
+    renderLibraryFilters();
     renderPersonalityLibrary();
     overlay.removeAttribute('hidden');
     document.body.style.overflow = 'hidden';
@@ -382,5 +500,12 @@ document.addEventListener('keydown', (e) => {
 
   if (e.key === 'ArrowRight' || e.key === 'Enter') {
     goToNextQuestion();
+  }
+});
+
+document.addEventListener('input', (e) => {
+  if (e.target && e.target.id === 'personality-library-search') {
+    librarySearchQuery = e.target.value;
+    renderPersonalityLibrary();
   }
 });

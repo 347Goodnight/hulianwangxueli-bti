@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>互联网学历测试 | 27种学历人格对号入座</title>
-    <meta name="description" content="互联网学历测试：27种学历人格，30道场景题，测测你在校园、考试、宿舍、考研和学历鄙视链里到底是哪一号人物。">
+    <title>互联网学历测试 | 21种互联网学历人格对号入座</title>
+    <meta name="description" content="互联网学历测试：21种互联网学历人格，30道场景题，测测你在校园、考试、宿舍、考研和学历鄙视链里到底是哪一号人物。">
     <meta name="keywords" content="互联网学历测试,学历人格,人格测试,SBTI,校园梗,学历梗,卷王,双非战神,专升本逆袭怪">
     <meta name="application-name" content="互联网学历测试">
     <meta name="site-url" content="https://347goodnight.github.io/hulianwangxueli-bti/">
@@ -23,7 +23,7 @@
                     <div class="hero-copy">
                         <span class="eyebrow">SBTI风格 · 互联网学历梗测试</span>
                         <h1 class="title">互联网学历测试</h1>
-                        <p class="subtitle">27种学历人格，测测你在校园、考研、就业和学历鄙视链里，到底是哪一号人物。</p>
+                        <p class="subtitle"><span data-personality-count>21</span>种互联网学历人格，测测你在校园、考研、就业和学历鄙视链里，到底是哪一号人物。</p>
                         <p class="hero-description">不是测智商，也不是给你做心理量表，而是把教室、宿舍、社团、成绩单、简历和评论区里的那点学历味儿，全都给你扒出来。</p>
 
                         <div class="hero-actions">
@@ -41,7 +41,7 @@
                                 <span>个维度</span>
                             </div>
                             <div class="metric-card">
-                                <strong>27</strong>
+                                <strong data-personality-count>21</strong>
                                 <span>种人格</span>
                             </div>
                             <div class="metric-card">
@@ -112,7 +112,7 @@
                         <div class="all-types-header">
                             <div>
                                 <span class="section-kicker">结果延伸</span>
-                                <h3>看看另外 26 种人格都长什么样</h3>
+                                <h3>看看其余 <span data-remaining-personality-count>20</span> 种人格都长什么样</h3>
                             </div>
                             <button class="btn btn-secondary all-types-toggle" id="all-types-toggle-btn" onclick="togglePersonalityLibrary()">查看全部人格</button>
                         </div>
@@ -130,7 +130,7 @@
         </div>
 
         <footer class="footer">
-            <p>© 2026 互联网学历测试 · 27种学历人格 · 仅供娱乐</p>
+            <p>© 2026 互联网学历测试 · <span data-personality-count>21</span>种互联网学历人格 · 仅供娱乐</p>
         </footer>
     </div>
 
@@ -140,17 +140,21 @@
             <div class="personality-library-head">
                 <div>
                     <span class="section-kicker">人格总览</span>
-                    <h2>27种互联网学历人格</h2>
+                    <h2><span data-personality-count>21</span>种互联网学历人格</h2>
                 </div>
                 <button class="library-close" onclick="togglePersonalityLibrary(false)" aria-label="关闭人格列表">×</button>
+            </div>
+            <div class="personality-library-toolbar">
+                <input class="library-search-input" id="personality-library-search" type="text" placeholder="搜索人格名、关键词、代号">
+                <div class="personality-library-filters" id="personality-library-filters"></div>
             </div>
             <div class="personality-library-grid" id="personality-library-grid"></div>
         </div>
     </div>
 
-    <script src="js/dimensions.js?v=20260421-5"></script>
-    <script src="js/questions.js?v=20260421-5"></script>
-    <script src="js/types.js?v=20260421-5"></script>
-    <script src="js/app.js?v=20260421-5"></script>
+    <script src="js/dimensions.js?v=20260421-6"></script>
+    <script src="js/questions.js?v=20260421-6"></script>
+    <script src="js/types.js?v=20260421-6"></script>
+    <script src="js/app.js?v=20260421-6"></script>
 </body>
 </html>

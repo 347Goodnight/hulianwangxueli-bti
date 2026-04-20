@@ -1,5 +1,5 @@
-// 互联网学历测试 - 27 种人格类型定义（SBTI风格版）
-// 每种人格由 15 维度的 L/M/H 模式组成
+// 互联网学历测试 - 21 种人格类型定义（SBTI风格版）
+// 当前只保留更贴近互联网学历梗语境的人格
 
 const personalityTypes = [
   // ===== 学霸系（4种） =====
@@ -49,7 +49,7 @@ const personalityTypes = [
     description: '偏科怪的人生像一张裂开的成绩单。一门强到能把全班按在地上摩擦，另一门却烂得像从来没学过。总分不上不下，单科战绩却足够吹一学期。',
     traits: ['严重偏科', '单科王者', '两极分化', '老师头疼对象'],
     rarity: 'SR',
-    image: 'piankemei.png'
+    image: 'piankeguai.png'
   },
   {
     code: 'XIAOZH',
@@ -65,7 +65,7 @@ const personalityTypes = [
     description: '小镇做题家把刷题当成最稳的上升通道，也真的靠做题走了很远。他们最擅长在标准答案里求生，却也最容易在离开卷子之后感到失重。不是不够努力，是世界出的题越来越偏。',
     traits: ['做题机器', '应试高手', '努力型选手', '迷茫前行'],
     rarity: 'SR',
-    image: 'xiaozhentizuotijia.png'
+    image: 'xiaozhenzuotijia.png'
   },
 
   // ===== 学渣系（6种） =====
@@ -218,40 +218,6 @@ const personalityTypes = [
     image: 'xueshengganbu.png'
   },
 
-  // ===== 特长生系（2种） =====
-  {
-    code: 'TIYUS',
-    name: '体育生',
-    pattern: {
-      L1: 'L', L2: 'L', L3: 'H',
-      E1: 'L', E2: 'M', E3: 'M',
-      A1: 'L', A2: 'H', A3: 'L',
-      S1: 'H', S2: 'H', S3: 'H',
-      B1: 'H', B2: 'H', B3: 'L'
-    },
-    slogan: '文化课不行，身体素质拉满',
-    description: '体育生的人设很简单，训练永远比考试更有存在感。文化课像副本，比赛才是主战场。别人靠脑子卷，他靠身体拼，提到考试像上刑，提到比赛立刻来状态。',
-    traits: ['运动健将', '文化课苦手', '身体素质', '特长生'],
-    rarity: 'SR',
-    image: 'tiyusheng.png'
-  },
-  {
-    code: 'YISHUS',
-    name: '艺术生',
-    pattern: {
-      L1: 'M', L2: 'H', L3: 'M',
-      E1: 'M', E2: 'M', E3: 'M',
-      A1: 'M', A2: 'M', A3: 'H',
-      S1: 'M', S2: 'M', S3: 'L',
-      B1: 'M', B2: 'L', B3: 'L'
-    },
-    slogan: '专业烧钱，文化补刀',
-    description: '艺术生是一种典型的双线受苦人格。专业课费命费钱，文化课还不肯轻易放过他。别人是一条赛道跑到底，他是两边都要交作业，两边都要挨打。',
-    traits: ['艺术天赋', '与众不同', '创意无限', '另辟蹊径'],
-    rarity: 'SR',
-    image: 'yishusheng.png'
-  },
-
   // ===== 复读/升学系（4种） =====
   {
     code: 'FUDUS',
@@ -370,72 +336,6 @@ const personalityTypes = [
     image: 'zhongzhuanwenhao.png'
   },
 
-  // ===== 兴趣系（4种） =====
-  {
-    code: 'SHUOCH',
-    name: '说唱改命哥',
-    pattern: {
-      L1: 'M', L2: 'H', L3: 'L',
-      E1: 'L', E2: 'M', E3: 'M',
-      A1: 'L', A2: 'L', A3: 'M',
-      S1: 'H', S2: 'H', S3: 'H',
-      B1: 'M', B2: 'L', B3: 'L'
-    },
-    slogan: '成绩救不了人生，flow可以',
-    description: '说唱改命哥对知识点没什么兴趣，对押韵倒是极度敏感。卷子不会写几道，气势必须先顶上来。别人靠分数找存在感，他靠节奏和态度证明自己没输。',
-    traits: ['说唱狂热', '态度先行', '押韵狂魔', '另辟蹊径'],
-    rarity: 'R',
-    image: 'shuochanggaimingge.png'
-  },
-  {
-    code: 'DIANJS',
-    name: '电竞少年',
-    pattern: {
-      L1: 'M', L2: 'H', L3: 'L',
-      E1: 'L', E2: 'M', E3: 'M',
-      A1: 'L', A2: 'L', A3: 'M',
-      S1: 'M', S2: 'H', S3: 'H',
-      B1: 'M', B2: 'L', B3: 'L'
-    },
-    slogan: '书不会背，版本一定懂',
-    description: '电竞少年的大脑对游戏更新异常敏锐，对课本内容却总是拒绝加载。成绩像高地，一碰就掉；英雄强度、装备改动、战术理解倒是背得滚瓜烂熟。学习不行，BP不能输。',
-    traits: ['游戏狂热', '电竞梦想', '手速惊人', '学业荒废'],
-    rarity: 'R',
-    image: 'dianjingshaonian.png'
-  },
-  {
-    code: 'LIAOME',
-    name: '撩妹高手',
-    pattern: {
-      L1: 'L', L2: 'M', L3: 'L',
-      E1: 'L', E2: 'M', E3: 'H',
-      A1: 'L', A2: 'L', A3: 'L',
-      S1: 'H', S2: 'H', S3: 'H',
-      B1: 'M', B2: 'L', B3: 'L'
-    },
-    slogan: '题不会写，情话张口就来',
-    description: '撩妹高手在校园里的主要赛道从来不是学习。别人晚自习刷题，他晚自习经营人设；卷子做不做另说，纸条一定得传到位。学业成绩不稳定，情绪价值输出倒是相当稳定。',
-    traits: ['恋爱达人', '情场高手', '学习靠边', '青春无悔'],
-    rarity: 'R',
-    image: 'liaomeigaoshou.png'
-  },
-  {
-    code: 'CHUANGY',
-    name: '创业哥',
-    pattern: {
-      L1: 'M', L2: 'H', L3: 'L',
-      E1: 'M', E2: 'M', E3: 'M',
-      A1: 'L', A2: 'L', A3: 'H',
-      S1: 'H', S2: 'H', S3: 'H',
-      B1: 'H', B2: 'L', B3: 'L'
-    },
-    slogan: '书还没读懂，世界已经想改了',
-    description: '创业哥最大的特点，是永远先于现实一步进入宏大叙事。PPT、商业模式、赛道、融资，嘴上全是大词，行动上主打一个先把气氛做起来。别人还在备考，他已经准备改变行业。',
-    traits: ['创业梦想', '宏大叙事', 'PPT大师', '气氛组'],
-    rarity: 'SR',
-    image: 'chuangyegen.png'
-  },
-
   // ===== 竞赛系（1种） =====
   {
     code: 'JINGSLH',
@@ -461,7 +361,7 @@ const fallbackType = {
   name: '未定义人格',
   pattern: {},
   slogan: '你太独特了，无法被现有类型定义',
-  description: '你的学习特征非常独特，不在我们现有的 27 种人格范畴内。也许你是未来的新型学习者？',
+  description: '你的学习特征非常独特，不在我们现有的 21 种人格范畴内。也许你是未来的新型学习者？',
   traits: ['独一无二', '打破常规', '特立独行'],
   rarity: 'UR',
   image: 'unknown.png'

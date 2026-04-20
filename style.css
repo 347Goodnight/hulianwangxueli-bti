@@ -626,6 +626,52 @@ body {
     line-height: 1.1;
 }
 
+.personality-library-toolbar {
+    margin-top: 20px;
+}
+
+.library-search-input {
+    width: 100%;
+    height: 52px;
+    padding: 0 18px;
+    border-radius: 18px;
+    border: 1px solid rgba(91, 61, 43, 0.12);
+    background: rgba(255, 255, 255, 0.86);
+    color: var(--text-primary);
+    font-size: 15px;
+    outline: none;
+}
+
+.library-search-input:focus {
+    border-color: rgba(200, 82, 44, 0.44);
+    box-shadow: 0 0 0 4px rgba(200, 82, 44, 0.08);
+}
+
+.personality-library-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.library-filter-chip {
+    min-height: 38px;
+    padding: 0 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(91, 61, 43, 0.12);
+    background: rgba(255, 255, 255, 0.76);
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.library-filter-chip.active {
+    background: rgba(200, 82, 44, 0.14);
+    color: var(--primary-dark);
+    border-color: rgba(200, 82, 44, 0.32);
+}
+
 .library-close {
     width: 48px;
     height: 48px;
@@ -665,16 +711,75 @@ body {
     gap: 12px;
 }
 
+.library-card-title-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.library-card-avatar {
+    width: 54px;
+    height: 54px;
+    border-radius: 18px;
+    overflow: hidden;
+    flex: 0 0 54px;
+    background: linear-gradient(135deg, rgba(255, 203, 103, 0.94), rgba(200, 82, 44, 0.92));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.14);
+}
+
+.library-card-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.library-card-avatar-fallback {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+}
+
 .library-card-header h3 {
     font-size: 24px;
     line-height: 1.1;
 }
 
 .library-card-code {
-    margin-top: 6px;
     font-size: 13px;
     color: var(--text-muted);
     letter-spacing: 0.08em;
+}
+
+.library-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.library-card-category,
+.library-card-current {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    padding: 0 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.library-card-category {
+    background: rgba(43, 33, 29, 0.06);
+    color: var(--text-secondary);
+}
+
+.library-card-current {
+    background: rgba(200, 82, 44, 0.14);
+    color: var(--primary-dark);
 }
 
 .library-card-rarity {
@@ -723,6 +828,14 @@ body {
     color: var(--text-secondary);
     font-size: 12px;
     font-weight: 700;
+}
+
+.library-empty {
+    padding: 22px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.74);
+    color: var(--text-secondary);
+    text-align: center;
 }
 
 .footer {

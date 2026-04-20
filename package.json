@@ -1,7 +1,7 @@
 {
   "name": "hulianwangxueli-bti",
   "version": "1.0.0",
-  "description": "互联网学历测试 - 27种学历人格对号入座",
+  "description": "互联网学历测试 - 21种互联网学历人格对号入座",
   "main": "index.html",
   "scripts": {
     "dev": "npx serve . -p 3000",
