@@ -1,0 +1,561 @@
+/* 学历BTI - 样式文件 */
+
+/* CSS 变量 */
+:root {
+    --primary-color: #6C5CE7;
+    --primary-light: #A29BFE;
+    --primary-dark: #5B4BC4;
+    --secondary-color: #74B9FF;
+    --accent-color: #00B894;
+    --bg-color: #F8F9FA;
+    --bg-card: #FFFFFF;
+    --text-primary: #2D3436;
+    --text-secondary: #636E72;
+    --text-muted: #B2BEC3;
+    --border-color: #DFE6E9;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+    --radius: 12px;
+    --radius-lg: 20px;
+    
+    /* 稀有度颜色 */
+    --rarity-n: #95A5A6;
+    --rarity-r: #3498DB;
+    --rarity-sr: #9B59B6;
+    --rarity-ssr: #F39C12;
+    --rarity-ur: #E74C3C;
+}
+
+/* 重置样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 页面切换 */
+.page {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.page.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 首页 */
+.hero {
+    text-align: center;
+    padding: 40px 20px;
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    margin-bottom: 20px;
+}
+
+.logo {
+    font-size: 80px;
+    margin-bottom: 10px;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.title {
+    font-size: 48px;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 24px;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+}
+
+.intro {
+    margin-bottom: 30px;
+}
+
+.intro p {
+    font-size: 18px;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.feature {
+    background: linear-gradient(135deg, var(--primary-light), var(--secondary-color));
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.btn {
+    display: inline-block;
+    padding: 16px 48px;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(108, 92, 231, 0.5);
+}
+
+.btn-secondary {
+    background: var(--bg-color);
+    color: var(--text-primary);
+    border: 2px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background: var(--border-color);
+}
+
+.tip {
+    margin-top: 20px;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+/* 人格预览 */
+.personalities-preview {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: 30px;
+    box-shadow: var(--shadow);
+}
+
+.personalities-preview h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+}
+
+.personality-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.tag {
+    padding: 6px 14px;
+    border-radius: 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+}
+
+.tag-n { background: var(--rarity-n); }
+.tag-r { background: var(--rarity-r); }
+.tag-sr { background: var(--rarity-sr); }
+.tag-ssr { background: var(--rarity-ssr); }
+.tag-ur { background: var(--rarity-ur); }
+
+/* 测试页面 */
+.test-header {
+    background: var(--bg-card);
+    padding: 20px;
+    border-radius: var(--radius);
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+}
+
+.progress-bar {
+    height: 8px;
+    background: var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    text-align: center;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.question-container {
+    background: var(--bg-card);
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    min-height: 400px;
+}
+
+.question-text {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 40px;
+    line-height: 1.5;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.option {
+    padding: 20px 24px;
+    background: var(--bg-color);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    text-align: left;
+}
+
+.option:hover {
+    border-color: var(--primary-color);
+    background: rgba(108, 92, 231, 0.05);
+    transform: translateX(5px);
+}
+
+.option.selected {
+    border-color: var(--primary-color);
+    background: rgba(108, 92, 231, 0.1);
+}
+
+/* 结果页面 */
+.result-container {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    box-shadow: var(--shadow-lg);
+}
+
+.result-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.rarity-badge {
+    display: inline-block;
+    padding: 8px 24px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 18px;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.rarity-badge[data-rarity="N"] { background: var(--rarity-n); }
+.rarity-badge[data-rarity="R"] { background: var(--rarity-r); }
+.rarity-badge[data-rarity="SR"] { background: var(--rarity-sr); }
+.rarity-badge[data-rarity="SSR"] { background: var(--rarity-ssr); }
+.rarity-badge[data-rarity="UR"] { background: var(--rarity-ur); }
+
+.result-title {
+    font-size: 28px;
+    color: var(--text-primary);
+}
+
+.personality-card {
+    text-align: center;
+    padding: 30px;
+    background: linear-gradient(135deg, rgba(108, 92, 231, 0.05), rgba(116, 185, 255, 0.05));
+    border-radius: var(--radius);
+    margin-bottom: 30px;
+}
+
+.personality-image {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--primary-light), var(--secondary-color));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.personality-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.placeholder-img {
+    font-size: 80px;
+}
+
+.personality-name {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.personality-slogan {
+    font-size: 18px;
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background: rgba(108, 92, 231, 0.1);
+    border-radius: var(--radius);
+    display: inline-block;
+}
+
+.personality-desc {
+    font-size: 16px;
+    color: var(--text-primary);
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.personality-traits {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.trait {
+    padding: 6px 14px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 16px;
+    font-size: 14px;
+}
+
+/* 雷达图 */
+.dimension-radar {
+    margin: 30px 0;
+    padding: 20px;
+    background: var(--bg-color);
+    border-radius: var(--radius);
+}
+
+.dimension-radar h4 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+}
+
+.radar-chart {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.dimension-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    background: white;
+    border-radius: var(--radius);
+    min-width: 80px;
+}
+
+.dimension-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 5px;
+}
+
+.dimension-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+/* 匹配度 */
+.similarity {
+    text-align: center;
+    margin: 30px 0;
+    padding: 20px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: var(--radius);
+    color: white;
+}
+
+.similarity p {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.similarity span {
+    font-size: 32px;
+    font-weight: 800;
+}
+
+/* 结果操作 */
+.result-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* 加载页面 */
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+.spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid var(--border-color);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading p {
+    color: var(--text-secondary);
+    font-size: 18px;
+}
+
+/* 页脚 */
+.footer {
+    text-align: center;
+    padding: 20px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+}
+
+.footer a {
+    color: white;
+    text-decoration: underline;
+}
+
+/* 响应式设计 */
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .title {
+        font-size: 36px;
+    }
+    
+    .subtitle {
+        font-size: 18px;
+    }
+    
+    .features {
+        gap: 8px;
+    }
+    
+    .feature {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+    
+    .question-container {
+        padding: 25px;
+    }
+    
+    .question-text {
+        font-size: 20px;
+    }
+    
+    .option {
+        padding: 16px 20px;
+        font-size: 15px;
+    }
+    
+    .personality-name {
+        font-size: 28px;
+    }
+    
+    .result-actions {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+}
+
+/* 打印样式 */
+@media print {
+    body {
+        background: white;
+    }
+    
+    .footer,
+    .result-actions {
+        display: none;
+    }
+    
+    .result-container {
+        box-shadow: none;
+    }
+}

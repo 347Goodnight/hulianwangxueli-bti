@@ -1,0 +1,36 @@
+{
+  "name": "hulianwangxueli-bti",
+  "version": "1.0.0",
+  "description": "学历BTI人格测试 - 测测你是哪种学历人格",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve . -p 3000",
+    "start": "npx serve . -p 3000",
+    "build": "node scripts/build-static.cjs",
+    "preview": "npx serve dist -p 3000",
+    "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\""
+  },
+  "keywords": [
+    "人格测试",
+    "学历",
+    "BTI",
+    "SBTI",
+    "MBTI",
+    "校园",
+    "搞笑",
+    "娱乐"
+  ],
+  "author": "学历BTI创作组",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/347Goodnight/hulianwangxueli-bti.git"
+  },
+  "homepage": "https://347goodnight.github.io/hulianwangxueli-bti/",
+  "bugs": {
+    "url": "https://github.com/347Goodnight/hulianwangxueli-bti/issues"
+  }
+}
