@@ -90,7 +90,6 @@ button{
 
 .container{
   padding:18px 0 18px;
-  flex:1;
 }
 
 .page{
@@ -1368,7 +1367,7 @@ button{
 
 .footer{
   padding:0 0 14px;
-  margin-top:auto;
+  margin-top:0;
   text-align:center;
   color:var(--text-muted);
   font-size:13px;
