@@ -726,19 +726,6 @@ function renderRadarChart(groupedDimensions) {
     </svg>
   `;
 
-  const labels = document.createElement('div');
-  labels.className = 'radar-axis-labels';
-  labels.innerHTML = groupedDimensions
-    .map(
-      (item) => `
-        <div class="radar-axis-pill">
-          <span>${item.icon} ${item.name}</span>
-          <strong>${item.score}%</strong>
-        </div>
-      `
-    )
-    .join('');
-
   const detailGrid = document.createElement('div');
   detailGrid.className = 'radar-detail-grid';
   detailGrid.innerHTML = groupedDimensions
@@ -759,7 +746,6 @@ function renderRadarChart(groupedDimensions) {
     .join('');
 
   container.appendChild(visual);
-  container.appendChild(labels);
   container.appendChild(detailGrid);
 }
 
