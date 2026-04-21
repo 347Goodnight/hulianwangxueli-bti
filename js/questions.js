@@ -13,7 +13,7 @@ const questions = [
   {
     id: 'q2',
     dim: 'M1',
-    text: '刷到“小丑、老鼠人、Doomer”这种词，你？',
+    text: '刷到“海王、杠精、Doomer”这种词，你？',
     options: [
       { text: '看不懂就划走', value: 1 },
       { text: '先看评论区怎么用', value: 2 },
