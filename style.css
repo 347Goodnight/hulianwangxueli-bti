@@ -723,17 +723,20 @@ button{
 .radar-visual{
   display:flex;
   justify-content:center;
-  padding:20px 18px;
+  min-height:376px;
+  padding:24px 18px;
   border-radius:24px;
   background:
-    radial-gradient(circle at top, rgba(255,122,89,.14), transparent 58%),
+    radial-gradient(circle at top, rgba(255,122,89,.18), transparent 56%),
     linear-gradient(180deg,#fffaf6 0%,#f7f1ea 100%);
   border:1px solid rgba(31,21,16,.06);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.85);
 }
 
 .radar-svg{
-  width:min(100%,360px);
+  width:min(100%,392px);
   height:auto;
+  filter:drop-shadow(0 12px 24px rgba(223,92,60,.08));
 }
 
 .radar-ring{
@@ -748,9 +751,9 @@ button{
 }
 
 .radar-area{
-  fill:rgba(255,122,89,.2);
+  fill:rgba(255,122,89,.24);
   stroke:var(--primary);
-  stroke-width:2.5;
+  stroke-width:3;
 }
 
 .radar-point{

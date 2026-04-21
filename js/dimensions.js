@@ -136,6 +136,15 @@ const dimensionGuide = {
   }
 };
 
+if (typeof globalThis !== 'undefined') {
+  Object.assign(globalThis, {
+    dimensionMeta,
+    modelMeta,
+    resultDimensionGroups,
+    dimensionGuide
+  });
+}
+
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
     dimensionMeta,

@@ -51,7 +51,7 @@ const signalFloorByType = {
   DANREN: 2,
   DOOM: 2,
   FEI: 4,
-  HAIWANG: 2,
+  HAIWANG: 3,
   LAOSHU: 2,
   LIGONG: 2,
   MONEY: 2,
@@ -65,7 +65,7 @@ const signalScaleByType = {
   APPLE: 1.3,
   CLOWN: 0.92,
   DOOM: 1.28,
-  HAIWANG: 0.98,
+  HAIWANG: 1.08,
   LAOSHU: 1.28,
   LIGONG: 1.35,
   MONEY: 0.82,
@@ -75,7 +75,7 @@ const signalScaleByType = {
   XYY: 0.9,
   JIAHAO: 0.86,
   KOUHAI: 0.9,
-  FEI: 1.06,
+  FEI: 1,
   ANDROID: 0.94,
   GENSHIN: 0.9
 };
@@ -102,14 +102,22 @@ const typeSignatureRules = {
     { dim: 'RELATE', mode: 'between', min: 42, max: 70, bonus: 3 }
   ],
   FEI: [
-    { dim: 'RELATE', mode: 'min', value: 70, bonus: 7 },
+    { dim: 'RELATE', mode: 'min', value: 72, bonus: 7 },
     { dim: 'PROJECTION', mode: 'min', value: 68, bonus: 5 },
-    { dim: 'MOOD', mode: 'min', value: 60, bonus: 4 }
+    { dim: 'MOOD', mode: 'min', value: 66, bonus: 5 },
+    { dim: 'AURA', mode: 'max', value: 52, bonus: 3 }
+  ],
+  HAIWANG: [
+    { dim: 'AURA', mode: 'min', value: 68, bonus: 6 },
+    { dim: 'ONLINE', mode: 'min', value: 58, bonus: 4 },
+    { dim: 'RELATE', mode: 'min', value: 66, bonus: 6 },
+    { dim: 'MOOD', mode: 'max', value: 46, bonus: 4 }
   ],
   XYY: [
-    { dim: 'PROJECTION', mode: 'min', value: 68, bonus: 5 },
-    { dim: 'RELATE', mode: 'min', value: 60, bonus: 4 },
-    { dim: 'AURA', mode: 'between', min: 42, max: 70, bonus: 3 }
+    { dim: 'RADAR', mode: 'min', value: 66, bonus: 4 },
+    { dim: 'PROJECTION', mode: 'min', value: 70, bonus: 6 },
+    { dim: 'RELATE', mode: 'between', min: 48, max: 70, bonus: 4 },
+    { dim: 'AURA', mode: 'max', value: 56, bonus: 3 }
   ],
   JIAHAO: [
     { dim: 'AURA', mode: 'min', value: 68, bonus: 5 },

@@ -9,21 +9,21 @@ const personalityTypes = [
     accent: '#ff6f7c',
     rarity: 'SSR',
     profile: {
-      RADAR: 1,
-      FIRE: 0,
-      AURA: 0,
-      ONLINE: 1,
+      RADAR: 2,
+      FIRE: 1,
+      AURA: -1,
+      ONLINE: 0,
       CIRCLE: 0,
       DRAMA: 0,
-      MOOD: 0,
-      RELATE: 2,
+      MOOD: -1,
+      RELATE: 1,
       PROJECTION: 2
     },
     weights: {
-      AURA: 1,
-      DRAMA: 1,
-      RELATE: 1.3,
-      PROJECTION: 1.55
+      RADAR: 1.15,
+      AURA: 1.05,
+      RELATE: 1.15,
+      PROJECTION: 1.6
     },
     bias: 1,
     slogan: '别人看观点，你已经默认一切的根本都是链接。',
@@ -214,17 +214,18 @@ const personalityTypes = [
       RADAR: 0,
       FIRE: 0,
       AURA: 2,
-      ONLINE: 1,
+      ONLINE: 2,
       CIRCLE: -1,
       DRAMA: 0,
-      MOOD: -1,
+      MOOD: -2,
       RELATE: 2,
-      PROJECTION: 1
+      PROJECTION: 0
     },
     weights: {
-      AURA: 1.15,
-      ONLINE: 1.1,
-      RELATE: 1.6
+      AURA: 1.2,
+      ONLINE: 1.2,
+      RELATE: 1.65,
+      MOOD: 1.1
     },
     bias: 1,
     slogan: '你不一定真的爱很多人，但你绝不舍得把任何一条线彻底断掉。',
@@ -413,20 +414,20 @@ const personalityTypes = [
     accent: '#ffa24c',
     rarity: 'SR',
     profile: {
-      RADAR: 0,
+      RADAR: -1,
       FIRE: -1,
-      AURA: 0,
-      ONLINE: 0,
+      AURA: -1,
+      ONLINE: -1,
       CIRCLE: -1,
       DRAMA: 1,
-      MOOD: 1,
+      MOOD: 2,
       RELATE: 2,
       PROJECTION: 2
     },
     weights: {
-      DRAMA: 1.1,
-      MOOD: 1.1,
-      RELATE: 1.45,
+      DRAMA: 1.05,
+      MOOD: 1.35,
+      RELATE: 1.5,
       PROJECTION: 1.4
     },
     bias: 1,

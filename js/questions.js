@@ -237,7 +237,7 @@ const questions = [
     options: [
       { text: '哦就哦，我继续干我的', score: -2, types: {} },
       { text: '会琢磨一下他到底什么意思', score: 0, types: { PURE: 1, CLOWN: 1 } },
-      { text: '晚上开始复盘自己是不是说错话了', score: 2, types: { FEI: 2, CLOWN: 1 } }
+      { text: '晚上开始复盘自己是不是说错话了', score: 2, types: { FEI: 3, CLOWN: 1 } }
     ]
   },
   {
@@ -247,7 +247,7 @@ const questions = [
     options: [
       { text: '太麻烦了，不如断干净', score: -2, types: { PURE: 2 } },
       { text: '看情况，留一两个也正常', score: 0, types: {} },
-      { text: '先聊着再说，哪条线活了都不亏', score: 2, types: { HAIWANG: 2, MONEY: 1, XYY: 1 } }
+      { text: '先聊着再说，哪条线活了都不亏', score: 2, types: { HAIWANG: 3, MONEY: 1 } }
     ]
   },
   {
@@ -257,7 +257,7 @@ const questions = [
     options: [
       { text: '真心至少得是真的', score: -2, types: { PURE: 2 } },
       { text: '得看人，也得看情况', score: 0, types: {} },
-      { text: '关系说到底就是位置和拿捏', score: 2, types: { HAIWANG: 1, XYY: 2, MONEY: 1 } }
+      { text: '关系说到底就是位置和拿捏', score: 2, types: { XYY: 3, MONEY: 1 } }
     ]
   },
   {
@@ -277,7 +277,7 @@ const questions = [
     options: [
       { text: '正常接话，没什么波动', score: -2, types: { HAIWANG: 1 } },
       { text: '会多想一秒，但表面先装正常', score: 0, types: {} },
-      { text: '当场就有点红温，回去还会复盘', score: 2, types: { FEI: 2, PURE: 1 } }
+      { text: '当场就有点红温，回去还会复盘', score: 2, types: { FEI: 3, PURE: 1 } }
     ]
   },
   {
@@ -287,7 +287,7 @@ const questions = [
     options: [
       { text: '当个段子看完就算', score: -2, types: {} },
       { text: '会觉得这人确实挺会包装自己', score: 0, types: { MONEY: 1, APPLE: 1 } },
-      { text: '这才像真有点高位那味儿', score: 2, types: { MONEY: 3, HAIWANG: 1 } }
+      { text: '这才像真有点高位那味儿', score: 2, types: { MONEY: 3, HAIWANG: 2 } }
     ]
   },
   {
