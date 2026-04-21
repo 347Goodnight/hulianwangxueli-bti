@@ -9,6 +9,7 @@ let librarySearchQuery = '';
 let autoAdvanceTimer = null;
 
 const AUTO_ADVANCE_DELAY = 120;
+const SHARE_QR_ASSET_PATH = 'assets/site-qr.svg?v=20260421-33';
 
 const appName =
   document.querySelector('meta[name="application-name"]')?.content ||
@@ -468,14 +469,8 @@ async function shareResult() {
   try {
     const blob = await generateShareCard(personality, shareUrl);
     const fileName = `${personality.code.toLowerCase()}-share-card.png`;
-    const file = new File([blob], fileName, { type: 'image/png' });
-
-    if (navigator.share && navigator.canShare?.({ files: [file] })) {
-      await navigator.share({
-        title: `${appName} · ${personality.name}`,
-        text: shareText,
-        files: [file]
-      });
+    const didShareImage = await tryShareImage(blob, fileName, shareText, personality.name);
+    if (didShareImage) {
       return;
     }
 
@@ -499,6 +494,24 @@ async function shareResult() {
 
     copyToClipboard(`${shareText} ${shareUrl}`);
   }
+}
+
+async function tryShareImage(blob, fileName, shareText, personalityName) {
+  if (!navigator.share || typeof File === 'undefined') {
+    return false;
+  }
+
+  const file = new File([blob], fileName, { type: 'image/png' });
+  if (navigator.canShare && !navigator.canShare({ files: [file] })) {
+    return false;
+  }
+
+  await navigator.share({
+    title: `${appName} · ${personalityName}`,
+    text: shareText,
+    files: [file]
+  });
+  return true;
 }
 
 function copyToClipboard(text, options = {}) {
@@ -609,7 +622,7 @@ async function generateShareCard(personality, shareUrl) {
   ctx.font = '500 24px "Microsoft YaHei", "PingFang SC", sans-serif';
   ctx.fillText('分享这张图，别人扫一扫就能进入测试。', 140, 1168);
 
-  const qrImage = await loadQrImage(shareUrl);
+  const qrImage = await loadQrImage();
   ctx.drawImage(qrImage, 736, 1060, 190, 190);
 
   ctx.fillStyle = 'rgba(255, 248, 242, 0.76)';
@@ -621,31 +634,19 @@ async function generateShareCard(personality, shareUrl) {
 }
 
 async function loadQrImage(shareUrl) {
-  const qrUrl = `https://quickchart.io/qr?size=220&margin=1&text=${encodeURIComponent(
-    shareUrl
-  )}`;
-  const response = await fetch(qrUrl);
-  if (!response.ok) {
-    throw new Error('QR request failed');
-  }
-
-  const blob = await response.blob();
-  return loadImageFromBlob(blob);
+  return loadImageFromUrl(SHARE_QR_ASSET_PATH);
 }
 
-function loadImageFromBlob(blob) {
+function loadImageFromUrl(src) {
   return new Promise((resolve, reject) => {
-    const objectUrl = URL.createObjectURL(blob);
     const image = new Image();
     image.onload = () => {
-      URL.revokeObjectURL(objectUrl);
       resolve(image);
     };
     image.onerror = (error) => {
-      URL.revokeObjectURL(objectUrl);
       reject(error);
     };
-    image.src = objectUrl;
+    image.src = src;
   });
 }
 

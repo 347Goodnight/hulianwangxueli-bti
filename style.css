@@ -200,8 +200,7 @@ button{
 .personality-meta-row,
 .personality-library-filters,
 .library-card-meta,
-.library-card-traits,
-.hero-sample-tags{
+.library-card-traits{
   display:flex;
   flex-wrap:wrap;
   gap:10px;
@@ -212,7 +211,6 @@ button{
 }
 
 .hero-meta span,
-.hero-sample-tags span,
 .trait,
 .library-card-traits span{
   display:inline-flex;
@@ -232,10 +230,6 @@ button{
   flex-wrap:wrap;
   gap:12px;
   margin-top:24px;
-}
-
-.hero-sample-tags{
-  margin-top:18px;
 }
 
 .hero-aside{
@@ -1162,14 +1156,6 @@ button{
   .btn,
   .all-types-toggle{
     width:100%;
-  }
-
-  .hero-sample-tags{
-    margin-top:14px;
-  }
-
-  .hero-sample-tags span:nth-child(n+5){
-    display:none;
   }
 
   .test-header{

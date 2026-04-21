@@ -5,7 +5,7 @@ const root = path.resolve(__dirname, '..');
 const dist = path.join(root, 'dist');
 
 const rootFiles = ['index.html', 'style.css', '_headers'];
-const rootDirs = ['js', 'image'];
+const rootDirs = ['js', 'image', 'assets'];
 
 function ensureDir(dir) {
   fs.mkdirSync(dir, { recursive: true });

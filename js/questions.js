@@ -253,7 +253,7 @@ const questions = [
   {
     id: 'q26',
     dim: 'M9',
-    text: '刷到成功哥、old money、质感生活，你？',
+    text: '刷到高质量男性、old money、质感生活，你？',
     options: [
       { text: '太装了，划走', value: 1 },
       { text: '看看就完', value: 2 },
