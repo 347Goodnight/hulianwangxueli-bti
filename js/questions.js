@@ -124,11 +124,11 @@ const questions = [
   {
     id: 'q13',
     dim: 'M5',
-    text: '别人一开口就是赛区黑话、角色厨、CP厨，你？',
+    text: '群里开始聊游戏资讯、版本改动、赛区消息，你？',
     options: [
-      { text: '懒得融入', value: 1 },
-      { text: '先听听门道', value: 2 },
-      { text: '立刻加入，不能显得外行', value: 3 }
+      { text: '没兴趣，直接划走', value: 1 },
+      { text: '先看看大家在吵什么', value: 2 },
+      { text: '立刻加入，强度和梗都得跟上', value: 3 }
     ]
   },
   {
@@ -174,11 +174,11 @@ const questions = [
   {
     id: 'q18',
     dim: 'M6',
-    text: '你更容易把什么说成名场面？',
+    text: '朋友聚会突然冷场三秒，你会？',
     options: [
-      { text: '正常说完就收', value: 1 },
-      { text: '偶尔来句有节目效果的', value: 2 },
-      { text: '越正经的场合越想来点逆天的', value: 3 }
+      { text: '低头喝口水，等别人开口', value: 1 },
+      { text: '顺手丢一句，先把场子接住', value: 2 },
+      { text: '直接接管气氛，必须把场子抬起来', value: 3 }
     ]
   },
   {
