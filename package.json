@@ -1,7 +1,7 @@
 {
   "name": "hulianwangxueli-bti",
   "version": "1.0.0",
-  "description": "互联网学历测试 - 21种互联网学历人格对号入座",
+  "description": "互联网冲浪人格测试 - 基于抖音热梗、抽象文化和评论区生态的图鉴式人格测试",
   "main": "index.html",
   "scripts": {
     "dev": "npx serve . -p 3000",
@@ -11,16 +11,15 @@
     "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\""
   },
   "keywords": [
+    "互联网冲浪人格测试",
     "人格测试",
-    "学历",
-    "BTI",
-    "SBTI",
-    "MBTI",
-    "校园",
-    "搞笑",
-    "娱乐"
+    "抖音热梗",
+    "抽象文化",
+    "评论区",
+    "图鉴",
+    "SBTI"
   ],
-  "author": "互联网学历测试项目组",
+  "author": "互联网冲浪人格测试项目组",
   "license": "MIT",
   "devDependencies": {
     "serve": "^14.2.0"

@@ -1,50 +1,109 @@
-// 互联网学历测试 - 15 维度定义
-// 分为 5 个模型，每个模型包含 3 个子维度
+// 互联网冲浪人格测试 - 10 维度定义
 
 const dimensionMeta = {
-  // 信息处理模型
-  L1: { name: '信息留存', model: '信息处理', icon: '🧠' },
-  L2: { name: '逻辑拆解', model: '信息处理', icon: '💡' },
-  L3: { name: '注意稳定', model: '信息处理', icon: '🎯' },
-  
-  // 上岸博弈模型
-  E1: { name: '策略判断', model: '上岸博弈', icon: '📝' },
-  E2: { name: '现场应对', model: '上岸博弈', icon: '⚡' },
-  E3: { name: '风向感应', model: '上岸博弈', icon: '🍀' },
-  
-  // 行动驱动模型
-  A1: { name: '主动推进', model: '行动驱动', icon: '📚' },
-  A2: { name: '执行密度', model: '行动驱动', icon: '💪' },
-  A3: { name: '求证欲', model: '行动驱动', icon: '🔍' },
-  
-  // 互动能力模型
-  S1: { name: '向上沟通', model: '互动能力', icon: '👨‍🏫' },
-  S2: { name: '同辈交流', model: '互动能力', icon: '👥' },
-  S3: { name: '协作输出', model: '互动能力', icon: '🤝' },
-  
-  // 生存策略模型
-  B1: { name: '抗压能力', model: '生存策略', icon: '🛡️' },
-  B2: { name: '节奏管理', model: '生存策略', icon: '⏰' },
-  B3: { name: '包装边界', model: '生存策略', icon: '🎲' }
+  M1: {
+    name: '热梗雷达',
+    model: '梗感系统',
+    icon: '📡',
+    description: '你刷到新梗时反应有多快'
+  },
+  M2: {
+    name: '对线火力',
+    model: '梗感系统',
+    icon: '🔥',
+    description: '你在评论区抬杠和反击的强度'
+  },
+  M3: {
+    name: '阴阳段位',
+    model: '梗感系统',
+    icon: '🗡️',
+    description: '你说话有多会拐弯扎人'
+  },
+  M4: {
+    name: '冲浪浓度',
+    model: '冲浪强度',
+    icon: '🌊',
+    description: '你一天有多少时间泡在网上'
+  },
+  M5: {
+    name: '整活欲望',
+    model: '冲浪强度',
+    icon: '🎬',
+    description: '你有多想把平静场面搞出节目效果'
+  },
+  M6: {
+    name: '复读扩散',
+    model: '冲浪强度',
+    icon: '📣',
+    description: '你转发复读热梗的积极程度'
+  },
+  M7: {
+    name: '破防系数',
+    model: '情绪波动',
+    icon: '💥',
+    description: '你被戳到之后会不会当场急眼'
+  },
+  M8: {
+    name: '吃瓜参与',
+    model: '情绪波动',
+    icon: '🍉',
+    description: '你面对热搜反转时的围观和拱火欲'
+  },
+  M9: {
+    name: '人设表演',
+    model: '人设运营',
+    icon: '🎭',
+    description: '你在网上经营自己人设的力度'
+  },
+  M10: {
+    name: '断网反应',
+    model: '人设运营',
+    icon: '📵',
+    description: '你离开网络后会不会浑身难受'
+  }
 };
 
-// 5 个模型的元信息
 const modelMeta = {
-  '信息处理': { icon: '🧠', color: '#FF6B6B' },
-  '上岸博弈': { icon: '📝', color: '#4ECDC4' },
-  '行动驱动': { icon: '📚', color: '#45B7D1' },
-  '互动能力': { icon: '👥', color: '#96CEB4' },
-  '生存策略': { icon: '🛡️', color: '#FFEAA7' }
+  '梗感系统': {
+    icon: '🧠',
+    color: '#ff7a59',
+    description: '看梗、接梗、回怼时的原生反应'
+  },
+  '冲浪强度': {
+    icon: '🌊',
+    color: '#3a86ff',
+    description: '你刷手机、造梗、复读的投入程度'
+  },
+  '情绪波动': {
+    icon: '⚡',
+    color: '#ff4d6d',
+    description: '你看热搜和被点名时的情绪起伏'
+  },
+  '人设运营': {
+    icon: '🪞',
+    color: '#7c5cff',
+    description: '你在网上扮演谁，以及离不开谁'
+  }
 };
 
-// 维度分值说明
 const dimensionGuide = {
-  'L': { label: '低', description: '2-3分', color: '#FF6B6B' },
-  'M': { label: '中', description: '4分', color: '#FDCB6E' },
-  'H': { label: '高', description: '5-6分', color: '#6C5CE7' }
+  L: {
+    label: '低',
+    description: '偏冷静，没那么上头',
+    color: '#64748b'
+  },
+  M: {
+    label: '中',
+    description: '正常冲浪，还没完全入戏',
+    color: '#f59e0b'
+  },
+  H: {
+    label: '高',
+    description: '重度在线，已经长在网里了',
+    color: '#ef4444'
+  }
 };
 
-// 导出（用于模块化，但这里直接在全局）
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { dimensionMeta, modelMeta, dimensionGuide };
 }

@@ -1,345 +1,327 @@
-// 互联网学历测试 - 30 道场景题
-// 每维度 2 题，共 15 维度
-// 每题 3 个选项，分值 1-3
+// 互联网冲浪人格测试 - 30 道场景题
 
 const questions = [
-  // ===== 信息处理模型 =====
-  // L1 信息留存
+  // M1 热梗雷达
   {
     id: 'q1',
-    dim: 'L1',
-    text: '刷完"学历越高越幸福"的视频，两天后你脑子里还剩啥？',
+    dim: 'M1',
+    text: '新梗刚冒头，你一般？',
     options: [
-      { text: '结论、案例、评论区名场面，全在', value: 3 },
-      { text: '结论还在，细节靠评论区续命', value: 2 },
-      { text: '只剩焦虑，内容全蒸发', value: 1 }
+      { text: '三天后才知道大家在笑什么', value: 1 },
+      { text: '先存着看看，过两天再用', value: 2 },
+      { text: '当天就能接上，还能顺手魔改', value: 3 }
     ]
   },
   {
     id: 'q2',
-    dim: 'L1',
-    text: '群里聊张雪峰、考公考研，你是什么状态？',
+    dim: 'M1',
+    text: '评论区突然满屏同一句怪话，你？',
     options: [
-      { text: '谁在讲梗谁在放屁，我都分得清', value: 3 },
-      { text: '主线跟得上，细节靠蒙', value: 2 },
-      { text: '聊完一圈，我像没来过', value: 1 }
+      { text: '看不懂，直接划走', value: 1 },
+      { text: '先看两眼，慢慢猜意思', value: 2 },
+      { text: '秒懂出处，甚至想跟一句', value: 3 }
     ]
   },
-
-  // L2 逻辑拆解
   {
     id: 'q3',
-    dim: 'L2',
-    text: '张雪峰又上热搜分析专业就业，你？',
+    dim: 'M1',
+    text: '朋友发来一张抽象梗图，你会？',
     options: [
-      { text: '先听，再拆他哪句在下钩子', value: 3 },
-      { text: '先听个大概，再蹲评论区', value: 2 },
-      { text: '谁上热搜谁有理', value: 1 }
-    ]
-  },
-  {
-    id: 'q4',
-    dim: 'L2',
-    text: '博主把薪资、就业率、幸福感搅一锅，你多久能听出不对？',
-    options: [
-      { text: '一耳朵就知道他在偷换概念', value: 3 },
-      { text: '多刷几条评论才反应过来', value: 2 },
-      { text: '他说得顺耳就行', value: 1 }
+      { text: '问他这图到底在干吗', value: 1 },
+      { text: '大概懂，但笑得不算痛快', value: 2 },
+      { text: '立刻回敬三张同等级的', value: 3 }
     ]
   },
 
-  // L3 注意稳定
+  // M2 对线火力
+  {
+    id: 'q4',
+    dim: 'M2',
+    text: '评论区有人阴阳你，你？',
+    options: [
+      { text: '算了，拉黑省事', value: 1 },
+      { text: '回一句，点到为止', value: 2 },
+      { text: '开战，今晚谁都别睡', value: 3 }
+    ]
+  },
   {
     id: 'q5',
-    dim: 'L3',
-    text: '本来要投简历，结果抖音连刷三条焦虑视频，你会？',
+    dim: 'M2',
+    text: '群里有人硬杠一个离谱观点，你？',
     options: [
-      { text: '先投，焦虑给我排队', value: 3 },
-      { text: '看两秒，直奔评论区吃瓜', value: 2 },
-      { text: '手停不下来，抖音比我妈还懂我', value: 1 }
+      { text: '看戏，不下场', value: 1 },
+      { text: '提醒一句差不多得了', value: 2 },
+      { text: '我来，让他知道什么叫加练', value: 3 }
     ]
   },
   {
     id: 'q6',
-    dim: 'L3',
-    text: '"先就业还是先择业"的直播吵半小时，你能撑多久？',
+    dim: 'M2',
+    text: '直播间钓鱼怪开始带节奏，你？',
     options: [
-      { text: '能听完，还顺手记点干货', value: 3 },
-      { text: '前半程在线，后半程走神', value: 2 },
-      { text: '吵不到五分钟就切了', value: 1 }
+      { text: '退出，不陪玩', value: 1 },
+      { text: '发个问号试探一下', value: 2 },
+      { text: '当场接管弹幕，把他冲烂', value: 3 }
     ]
   },
 
-  // ===== 上岸博弈模型 =====
-  // E1 策略判断
+  // M3 阴阳段位
   {
     id: 'q7',
-    dim: 'E1',
-    text: '考公考研信息满天飞，你怎么筛？',
+    dim: 'M3',
+    text: '朋友又来晒新手机，你一般？',
     options: [
-      { text: '先看赛道，再挑能用的', value: 3 },
-      { text: '挑顺眼的先抄两条', value: 2 },
-      { text: '谁说得燃就听谁', value: 1 }
+      { text: '真不错，恭喜', value: 1 },
+      { text: '可以啊，预算挺自由', value: 2 },
+      { text: '不会吧，这年头还得特意晒这个', value: 3 }
     ]
   },
   {
     id: 'q8',
-    dim: 'E1',
-    text: '首页同时推"二战翻盘""保研秘籍""考公攻略"，你？',
+    dim: 'M3',
+    text: '有人发言很蠢，但你懒得明说，你会？',
     options: [
-      { text: '只拿能落地的，不拜模板', value: 3 },
-      { text: '先抄几条，顶一阵再说', value: 2 },
-      { text: '全盘照搬，赌命不露馅', value: 1 }
+      { text: '那就不说', value: 1 },
+      { text: '委婉提醒一下', value: 2 },
+      { text: '先夸一句，再把刀递进去', value: 3 }
     ]
   },
-
-  // E2 现场应对
   {
     id: 'q9',
-    dim: 'E2',
-    text: '饭桌突然问你"考研还是工作"，所有人都盯着你，你？',
+    dim: 'M3',
+    text: '你最常见的说话方式是？',
     options: [
-      { text: '当场讲清，气势还稳', value: 3 },
-      { text: '先糊住，再边编边理', value: 2 },
-      { text: '话没两句，人先想逃', value: 1 }
-    ]
-  },
-  {
-    id: 'q10',
-    dim: 'E2',
-    text: '评论区有人阴阳你学校专业，你？',
-    options: [
-      { text: '越被阴阳越冷静，顺手反杀', value: 3 },
-      { text: '会红温，但还能圆回来', value: 2 },
-      { text: '一解释就像自证', value: 1 }
+      { text: '有啥说啥，不拐弯', value: 1 },
+      { text: '看场合，偶尔夹点味', value: 2 },
+      { text: '正常说话太亏，必须带刺', value: 3 }
     ]
   },
 
-  // E3 风向感应
+  // M4 冲浪浓度
+  {
+    id: 'q10',
+    dim: 'M4',
+    text: '你每天刷手机大概多久？',
+    options: [
+      { text: '碎片时间随便看看', value: 1 },
+      { text: '有空就刷，挺稳定', value: 2 },
+      { text: '除了睡觉基本都在线', value: 3 }
+    ]
+  },
   {
     id: 'q11',
-    dim: 'E3',
-    text: '考研群有人天天晒学习时长，你？',
+    dim: 'M4',
+    text: '早上睁眼第一件事通常是？',
     options: [
-      { text: '被创一下，手还是继续刷题', value: 3 },
-      { text: '看一眼，互不打扰', value: 2 },
-      { text: '当场破防，感觉别人都偷跑了', value: 1 }
+      { text: '先起床，不碰手机', value: 1 },
+      { text: '看眼消息再说', value: 2 },
+      { text: '先刷两轮热搜和抖音', value: 3 }
     ]
   },
   {
     id: 'q12',
-    dim: 'E3',
-    text: '热搜天天换说法，你总能刷到有用那条吗？',
+    dim: 'M4',
+    text: '凌晨一点的你，多半在？',
     options: [
-      { text: '总能，像平台偷偷递答案', value: 3 },
-      { text: '偶尔踩中，剩下看命', value: 2 },
-      { text: '有用的刷不到，焦虑一条不落', value: 1 }
+      { text: '睡了，互联网明天再见', value: 1 },
+      { text: '偶尔补两眼更新', value: 2 },
+      { text: '在不同平台来回巡逻', value: 3 }
     ]
   },
 
-  // ===== 行动驱动模型 =====
-  // A1 主动推进
+  // M5 整活欲望
   {
     id: 'q13',
-    dim: 'A1',
-    text: '没人催你规划学历和工作，你？',
+    dim: 'M5',
+    text: '群聊突然冷场，你会？',
     options: [
-      { text: '自己也会推，不想真掉队', value: 3 },
-      { text: '想到就动两下', value: 2 },
-      { text: '没人催就当没这事', value: 1 }
+      { text: '那就让它冷着', value: 1 },
+      { text: '发个表情包续命', value: 2 },
+      { text: '必须起锅烧油，整点动静', value: 3 }
     ]
   },
   {
     id: 'q14',
-    dim: 'A1',
-    text: '刷到同龄人晒保研、晒编制、晒高薪，你？',
+    dim: 'M5',
+    text: '朋友发自拍，你评论区通常？',
     options: [
-      { text: '酸归酸，先补短板', value: 3 },
-      { text: '先酸一会，再看心情', value: 2 },
-      { text: '酸完划走，继续装死', value: 1 }
+      { text: '点赞走人', value: 1 },
+      { text: '夸一句顺便玩个轻梗', value: 2 },
+      { text: '现场写台词，把楼带歪', value: 3 }
     ]
   },
-
-  // A2 执行密度
   {
     id: 'q15',
-    dim: 'A2',
-    text: '收藏一堆干货之后，你一般？',
+    dim: 'M5',
+    text: '现实里有点尴尬时，你第一反应？',
     options: [
-      { text: '真拿出来用，不养蛊', value: 3 },
-      { text: '挑两条试试，剩下吃灰', value: 2 },
-      { text: '收藏夹就是我的努力证明', value: 1 }
-    ]
-  },
-  {
-    id: 'q16',
-    dim: 'A2',
-    text: '明知该复习找实习，结果先刷了半小时梗，你？',
-    options: [
-      { text: '晚上也得把进度拉回来', value: 3 },
-      { text: '补一点算一点', value: 2 },
-      { text: '今天既然废了就废到底', value: 1 }
+      { text: '沉默糊过去', value: 1 },
+      { text: '讲个冷笑话缓一下', value: 2 },
+      { text: '直接把自己当节目做', value: 3 }
     ]
   },
 
-  // A3 求证欲
+  // M6 复读扩散
+  {
+    id: 'q16',
+    dim: 'M6',
+    text: '某句热梗火起来后，你？',
+    options: [
+      { text: '基本不用，嫌吵', value: 1 },
+      { text: '熟了才偶尔跟一句', value: 2 },
+      { text: '逮到谁都要复读一遍', value: 3 }
+    ]
+  },
   {
     id: 'q17',
-    dim: 'A3',
-    text: '看见"学历高不一定幸福""先就业更现实"这种串烧，你？',
+    dim: 'M6',
+    text: '朋友发了个爆款模板，你会？',
     options: [
-      { text: '会多翻样本，不吃一口热搜', value: 3 },
-      { text: '有人总结我就顺手看', value: 2 },
-      { text: '看个热闹就散', value: 1 }
+      { text: '看过就算了', value: 1 },
+      { text: '顺手转给一两个熟人', value: 2 },
+      { text: '全平台扩散，生怕别人没看到', value: 3 }
     ]
   },
   {
     id: 'q18',
-    dim: 'A3',
-    text: '网红把专业吹成"闭眼赢"或"纯天坑"，你会查吗？',
+    dim: 'M6',
+    text: '你表达观点更像？',
     options: [
-      { text: '先查，受不了拿人生当带货', value: 3 },
-      { text: '有空再查', value: 2 },
-      { text: '他说得自信我就先信', value: 1 }
+      { text: '自己慢慢组织语言', value: 1 },
+      { text: '原创和套梗一半一半', value: 2 },
+      { text: '拿现成热句往上一套就完事', value: 3 }
     ]
   },
 
-  // ===== 互动能力模型 =====
-  // S1 向上沟通
+  // M7 破防系数
   {
     id: 'q19',
-    dim: 'S1',
-    text: '老师说"有问题来问"，你？',
+    dim: 'M7',
+    text: '有人回你一句“急了”，你？',
     options: [
-      { text: '真有事就去问，顺手聊透', value: 3 },
-      { text: '卡死了才去', value: 2 },
-      { text: '宁愿瞎撞也不问', value: 1 }
+      { text: '无所谓，继续吃饭', value: 1 },
+      { text: '有点烦，但还能忍', value: 2 },
+      { text: '你别说，还真被点着了', value: 3 }
     ]
   },
   {
     id: 'q20',
-    dim: 'S1',
-    text: '老师在群里点名问你"考研还是就业"，你？',
+    dim: 'M7',
+    text: '刷到别人晒工资、对象、假期，你？',
     options: [
-      { text: '能接住，还能顺手讲规划', value: 3 },
-      { text: '会紧，但还能回', value: 2 },
-      { text: '只想装掉线', value: 1 }
+      { text: '划走，和我没关系', value: 1 },
+      { text: '酸两秒，然后继续活', value: 2 },
+      { text: '不装了，心态已经裂开', value: 3 }
     ]
   },
-
-  // S2 同辈交流
   {
     id: 'q21',
-    dim: 'S2',
-    text: '群里吵"学历重要还是能力重要""张雪峰有没有用"，你是？',
+    dim: 'M7',
+    text: '你发的内容被群嘲时，一般？',
     options: [
-      { text: '活跃嘴替，梗和观点都我在顶', value: 3 },
-      { text: '看情况接两句', value: 2 },
-      { text: '潜水，别 cue 我', value: 1 }
-    ]
-  },
-  {
-    id: 'q22',
-    dim: 'S2',
-    text: '别人私信问你"专业值不值""要不要二战"，你？',
-    options: [
-      { text: '愿意认真聊，利弊都给他摆', value: 3 },
-      { text: '回两句意思意思', value: 2 },
-      { text: '我自己都没活明白', value: 1 }
+      { text: '爱笑笑，懒得删', value: 1 },
+      { text: '嘴上没事，心里记账', value: 2 },
+      { text: '开始解释，越解释越上头', value: 3 }
     ]
   },
 
-  // S3 协作输出
+  // M8 吃瓜参与
+  {
+    id: 'q22',
+    dim: 'M8',
+    text: '热搜上两拨人撕起来了，你？',
+    options: [
+      { text: '看个标题就走', value: 1 },
+      { text: '蹲评论区，补补前情', value: 2 },
+      { text: '全链路追更，顺手点火', value: 3 }
+    ]
+  },
   {
     id: 'q23',
-    dim: 'S3',
-    text: '一起做"学历焦虑图鉴"或"专业避坑合集"，你？',
+    dim: 'M8',
+    text: '遇到明显钓鱼帖，你通常？',
     options: [
-      { text: '主动分工定节奏，还顺手催人', value: 3 },
-      { text: '分我啥我做啥', value: 2 },
-      { text: '先找轻松活', value: 1 }
+      { text: '无视，不上当', value: 1 },
+      { text: '先看看有没有人中招', value: 2 },
+      { text: '故意陪他演，等着收网', value: 3 }
     ]
   },
   {
     id: 'q24',
-    dim: 'S3',
-    text: '多人赶简历、PPT、申报材料时，你一般？',
+    dim: 'M8',
+    text: '一个瓜开始反转，你第一反应？',
     options: [
-      { text: '主输出位，最后还得收尸', value: 3 },
-      { text: '自己那份不掉链子', value: 2 },
-      { text: '主要负责说辛苦了', value: 1 }
+      { text: '行吧，和我无关', value: 1 },
+      { text: '回去补一下时间线', value: 2 },
+      { text: '太香了，今晚必须跟完整套', value: 3 }
     ]
   },
 
-  // ===== 生存策略模型 =====
-  // B1 抗压能力
+  // M9 人设表演
   {
     id: 'q25',
-    dim: 'B1',
-    text: '刷到"学历越高薪资越高幸福感越强"对比图，你？',
+    dim: 'M9',
+    text: '你网上和现实里的你，像吗？',
     options: [
-      { text: '先稳住，再看它是不是卖焦虑', value: 3 },
-      { text: '会被扎一下，但还能活', value: 2 },
-      { text: '看完像被指名道姓骂了', value: 1 }
+      { text: '差不多，没必要演', value: 1 },
+      { text: '会调一下滤镜，但不离谱', value: 2 },
+      { text: '完全两个人，主打一个账号人格', value: 3 }
     ]
   },
   {
     id: 'q26',
-    dim: 'B1',
-    text: '别人晒 offer 晒上岸，你还没定下来，你？',
+    dim: 'M9',
+    text: '发动态前你最在意什么？',
     options: [
-      { text: '先稳住，按节奏继续', value: 3 },
-      { text: '焦虑归焦虑，还能动', value: 2 },
-      { text: '直接进入全网针对我模式', value: 1 }
+      { text: '想发就发，不排练', value: 1 },
+      { text: '文案顺一点就行', value: 2 },
+      { text: '必须有氛围、有立场、有人设', value: 3 }
     ]
   },
-
-  // B2 节奏管理
   {
     id: 'q27',
-    dim: 'B2',
-    text: '考研考公求职实习一起压过来，你？',
+    dim: 'M9',
+    text: '别人说你“挺有号感”，你会？',
     options: [
-      { text: '分阶段排，不让一起炸', value: 3 },
-      { text: '见招拆招，勉强没死', value: 2 },
-      { text: '全堆着，等死线抽我', value: 1 }
-    ]
-  },
-  {
-    id: 'q28',
-    dim: 'B2',
-    text: '白天被热搜创飞，晚上还有材料要交，你？',
-    options: [
-      { text: '先交，再慢慢崩', value: 3 },
-      { text: '边崩边做，效率打折', value: 2 },
-      { text: '先崩一会，明天的我背锅', value: 1 }
+      { text: '莫名其妙，我就是我', value: 1 },
+      { text: '也许吧，多少会包装一下', value: 2 },
+      { text: '谢谢认可，我的人设本来就很完整', value: 3 }
     ]
   },
 
-  // B3 包装边界
+  // M10 断网反应
+  {
+    id: 'q28',
+    dim: 'M10',
+    text: '如果今天彻底断网，你会？',
+    options: [
+      { text: '正好清净一天', value: 1 },
+      { text: '不太习惯，但还能过', value: 2 },
+      { text: '整个人像被拔了网线', value: 3 }
+    ]
+  },
   {
     id: 'q29',
-    dim: 'B3',
-    text: '有人叫你把"普通经历"写成"高配项目"，你？',
+    dim: 'M10',
+    text: '手机只剩 5% 电时，你？',
     options: [
-      { text: '不碰，普通就普通', value: 1 },
-      { text: '小修可以，别修成诈骗', value: 2 },
-      { text: '写呗，互联网谁不包装', value: 3 }
+      { text: '随缘，没电就没电', value: 1 },
+      { text: '先留着回消息', value: 2 },
+      { text: '拼命找充电口，像在抢救自己', value: 3 }
     ]
   },
   {
     id: 'q30',
-    dim: 'B3',
-    text: '"会包装会讲故事的人先赢半步"，你认吗？',
+    dim: 'M10',
+    text: '周末不刷任何平台，对你来说？',
     options: [
-      { text: '不认，包装替不了真本事', value: 1 },
-      { text: '半认，过线就等着翻车', value: 2 },
-      { text: '认，不会包装的先吃亏', value: 3 }
+      { text: '挺好，脑子终于能静一静', value: 1 },
+      { text: '能做到，但会手痒', value: 2 },
+      { text: '不可能，完全不可能', value: 3 }
     ]
   }
 ];
 
-// 导出
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { questions };
 }
