@@ -10,7 +10,7 @@ const dimensionMeta = {
   // 上岸博弈模型
   E1: { name: '策略判断', model: '上岸博弈', icon: '📝' },
   E2: { name: '现场应对', model: '上岸博弈', icon: '⚡' },
-  E3: { name: '风口手气', model: '上岸博弈', icon: '🍀' },
+  E3: { name: '风向感应', model: '上岸博弈', icon: '🍀' },
   
   // 行动驱动模型
   A1: { name: '主动推进', model: '行动驱动', icon: '📚' },
