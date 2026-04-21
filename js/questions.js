@@ -14,7 +14,7 @@ const questions = [
   {
     id: 'q2',
     dim: 'M1',
-    text: '刷到“海王、杠精、原批、沸羊羊”这些词，你？',
+    text: '刷到“沸羊羊、原批、老钱、小处男”这些词，你？',
     options: [
       { text: '看不太懂，划走', value: 1 },
       { text: '先看评论区怎么用', value: 2 },
@@ -24,11 +24,11 @@ const questions = [
   {
     id: 'q3',
     dim: 'M1',
-    text: '朋友突然甩来一句圈内黑话，你？',
+    text: '朋友甩来一句“这人苹果味太冲了”，你？',
     options: [
-      { text: '回个问号', value: 1 },
-      { text: '先套上下文', value: 2 },
-      { text: '立刻接梗，顺手压他一头', value: 3 }
+      { text: '完全没听懂', value: 1 },
+      { text: '大概知道在阴阳什么', value: 2 },
+      { text: '不用解释，我甚至能补十句', value: 3 }
     ]
   },
   {
@@ -44,21 +44,21 @@ const questions = [
   {
     id: 'q5',
     dim: 'M2',
-    text: '评论区已经开始互咬，你更像？',
+    text: '评论区又在吵苹果安卓，你？',
     options: [
-      { text: '看两眼就撤', value: 1 },
-      { text: '挑个顺眼的帮一句', value: 2 },
-      { text: '不下场难受，必须补两脚', value: 3 }
+      { text: '路过，当没看见', value: 1 },
+      { text: '看两眼，顺手点个赞', value: 2 },
+      { text: '不下场难受，必须说两句', value: 3 }
     ]
   },
   {
     id: 'q6',
     dim: 'M2',
-    text: '别人把你喜欢的东西说得像垃圾，你？',
+    text: '你最容易在哪种时刻开杠？',
     options: [
-      { text: '算了，犯不着', value: 1 },
-      { text: '回一句纠正下', value: 2 },
-      { text: '上截图上链接上情绪', value: 3 }
+      { text: '基本不想杠', value: 1 },
+      { text: '被说急了才回', value: 2 },
+      { text: '看到逻辑漏洞就手痒', value: 3 }
     ]
   },
   {
@@ -74,21 +74,21 @@ const questions = [
   {
     id: 'q8',
     dim: 'M3',
-    text: '别人夸你“很有那味”，你？',
+    text: '换手机这事，你更看重？',
     options: [
-      { text: '没什么感觉', value: 1 },
-      { text: '会暗爽一下', value: 2 },
-      { text: '这就是我要的效果', value: 3 }
+      { text: '功能顺手最重要', value: 1 },
+      { text: '别太难看，够用就行', value: 2 },
+      { text: '生态、质感、拿出来的气口', value: 3 }
     ]
   },
   {
     id: 'q9',
     dim: 'M3',
-    text: '你说话更接近？',
+    text: '你发一段话，最想别人觉得你？',
     options: [
-      { text: '有啥说啥，不拐弯', value: 1 },
-      { text: '看场合，偶尔带点味', value: 2 },
-      { text: '不拐两下根本不像我', value: 3 }
+      { text: '挺正常一人', value: 1 },
+      { text: '有点东西', value: 2 },
+      { text: '这人一看就很有那味', value: 3 }
     ]
   },
   {
@@ -136,9 +136,9 @@ const questions = [
     dim: 'M5',
     text: '哪类内容最容易把你留住？',
     options: [
-      { text: '实用信息', value: 1 },
-      { text: '情绪和八卦', value: 2 },
-      { text: '设定、角色和圈内黑话', value: 3 }
+      { text: '实用信息和干货', value: 1 },
+      { text: '情绪八卦和抓马', value: 2 },
+      { text: '角色设定、纸片人、圈内黑话', value: 3 }
     ]
   },
   {
@@ -168,17 +168,17 @@ const questions = [
     options: [
       { text: '点个赞就走', value: 1 },
       { text: '回一句损的', value: 2 },
-      { text: '已经想好怎么挂三天热梗了', value: 3 }
+      { text: '已经想好怎么挂成名场面了', value: 3 }
     ]
   },
   {
     id: 'q18',
     dim: 'M6',
-    text: '线下尬住三秒，你会？',
+    text: '你更容易把什么说成名场面？',
     options: [
-      { text: '装没事', value: 1 },
-      { text: '丢句冷笑话圆一下', value: 2 },
-      { text: '立刻上小品把场子抬住', value: 3 }
+      { text: '正常说完就收', value: 1 },
+      { text: '偶尔来句有节目效果的', value: 2 },
+      { text: '越正经的场合越想来点逆天的', value: 3 }
     ]
   },
   {
@@ -198,17 +198,17 @@ const questions = [
     options: [
       { text: '关我屁事', value: 1 },
       { text: '酸两秒继续刷', value: 2 },
-      { text: '一下就被狠狠干出静音感', value: 3 }
+      { text: '一下就被干出静音感', value: 3 }
     ]
   },
   {
     id: 'q21',
     dim: 'M7',
-    text: '你发的内容被群嘲时，你通常？',
+    text: '喜欢的人回你一个“哦”，你？',
     options: [
-      { text: '爱笑笑，不解释', value: 1 },
-      { text: '嘴上没事，心里记账', value: 2 },
-      { text: '立刻开始长文自证', value: 3 }
+      { text: '哦就哦，继续过日子', value: 1 },
+      { text: '会琢磨一下什么意思', value: 2 },
+      { text: '当晚开始复盘自己哪句说错了', value: 3 }
     ]
   },
   {
@@ -224,11 +224,11 @@ const questions = [
   {
     id: 'q23',
     dim: 'M8',
-    text: '看完一条烂情绪视频后，你更常？',
+    text: '半夜翻到旧聊天记录，你更像？',
     options: [
-      { text: '划走，没后劲', value: 1 },
-      { text: '会短暂代入一下', value: 2 },
-      { text: '低气压直接跟到下一顿饭', value: 3 }
+      { text: '翻到就关，没兴趣', value: 1 },
+      { text: '会看两眼感慨一下', value: 2 },
+      { text: '越看越上头，情绪直接返场', value: 3 }
     ]
   },
   {
@@ -264,21 +264,21 @@ const questions = [
   {
     id: 'q27',
     dim: 'M9',
-    text: '你更认同哪种人生主线？',
+    text: '你更信哪套人生模板？',
     options: [
-      { text: '自己舒服最重要', value: 1 },
-      { text: '稳定工作加普通生活', value: 2 },
-      { text: '房车对象孩子一步都不能落', value: 3 }
+      { text: '自己舒服就行，别给我上课', value: 1 },
+      { text: '稳定工作，正常过日子', value: 2 },
+      { text: '房车、老婆、孩子、体面，一样都不能少', value: 3 }
     ]
   },
   {
     id: 'q28',
     dim: 'M10',
-    text: '刷到“她就是在试探你”这种视频，你？',
+    text: '女生突然主动跟你多说两句，你？',
     options: [
-      { text: '土得发笑，划走', value: 1 },
-      { text: '看眼评论区图一乐', value: 2 },
-      { text: '越看越觉得人性确实就这套', value: 3 }
+      { text: '正常聊两句就过了', value: 1 },
+      { text: '会多想一秒，但尽量装正常', value: 2 },
+      { text: '人已经红温，回家还要复盘半天', value: 3 }
     ]
   },
   {
@@ -288,17 +288,17 @@ const questions = [
     options: [
       { text: '这也能嗑？', value: 1 },
       { text: '有点那味，但不至于', value: 2 },
-      { text: '我连暧昧线都脑补完了', value: 3 }
+      { text: '我连后续剧情都脑补完了', value: 3 }
     ]
   },
   {
     id: 'q30',
     dim: 'M10',
-    text: '看到“服从性测试、拿捏、慕强”这套词，你？',
+    text: '刷到“性压抑论、链接、拿捏、服从性测试”这套词，你？',
     options: [
       { text: '又土又装', value: 1 },
       { text: '当抽象乐子看看', value: 2 },
-      { text: '虽然难听，但感觉确实有点真', value: 3 }
+      { text: '虽然难听，但很多事真能往这上套', value: 3 }
     ]
   }
 ];
