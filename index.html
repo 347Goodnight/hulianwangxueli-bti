@@ -9,7 +9,7 @@
     <meta name="application-name" content="互联网冲浪人格测试">
     <meta name="site-url" content="https://347goodnight.github.io/hulianwangxueli-bti/">
     <link rel="canonical" href="https://347goodnight.github.io/hulianwangxueli-bti/">
-    <link rel="stylesheet" href="style.css?v=20260421-33">
+    <link rel="stylesheet" href="style.css?v=20260421-34">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='88'>🌊</text></svg>">
 </head>
 <body>
@@ -206,9 +206,33 @@
         </div>
     </div>
 
-    <script src="js/dimensions.js?v=20260421-33"></script>
-    <script src="js/questions.js?v=20260421-33"></script>
-    <script src="js/types.js?v=20260421-33"></script>
-    <script src="js/app.js?v=20260421-33"></script>
+    <div class="share-preview-overlay" id="share-preview-overlay" hidden>
+        <div class="share-preview-backdrop" onclick="closeSharePreview()"></div>
+        <div class="share-preview-panel" role="dialog" aria-modal="true" aria-labelledby="share-preview-title">
+            <div class="share-preview-head">
+                <div>
+                    <span class="section-kicker">分享图片</span>
+                    <h2 id="share-preview-title">长按保存这张结果图</h2>
+                    <p class="share-preview-tip">当前浏览器不支持直接发图，长按下方图片保存后再转发会更稳。</p>
+                </div>
+                <button class="library-close" type="button" onclick="closeSharePreview()" aria-label="关闭分享预览">×</button>
+            </div>
+
+            <div class="share-preview-image-wrap">
+                <img class="share-preview-image" id="share-preview-image" alt="分享结果图预览">
+            </div>
+
+            <div class="share-preview-actions">
+                <a class="btn btn-primary" id="share-preview-open" href="#" target="_blank" rel="noopener noreferrer">打开图片</a>
+                <button class="btn btn-secondary" type="button" onclick="sharePreviewLink()">系统分享链接</button>
+                <button class="btn btn-secondary" type="button" onclick="copySharePreviewLink()">复制测试链接</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/dimensions.js?v=20260421-34"></script>
+    <script src="js/questions.js?v=20260421-34"></script>
+    <script src="js/types.js?v=20260421-34"></script>
+    <script src="js/app.js?v=20260421-34"></script>
 </body>
 </html>

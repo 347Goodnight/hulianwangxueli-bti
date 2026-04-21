@@ -7,9 +7,11 @@ let activeLibraryCategory = '全部';
 let activeLibraryCode = '';
 let librarySearchQuery = '';
 let autoAdvanceTimer = null;
+let sharePreviewObjectUrl = '';
+let sharePreviewPayload = null;
 
 const AUTO_ADVANCE_DELAY = 120;
-const SHARE_QR_ASSET_PATH = 'assets/site-qr.svg?v=20260421-33';
+const SHARE_QR_ASSET_PATH = 'assets/site-qr.svg?v=20260421-34';
 
 const appName =
   document.querySelector('meta[name="application-name"]')?.content ||
@@ -465,20 +467,31 @@ async function shareResult() {
     fallbackType;
   const shareText = `我在${appName}测出了【${personality.name}】。${personality.slogan}`;
   const shareUrl = configuredSiteUrl || window.location.href;
+  let generatedBlob = null;
+  const fileName = `${personality.code.toLowerCase()}-share-card.png`;
 
   try {
-    const blob = await generateShareCard(personality, shareUrl);
-    const fileName = `${personality.code.toLowerCase()}-share-card.png`;
-    const didShareImage = await tryShareImage(blob, fileName, shareText, personality.name);
+    generatedBlob = await generateShareCard(personality, shareUrl);
+    const didShareImage = await tryShareImage(generatedBlob, fileName, shareText, personality.name);
     if (didShareImage) {
       return;
     }
 
-    downloadBlob(blob, fileName);
+    if (window.matchMedia('(pointer: coarse)').matches) {
+      showSharePreview(generatedBlob, fileName, shareText, shareUrl);
+      return;
+    }
+
+    downloadBlob(generatedBlob, fileName);
     copyToClipboard(`${shareText} ${shareUrl}`, {
       message: '当前设备不支持直接转发图片，已下载分享图并复制链接。'
     });
   } catch (error) {
+    if (generatedBlob && window.matchMedia('(pointer: coarse)').matches) {
+      showSharePreview(generatedBlob, fileName, shareText, shareUrl);
+      return;
+    }
+
     if (navigator.share) {
       navigator
         .share({
@@ -512,6 +525,81 @@ async function tryShareImage(blob, fileName, shareText, personalityName) {
     files: [file]
   });
   return true;
+}
+
+function showSharePreview(blob, fileName, shareText, shareUrl) {
+  const overlay = document.getElementById('share-preview-overlay');
+  const image = document.getElementById('share-preview-image');
+  const openLink = document.getElementById('share-preview-open');
+
+  if (!overlay || !image || !openLink) {
+    downloadBlob(blob, fileName);
+    return;
+  }
+
+  if (sharePreviewObjectUrl) {
+    URL.revokeObjectURL(sharePreviewObjectUrl);
+  }
+
+  sharePreviewObjectUrl = URL.createObjectURL(blob);
+  sharePreviewPayload = { shareText, shareUrl };
+
+  image.src = sharePreviewObjectUrl;
+  openLink.href = sharePreviewObjectUrl;
+  openLink.download = fileName;
+  overlay.hidden = false;
+  document.body.classList.add('library-open');
+}
+
+function closeSharePreview() {
+  const overlay = document.getElementById('share-preview-overlay');
+  const image = document.getElementById('share-preview-image');
+  const libraryOverlay = document.getElementById('personality-library-overlay');
+
+  if (overlay) {
+    overlay.hidden = true;
+  }
+
+  if (image) {
+    image.removeAttribute('src');
+  }
+
+  if (sharePreviewObjectUrl) {
+    URL.revokeObjectURL(sharePreviewObjectUrl);
+    sharePreviewObjectUrl = '';
+  }
+
+  sharePreviewPayload = null;
+  document.body.classList.toggle('library-open', Boolean(libraryOverlay && !libraryOverlay.hidden));
+}
+
+function sharePreviewLink() {
+  if (!sharePreviewPayload) {
+    return;
+  }
+
+  if (navigator.share) {
+    navigator
+      .share({
+        title: appName,
+        text: sharePreviewPayload.shareText,
+        url: sharePreviewPayload.shareUrl
+      })
+      .catch(() => {});
+    return;
+  }
+
+  copySharePreviewLink();
+}
+
+function copySharePreviewLink() {
+  if (!sharePreviewPayload) {
+    return;
+  }
+
+  copyToClipboard(sharePreviewPayload.shareUrl, {
+    message: '测试链接已经复制，发给别人也能直接打开。'
+  });
 }
 
 function copyToClipboard(text, options = {}) {
@@ -884,6 +972,12 @@ function renderPersonalityLibrary() {
 
 document.addEventListener('keydown', (event) => {
   const overlay = document.getElementById('personality-library-overlay');
+  const shareOverlay = document.getElementById('share-preview-overlay');
+  if (event.key === 'Escape' && shareOverlay && !shareOverlay.hidden) {
+    closeSharePreview();
+    return;
+  }
+
   if (event.key === 'Escape' && overlay && !overlay.hidden) {
     togglePersonalityLibrary(false);
     return;

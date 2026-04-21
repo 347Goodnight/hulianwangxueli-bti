@@ -163,11 +163,11 @@ const questions = [
   {
     id: 'q17',
     dim: 'M6',
-    text: '朋友发了个很适合二创的片段，你？',
+    text: '朋友甩来一张逆天聊天记录，你？',
     options: [
       { text: '点个赞就走', value: 1 },
-      { text: '回一句轻梗', value: 2 },
-      { text: '已经在脑内切成三条了', value: 3 }
+      { text: '回一句损的', value: 2 },
+      { text: '已经想好怎么挂三天热梗了', value: 3 }
     ]
   },
   {
@@ -273,31 +273,31 @@ const questions = [
   {
     id: 'q28',
     dim: 'M10',
-    text: '原视频 12 分钟，切片 45 秒，你？',
+    text: '刷到“她就是在试探你”这种视频，你？',
     options: [
-      { text: '都不看，嫌烦', value: 1 },
-      { text: '先看切片，有兴趣再补原片', value: 2 },
-      { text: '只看切片也敢下结论', value: 3 }
+      { text: '土得发笑，划走', value: 1 },
+      { text: '看眼评论区图一乐', value: 2 },
+      { text: '越看越觉得人性确实就这套', value: 3 }
     ]
   },
   {
     id: 'q29',
     dim: 'M10',
-    text: '一个瓜反转三次，你一般？',
+    text: '两个人对视三秒，评论区全在嗑，你？',
     options: [
-      { text: '到第二次就不跟了', value: 1 },
-      { text: '看个结局', value: 2 },
-      { text: '越反转越来精神', value: 3 }
+      { text: '这也能嗑？', value: 1 },
+      { text: '有点那味，但不至于', value: 2 },
+      { text: '我连暧昧线都脑补完了', value: 3 }
     ]
   },
   {
     id: 'q30',
     dim: 'M10',
-    text: '你对“没看原文先看总结”这事？',
+    text: '看到“服从性测试、拿捏、慕强”这套词，你？',
     options: [
-      { text: '不靠谱', value: 1 },
-      { text: '节省时间也正常', value: 2 },
-      { text: '互联网不就这么吃的吗', value: 3 }
+      { text: '又土又装', value: 1 },
+      { text: '当抽象乐子看看', value: 2 },
+      { text: '虽然难听，但感觉确实有点真', value: 3 }
     ]
   }
 ];

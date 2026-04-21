@@ -386,6 +386,10 @@ button{
   gap:8px;
 }
 
+.test-step-actions .test-nav-btn{
+  min-width:116px;
+}
+
 .progress-bar{
   margin-top:14px;
   height:8px;
@@ -1076,6 +1080,82 @@ button{
   color:var(--text-secondary);
 }
 
+.share-preview-overlay[hidden]{
+  display:none !important;
+}
+
+.share-preview-overlay{
+  position:fixed;
+  inset:0;
+  z-index:32;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+}
+
+.share-preview-backdrop{
+  position:absolute;
+  inset:0;
+  background:rgba(18,14,12,.56);
+  backdrop-filter:blur(8px);
+}
+
+.share-preview-panel{
+  position:relative;
+  z-index:1;
+  width:min(560px,100%);
+  padding:20px;
+  border-radius:28px;
+  background:var(--card-soft);
+  border:1px solid rgba(255,255,255,.78);
+  box-shadow:var(--shadow);
+}
+
+.share-preview-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:14px;
+}
+
+.share-preview-head h2{
+  margin-top:8px;
+  font-size:clamp(24px,4vw,32px);
+  line-height:1.12;
+}
+
+.share-preview-tip{
+  margin-top:8px;
+  color:var(--text-secondary);
+  font-size:14px;
+}
+
+.share-preview-image-wrap{
+  margin-top:16px;
+  border-radius:24px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  background:#fff;
+}
+
+.share-preview-image{
+  display:block;
+  width:100%;
+  height:auto;
+}
+
+.share-preview-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:16px;
+}
+
+.share-preview-actions .btn{
+  flex:1 1 160px;
+}
+
 .footer{
   padding:0 0 28px;
   margin-top:auto;
@@ -1133,28 +1213,54 @@ button{
   .hero,
   .question-container,
   .result-container,
-  .personality-library-panel{
+  .personality-library-panel,
+  .share-preview-panel{
     padding:16px;
     border-radius:24px;
   }
 
+  .hero{
+    min-height:calc(100dvh - 132px);
+    display:flex;
+    align-items:stretch;
+  }
+
+  .hero-main{
+    justify-content:space-between;
+    min-height:100%;
+  }
+
   .title{
-    margin-top:14px;
-    font-size:clamp(40px,15vw,56px);
+    margin-top:12px;
+    font-size:clamp(42px,15vw,58px);
+    line-height:.94;
   }
 
   .subtitle{
     max-width:none;
-    font-size:22px;
+    font-size:20px;
+    line-height:1.18;
+  }
+
+  .hero-meta{
+    gap:8px;
+  }
+
+  .hero-meta span{
+    min-height:32px;
+    padding:0 12px;
+    font-size:12px;
   }
 
   .hero-actions,
-  .result-actions{
+  .result-actions,
+  .share-preview-actions{
     flex-direction:column;
   }
 
   .btn,
-  .all-types-toggle{
+  .all-types-toggle,
+  .share-preview-actions .btn{
     width:100%;
   }
 
@@ -1235,13 +1341,31 @@ button{
   .personality-card-top,
   .personality-card-hero,
   .personality-main,
+  .result-header,
   .all-types-header,
-  .personality-library-head{
+  .personality-library-head,
+  .share-preview-head{
     align-items:flex-start;
   }
 
+  .result-header{
+    flex-direction:column;
+    gap:8px;
+  }
+
+  .result-title{
+    font-size:30px;
+    line-height:1.06;
+  }
+
+  .personality-card{
+    margin-top:14px;
+    padding:16px;
+    border-radius:24px;
+  }
+
   .personality-card-hero{
-    gap:16px;
+    gap:14px;
   }
 
   .personality-image-shell{
@@ -1249,21 +1373,51 @@ button{
   }
 
   .personality-image{
-    min-height:180px;
+    min-height:164px;
   }
 
   .personality-emblem{
-    width:108px;
-    height:108px;
-    border-radius:28px;
+    width:100px;
+    height:100px;
+    border-radius:26px;
   }
 
   .personality-emblem span{
-    font-size:48px;
+    font-size:44px;
   }
 
   .personality-name{
-    font-size:40px;
+    margin-top:10px;
+    font-size:34px;
+  }
+
+  .personality-slogan{
+    margin-top:10px;
+    font-size:18px;
+  }
+
+  .personality-desc,
+  .personality-roast{
+    margin-top:12px;
+    font-size:14px;
+    line-height:1.6;
+  }
+
+  .personality-block{
+    padding:14px;
+    border-radius:18px;
+  }
+
+  .dimension-radar,
+  .all-types-section{
+    margin-top:14px;
+    padding:14px;
+    border-radius:20px;
+  }
+
+  .dimension-radar h4,
+  .all-types-header h3{
+    font-size:20px;
   }
 
   .personality-highlight-grid{
@@ -1300,6 +1454,19 @@ button{
 
   .personality-library-grid{
     grid-template-columns:1fr;
+  }
+
+  .share-preview-overlay{
+    padding:0;
+    align-items:flex-end;
+  }
+
+  .share-preview-panel{
+    width:100%;
+    border-radius:24px 24px 0 0;
+    border-left:none;
+    border-right:none;
+    border-bottom:none;
   }
 
   .footer{
