@@ -11,7 +11,7 @@ let sharePreviewObjectUrl = '';
 let sharePreviewPayload = null;
 
 const AUTO_ADVANCE_DELAY = 120;
-const SHARE_QR_ASSET_PATH = 'assets/site-qr.svg?v=20260421-46';
+const SHARE_QR_ASSET_PATH = 'assets/site-qr.svg?v=20260421-47';
 
 const appName =
   document.querySelector('meta[name="application-name"]')?.content ||
@@ -54,28 +54,25 @@ const signalFloorByType = {
   LAOSHU: 2,
   LIGONG: 2,
   MONEY: 2,
-  NITIAN: 2,
   PURE: 2,
   VALO: 4,
   GANG: 4,
-  XYY: 4,
-  WINNER: 4
+  XYY: 4
 };
 const signalScaleByType = {
-  APPLE: 1.18,
-  CLOWN: 1.45,
-  DOOM: 1.2,
-  HAIWANG: 1.12,
-  LAOSHU: 1.15,
-  LIGONG: 1.18,
-  NITIAN: 1.1,
-  PURE: 1.22,
+  APPLE: 1.3,
+  CLOWN: 0.95,
+  DOOM: 1.28,
+  HAIWANG: 0.98,
+  LAOSHU: 1.28,
+  LIGONG: 1.35,
+  MONEY: 0.82,
+  PURE: 1.25,
   VALO: 0.72,
   GANG: 0.82,
   XYY: 0.82,
-  WINNER: 0.86,
-  JIAHAO: 0.92,
-  KOUHAI: 0.92,
+  JIAHAO: 0.72,
+  KOUHAI: 1.04,
   GENSHIN: 0.9
 };
 

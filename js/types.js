@@ -174,35 +174,6 @@ const personalityTypes = [
     traits: ['气势先行', '嘴硬高配', '预判式装杯', '现实延迟到账']
   },
   {
-    code: 'XCN',
-    name: '萧楚楠',
-    category: '理论话术系',
-    icon: '😳',
-    accent: '#7a4b62',
-    rarity: 'SR',
-    profile: {
-      RADAR: 0,
-      FIRE: -2,
-      AURA: -1,
-      ONLINE: 0,
-      CIRCLE: -1,
-      DRAMA: 1,
-      MOOD: 1,
-      RELATE: 2,
-      PROJECTION: 1
-    },
-    weights: {
-      DRAMA: 1.15,
-      RELATE: 1.55,
-      PROJECTION: 1.1
-    },
-    bias: 1,
-    slogan: '你不是高冷，是跟女生一对视就开始自动掉帧。',
-    description: '萧楚楠这挂说白了就是小处男气质拉满。平时老老实实，跟兄弟吹两句还行，真遇到女生靠近、搭话、看你两眼，整个人立马耳根发热，手都不知道往哪放。异性接触经验几乎空白，脑子里想得很多，线下却永远慢半拍。',
-    roast: '你不是稳重，你是跟女生说两句话都要回家复盘三天。',
-    traits: ['异性经验稀缺', '一见女生脸红', '老实人配置', '纯情掉帧']
-  },
-  {
     code: 'JIAHAO',
     name: '嘉豪',
     category: '抽象镜头系',
@@ -318,35 +289,6 @@ const personalityTypes = [
     traits: ['自我代入', '戏精复盘', '嘴硬心碎', '情绪加戏']
   },
   {
-    code: 'WINNER',
-    name: '高质量男性',
-    category: '现实投射系',
-    icon: '🏆',
-    accent: '#d4a347',
-    rarity: 'SSR',
-    profile: {
-      RADAR: 0,
-      FIRE: -1,
-      AURA: 2,
-      ONLINE: 0,
-      CIRCLE: -1,
-      DRAMA: 0,
-      MOOD: -1,
-      RELATE: 1,
-      PROJECTION: 2
-    },
-    weights: {
-      AURA: 1.35,
-      RELATE: 1.1,
-      PROJECTION: 1.45
-    },
-    bias: 1,
-    slogan: '你不是普通装杯，你是把自己活成了一门高配教程。',
-    description: '你这挂最讲究的不是直接炫，是那种“我说得很克制，但你最好听懂我层次很高”的高级感。说话要稳，姿态要松，审美、消费、女人缘和人生叙事都得像一套打磨过的课程，主打一个不明着压人，但别人会自动开始对比。',
-    roast: '你不是过得多传奇，你是很懂怎么把日常生活剪出高位宣传片。',
-    traits: ['高配人设', '高级感管理', '女人缘叙事', '松弛装杯']
-  },
-  {
     code: 'DANREN',
     name: '淡人',
     category: '情绪文学系',
@@ -403,35 +345,6 @@ const personalityTypes = [
     description: '你刷网不是为了快乐，是为了给自己的低气压找点背景音。你很会在一条条热梗下面看出虚无、疲惫和“算了就这样吧”的底色，情绪像旧楼道，一进去就有回声。',
     roast: '你不是清醒，你是已经把悲观调成了默认主题。',
     traits: ['低气压常驻', '负面共鸣', '夜间沉底', '虚无感强']
-  },
-  {
-    code: 'PANGMAO',
-    name: '胖猫',
-    category: '情绪文学系',
-    icon: '🐱',
-    accent: '#4c7395',
-    rarity: 'SR',
-    profile: {
-      RADAR: -1,
-      FIRE: -2,
-      AURA: -1,
-      ONLINE: 0,
-      CIRCLE: -1,
-      DRAMA: 2,
-      MOOD: 2,
-      RELATE: 2,
-      PROJECTION: 0
-    },
-    weights: {
-      DRAMA: 1.45,
-      MOOD: 1.45,
-      RELATE: 1.2
-    },
-    bias: 2,
-    slogan: '你不是不肯翻篇，你是太会在旧情绪里反复补细节。',
-    description: '你这类人一旦上头就很容易把真心投得过满，表面上说算了，私下还在翻聊天记录、补时间线、替过去那点情绪做精修。你最怕的不是结束，是没有说法。',
-    roast: '你不是深情，你是太擅长在已经结束的情绪里继续施工。',
-    traits: ['情绪复盘', '旧记录常翻', '下头困难', '细节强迫症']
   },
   {
     code: 'PURE',
@@ -577,34 +490,6 @@ const personalityTypes = [
     description: '你看内容最自然的反应不是共鸣，是挑刺。一个词不准、一句太满、一个逻辑链没扣严，你都能立刻进入工作状态，哪怕原本只是随手刷到的小视频，也能被你打成辩论赛海选。',
     roast: '你不是追求真理，你是太享受把别人话头拧正那一下。',
     traits: ['抬杠本能', '语病雷达', '逻辑洁癖', '评论区磨刀']
-  },
-  {
-    code: 'NITIAN',
-    name: '逆天哥',
-    category: '抽象镜头系',
-    icon: '🫠',
-    accent: '#7b63ff',
-    rarity: 'R',
-    profile: {
-      RADAR: 2,
-      FIRE: 0,
-      AURA: 2,
-      ONLINE: 1,
-      CIRCLE: 0,
-      DRAMA: 2,
-      MOOD: 0,
-      RELATE: -1,
-      PROJECTION: 1
-    },
-    weights: {
-      AURA: 1.15,
-      DRAMA: 1.45
-    },
-    bias: 2,
-    slogan: '正常话到你这儿都能拐出一点不该存在的离谱味。',
-    description: '你最大的本事，是把一句普通话说出让人想暂停两秒的效果。你不一定故意冒犯谁，但总能在最该正经的地方冒出一句逆天发言，让全场一边沉默一边想笑。',
-    roast: '你不是单纯抽象，你是讲话自带偏航系统。',
-    traits: ['离谱输出', '语境止损', '名场面体质', '抽象偏航']
   }
 ];
 
