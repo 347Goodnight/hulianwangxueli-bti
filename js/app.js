@@ -11,7 +11,7 @@ let sharePreviewObjectUrl = '';
 let sharePreviewPayload = null;
 
 const AUTO_ADVANCE_DELAY = 120;
-const SHARE_QR_ASSET_PATH = 'assets/site-qr.svg?v=20260421-47';
+const SHARE_QR_ASSET_PATH = 'assets/site-qr.svg?v=20260421-48';
 
 const appName =
   document.querySelector('meta[name="application-name"]')?.content ||

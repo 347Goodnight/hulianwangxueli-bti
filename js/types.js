@@ -46,12 +46,12 @@ const personalityTypes = [
       CIRCLE: -1,
       DRAMA: -1,
       MOOD: -1,
-      RELATE: 0,
-      PROJECTION: 1
+      RELATE: -1,
+      PROJECTION: 0
     },
     weights: {
-      AURA: 1.45,
-      PROJECTION: 1.1
+      AURA: 1.5,
+      PROJECTION: 1
     },
     bias: -2,
     slogan: '你买的不是设备，是一整套看起来就很高级的生活。',
@@ -65,7 +65,7 @@ const personalityTypes = [
     category: '理论话术系',
     icon: '🤖',
     accent: '#58a86b',
-    rarity: 'SR',
+    rarity: 'N',
     profile: {
       RADAR: 0,
       FIRE: 2,
@@ -93,7 +93,7 @@ const personalityTypes = [
     category: '现实投射系',
     icon: '🧱',
     accent: '#926b4f',
-    rarity: 'SR',
+    rarity: 'R',
     profile: {
       RADAR: -1,
       FIRE: 1,
@@ -125,17 +125,17 @@ const personalityTypes = [
     profile: {
       RADAR: 0,
       FIRE: -1,
-      AURA: 2,
-      ONLINE: 0,
+      AURA: 1,
+      ONLINE: -1,
       CIRCLE: 0,
       DRAMA: -1,
       MOOD: -1,
-      RELATE: 1,
+      RELATE: 2,
       PROJECTION: 2
     },
     weights: {
-      AURA: 1.25,
-      RELATE: 1.1,
+      AURA: 1.05,
+      RELATE: 1.35,
       PROJECTION: 1.55
     },
     bias: 1,
@@ -150,22 +150,22 @@ const personalityTypes = [
     category: '理论话术系',
     icon: '🗣️',
     accent: '#ff7b54',
-    rarity: 'SR',
+    rarity: 'N',
     profile: {
       RADAR: 2,
       FIRE: 2,
-      AURA: 1,
+      AURA: 0,
       ONLINE: 0,
       CIRCLE: -1,
-      DRAMA: 1,
+      DRAMA: 0,
       MOOD: -1,
       RELATE: 0,
-      PROJECTION: 0
+      PROJECTION: -1
     },
     weights: {
-      RADAR: 1.15,
-      FIRE: 1.35,
-      DRAMA: 1.1
+      RADAR: 1.1,
+      FIRE: 1.45,
+      DRAMA: 1
     },
     bias: 0,
     slogan: '你嘴上的战绩比现实履历厚，气势一开像已经赢完了。',
@@ -179,22 +179,23 @@ const personalityTypes = [
     category: '抽象镜头系',
     icon: '😉',
     accent: '#7c4dff',
-    rarity: 'SSR',
+    rarity: 'R',
     profile: {
       RADAR: 2,
-      FIRE: 1,
+      FIRE: 0,
       AURA: 2,
       ONLINE: 1,
       CIRCLE: 0,
-      DRAMA: 1,
+      DRAMA: 2,
       MOOD: 0,
       RELATE: 0,
-      PROJECTION: 1
+      PROJECTION: 0
     },
     weights: {
-      RADAR: 1.1,
-      AURA: 1.5,
-      ONLINE: 1.1
+      RADAR: 1.05,
+      AURA: 1.6,
+      DRAMA: 1.25,
+      ONLINE: 1
     },
     bias: 1,
     slogan: '你还没说重点，气口和造型已经先赢了。',
@@ -208,7 +209,7 @@ const personalityTypes = [
     category: '抽象镜头系',
     icon: '🌊',
     accent: '#4f8dff',
-    rarity: 'SSR',
+    rarity: 'SR',
     profile: {
       RADAR: 0,
       FIRE: 0,
@@ -237,7 +238,7 @@ const personalityTypes = [
     category: '抽象镜头系',
     icon: '🐭',
     accent: '#7a6057',
-    rarity: 'SR',
+    rarity: 'N',
     profile: {
       RADAR: -1,
       FIRE: -2,
@@ -265,7 +266,7 @@ const personalityTypes = [
     category: '抽象镜头系',
     icon: '🤡',
     accent: '#ff5f45',
-    rarity: 'SR',
+    rarity: 'R',
     profile: {
       RADAR: 0,
       FIRE: -1,
@@ -273,14 +274,14 @@ const personalityTypes = [
       ONLINE: 0,
       CIRCLE: -1,
       DRAMA: 2,
-      MOOD: 2,
+      MOOD: 1,
       RELATE: 1,
-      PROJECTION: 0
+      PROJECTION: -1
     },
     weights: {
-      DRAMA: 1.55,
-      MOOD: 1.25,
-      RELATE: 1.1
+      DRAMA: 1.65,
+      MOOD: 1.05,
+      RELATE: 1.05
     },
     bias: 1,
     slogan: '每次都说下次不这样了，下次还是第一时间对号入座。',
@@ -294,7 +295,7 @@ const personalityTypes = [
     category: '情绪文学系',
     icon: '😶',
     accent: '#8b98a8',
-    rarity: 'R',
+    rarity: 'N',
     profile: {
       RADAR: -1,
       FIRE: -2,
@@ -323,20 +324,20 @@ const personalityTypes = [
     category: '情绪文学系',
     icon: '🌧️',
     accent: '#5c6370',
-    rarity: 'SR',
+    rarity: 'R',
     profile: {
       RADAR: -2,
       FIRE: -2,
       AURA: -2,
       ONLINE: 0,
       CIRCLE: -2,
-      DRAMA: 1,
+      DRAMA: 0,
       MOOD: 2,
       RELATE: -1,
       PROJECTION: -1
     },
     weights: {
-      DRAMA: 1.1,
+      DRAMA: 1,
       MOOD: 1.65,
       ONLINE: 1.05
     },
@@ -359,15 +360,15 @@ const personalityTypes = [
       AURA: 0,
       ONLINE: 0,
       CIRCLE: -1,
-      DRAMA: 1,
-      MOOD: 1,
+      DRAMA: 0,
+      MOOD: 0,
       RELATE: 2,
-      PROJECTION: 1
+      PROJECTION: 0
     },
     weights: {
-      MOOD: 1.05,
+      MOOD: 1,
       RELATE: 1.55,
-      PROJECTION: 1.1
+      PROJECTION: 1
     },
     bias: 1,
     slogan: '你相信真心换真心，哪怕互联网天天拿这个打你脸。',
@@ -385,18 +386,18 @@ const personalityTypes = [
     profile: {
       RADAR: 2,
       FIRE: 2,
-      AURA: 0,
+      AURA: -1,
       ONLINE: 2,
-      CIRCLE: 2,
+      CIRCLE: 1,
       DRAMA: 1,
       MOOD: 0,
       RELATE: -1,
       PROJECTION: -1
     },
     weights: {
-      FIRE: 1.2,
-      ONLINE: 1.2,
-      CIRCLE: 1.6
+      FIRE: 1.45,
+      ONLINE: 1.15,
+      CIRCLE: 1.25
     },
     bias: 1,
     slogan: '房间还没进，你的语音情绪已经先热身了。',
@@ -417,13 +418,13 @@ const personalityTypes = [
       AURA: 0,
       ONLINE: 0,
       CIRCLE: -1,
-      DRAMA: 1,
+      DRAMA: 2,
       MOOD: 2,
       RELATE: 2,
       PROJECTION: 2
     },
     weights: {
-      DRAMA: 1.1,
+      DRAMA: 1.25,
       MOOD: 1.25,
       RELATE: 1.35,
       PROJECTION: 1.25
@@ -443,7 +444,7 @@ const personalityTypes = [
     rarity: 'SSR',
     profile: {
       RADAR: 2,
-      FIRE: 1,
+      FIRE: 0,
       AURA: 1,
       ONLINE: 2,
       CIRCLE: 2,
@@ -454,7 +455,7 @@ const personalityTypes = [
     },
     weights: {
       ONLINE: 1.1,
-      CIRCLE: 1.65,
+      CIRCLE: 1.8,
       AURA: 1.05
     },
     bias: 1,

@@ -37,7 +37,7 @@ const questions = [
     options: [
       { text: '刷到第三遍就开始烦', score: -2, types: { DANREN: 1 } },
       { text: '看场合，真好笑就继续玩', score: 0, types: {} },
-      { text: '越被玩烂，我越想拿来整活', score: 2, types: { JIAHAO: 2, KOUHAI: 1, VALO: 1, CLOWN: 1 } }
+      { text: '越被玩烂，我越想拿来整活', score: 2, types: { JIAHAO: 2, KOUHAI: 1, VALO: 1 } }
     ]
   },
   {
@@ -117,7 +117,7 @@ const questions = [
     options: [
       { text: '早就睡了', score: -2, types: {} },
       { text: '看两眼更新就准备撤', score: 0, types: {} },
-      { text: '这才算正式上线', score: 2, types: { LAOSHU: 2, DOOM: 1, VALO: 1, GENSHIN: 1, XYY: 1 } }
+      { text: '这才算正式上线', score: 2, types: { LAOSHU: 2, DOOM: 1, VALO: 1, GENSHIN: 1 } }
     ]
   },
   {
@@ -137,7 +137,7 @@ const questions = [
     options: [
       { text: '先清醒一下，不碰手机', score: -2, types: {} },
       { text: '先扫一眼消息和热搜', score: 0, types: {} },
-      { text: '直接开刷，像打卡上班', score: 2, types: { LAOSHU: 2, XYY: 1, VALO: 1, GENSHIN: 1 } }
+      { text: '直接开刷，像打卡上班', score: 2, types: { LAOSHU: 2, VALO: 1, GENSHIN: 1 } }
     ]
   },
   {
@@ -167,7 +167,7 @@ const questions = [
     options: [
       { text: '懒得护，爱说说去', score: -2, types: {} },
       { text: '回一句差不多行了', score: 0, types: {} },
-      { text: '一下就代入了，像在踩我', score: 2, types: { GENSHIN: 2, VALO: 1, XYY: 1 } }
+      { text: '一下就代入了，像在踩我', score: 2, types: { GENSHIN: 2, VALO: 1 } }
     ]
   },
   {
@@ -177,7 +177,7 @@ const questions = [
     options: [
       { text: '冷着就冷着吧', score: -2, types: { DANREN: 1 } },
       { text: '丢个表情把气氛续一下', score: 0, types: {} },
-      { text: '我会来一句，把场子重新点起来', score: 2, types: { JIAHAO: 1, KOUHAI: 1, VALO: 1, CLOWN: 1 } }
+      { text: '我会来一句，把场子重新点起来', score: 2, types: { JIAHAO: 1, KOUHAI: 1, VALO: 1 } }
     ]
   },
   {
@@ -187,7 +187,7 @@ const questions = [
     options: [
       { text: '看完笑一下就过去了', score: -2, types: {} },
       { text: '回一句太离谱了', score: 0, types: {} },
-      { text: '我已经开始脑补配音和旁白了', score: 2, types: { JIAHAO: 1, KOUHAI: 1, CLOWN: 1 } }
+      { text: '我已经开始脑补配音和旁白了', score: 2, types: { JIAHAO: 1, KOUHAI: 1 } }
     ]
   },
   {
@@ -287,7 +287,7 @@ const questions = [
     options: [
       { text: '当个段子看完就算', score: -2, types: {} },
       { text: '会觉得这人确实挺会包装自己', score: 0, types: { MONEY: 1, APPLE: 1 } },
-      { text: '这才像真有点高位那味儿', score: 2, types: { MONEY: 3, HAIWANG: 1, XYY: 1 } }
+      { text: '这才像真有点高位那味儿', score: 2, types: { MONEY: 3, HAIWANG: 1 } }
     ]
   },
   {
@@ -297,7 +297,7 @@ const questions = [
     options: [
       { text: '又来了，这套我真听烦了', score: -2, types: { GANG: 1, ANDROID: 1, PURE: 1 } },
       { text: '当乐子看，偶尔听两句也行', score: 0, types: {} },
-      { text: '别说，这套有时候还真解释得通', score: 2, types: { XYY: 3, FEI: 1, HAIWANG: 1 } }
+      { text: '别说，这套有时候还真解释得通', score: 2, types: { XYY: 3, FEI: 1 } }
     ]
   }
 ];
