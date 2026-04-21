@@ -24,11 +24,11 @@ const questions = [
   {
     id: 'q3',
     dim: 'M1',
-    text: '朋友甩来一句“这人苹果味太冲了”，你？',
+    text: '朋友突然说“这人高质量男性教程看多了”，你？',
     options: [
       { text: '完全没听懂', value: 1 },
-      { text: '大概知道在阴阳什么', value: 2 },
-      { text: '不用解释，我甚至能补十句', value: 3 }
+      { text: '大概知道是在阴阳谁', value: 2 },
+      { text: '不用解释，我甚至能顺着补刀', value: 3 }
     ]
   },
   {
