@@ -619,7 +619,7 @@ function renderHighlights(normalizedDimensions, userPattern) {
       };
     })
     .sort((a, b) => b.emphasis - a.emphasis || b.score - a.score)
-    .slice(0, 6);
+    .slice(0, 4);
 
   container.innerHTML = '';
   highlightList.forEach((item) => {
