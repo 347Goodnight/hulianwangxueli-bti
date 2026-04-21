@@ -9,7 +9,7 @@
     <meta name="application-name" content="互联网冲浪人格测试">
     <meta name="site-url" content="https://347goodnight.github.io/hulianwangxueli-bti/">
     <link rel="canonical" href="https://347goodnight.github.io/hulianwangxueli-bti/">
-    <link rel="stylesheet" href="style.css?v=20260421-29">
+    <link rel="stylesheet" href="style.css?v=20260421-30">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='88'>🌊</text></svg>">
 </head>
 <body>
@@ -20,107 +20,31 @@
         <div class="container">
             <div id="home-page" class="page active">
                 <section class="hero">
-                    <div class="hero-grid">
-                        <div class="hero-copy">
-                            <span class="eyebrow">不是 MBTI，是看你在互联网活成了哪款野生生物</span>
-                            <h1 class="title">互联网冲浪人格测试</h1>
-                            <p class="subtitle">不是你在上网，是网已经把你腌入味了。</p>
-                            <p class="hero-description">
-                                <span data-question-count>30</span> 道短场景题，
-                                <span data-personality-count>21</span> 种互联网人格。
-                                从性压抑、苹果人、老鼠人、嘉豪、瓦学弟到评论区发疯现场，
-                                测出你到底是哪种抖音热梗生态位。
-                            </p>
+                    <div class="hero-copy">
+                        <span class="eyebrow">30 题 · <span data-personality-count>18</span> 种人格 · 抖音热梗生态位测试</span>
+                        <h1 class="title">互联网冲浪人格测试</h1>
+                        <p class="subtitle">测你是性压抑、苹果人、嘉豪，还是瓦学弟。</p>
+                        <p class="hero-description">
+                            不是正经心理测试，就是把三大理论、抽象全明星、游戏赛区和评论区生态揉成一套结果卡。
+                        </p>
 
-                            <div class="hero-points">
-                                <span>抖音热梗</span>
-                                <span>抽象全明星</span>
-                                <span>评论区生态</span>
-                                <span>图鉴结果卡</span>
-                            </div>
-
-                            <div class="hero-actions">
-                                <button class="btn btn-primary" onclick="startTest()">开始测试</button>
-                                <button class="btn btn-secondary btn-link" onclick="togglePersonalityLibrary(true)">先看全部人格</button>
-                            </div>
-
-                            <p class="tip">结果偏梗味画像，不是严肃心理量表。适合自己测，也适合拉朋友来对号入座。</p>
+                        <div class="hero-points">
+                            <span>性压抑</span>
+                            <span>苹果人</span>
+                            <span>安卓人</span>
+                            <span>山姆门徒</span>
+                            <span>嘉豪</span>
+                            <span>瓦学弟</span>
+                            <span>GO学长</span>
+                            <span>老鼠人</span>
                         </div>
 
-                        <aside class="hero-side">
-                            <article class="hero-side-card">
-                                <span class="module-card-kicker">会测到的味</span>
-                                <h3>这次不是硬编学术词，都是你真会刷到的网味</h3>
-                                <div class="hero-side-chips">
-                                    <span>性压抑</span>
-                                    <span>苹果人</span>
-                                    <span>老鼠人</span>
-                                    <span>胖猫</span>
-                                    <span>龟男</span>
-                                    <span>瓦学弟</span>
-                                    <span>GO学长</span>
-                                    <span>嘉豪</span>
-                                    <span>赛博乐子人</span>
-                                    <span>互联网活人</span>
-                                </div>
-                            </article>
-
-                            <article class="hero-side-card">
-                                <span class="module-card-kicker">主要看啥</span>
-                                <h3>测的是你上网时最容易暴露的那几层味道</h3>
-                                <div class="hero-dimension-list">
-                                    <div class="hero-dimension-item">
-                                        <strong>热梗雷达</strong>
-                                        <span>你是后知后觉，还是新梗当天就能接上。</span>
-                                    </div>
-                                    <div class="hero-dimension-item">
-                                        <strong>对线火力</strong>
-                                        <span>你是路过看戏，还是非得狠狠干到对面闭嘴。</span>
-                                    </div>
-                                    <div class="hero-dimension-item">
-                                        <strong>整活欲望</strong>
-                                        <span>冷场时你会沉默撤退，还是起锅烧油。</span>
-                                    </div>
-                                    <div class="hero-dimension-item">
-                                        <strong>断网反应</strong>
-                                        <span>没网时你是清净了，还是像魂被踢下线。</span>
-                                    </div>
-                                </div>
-                            </article>
-                        </aside>
-                    </div>
-
-                    <div class="hero-metrics">
-                        <div class="metric-card">
-                            <strong data-question-count>30</strong>
-                            <span>道场景题</span>
+                        <div class="hero-actions">
+                            <button class="btn btn-primary" onclick="startTest()">开始测试</button>
+                            <button class="btn btn-secondary btn-link" onclick="togglePersonalityLibrary(true)">先看全部人格</button>
                         </div>
-                        <div class="metric-card">
-                            <strong data-dimension-count>10</strong>
-                            <span>个冲浪维度</span>
-                        </div>
-                        <div class="metric-card">
-                            <strong data-personality-count>21</strong>
-                            <span>种人格图鉴</span>
-                        </div>
-                    </div>
 
-                    <div class="hero-modules">
-                        <article class="module-card">
-                            <span class="module-card-kicker">题目</span>
-                            <h3>短、损、能代入</h3>
-                            <p>题面不走量表那套，都是评论区、热搜、群聊和短视频里真会发生的冲浪场景。</p>
-                        </article>
-                        <article class="module-card">
-                            <span class="module-card-kicker">人格</span>
-                            <h3>不装正经，全是网味</h3>
-                            <p>结果页不做鸡汤心理分析，直接告诉你是哪款互联网生物，以及你为什么这么像。</p>
-                        </article>
-                        <article class="module-card">
-                            <span class="module-card-kicker">图鉴</span>
-                            <h3>测完还能继续对号</h3>
-                            <p>测出自己之后，还能直接打开全人格图鉴，按分类和关键词继续找朋友是哪一挂。</p>
-                        </article>
+                        <p class="tip">选答案会自动下一题。测完可直接打开全部人格图鉴。</p>
                     </div>
                 </section>
             </div>
@@ -128,19 +52,15 @@
             <div id="test-page" class="page">
                 <div class="test-header">
                     <div class="test-header-row">
+                        <button class="test-nav-btn" id="back-home-btn" onclick="returnHome()">← 首页</button>
                         <div class="progress-text">
-                            第 <span id="current-question">1</span> 题 / 共 <span id="total-questions">30</span> 题
+                            <span id="current-question">1</span> / <span id="total-questions">30</span>
                         </div>
-                        <div class="test-header-actions">
-                            <button class="test-nav-btn" id="back-home-btn" onclick="returnHome()">返回首页</button>
-                            <button class="test-nav-btn" id="prev-question-btn" onclick="goToPreviousQuestion()">上一题</button>
-                            <button class="test-nav-btn primary" id="next-question-btn" onclick="goToNextQuestion()">下一题</button>
-                        </div>
+                        <button class="test-nav-btn" id="prev-question-btn" onclick="goToPreviousQuestion()">上一题</button>
                     </div>
                     <div class="progress-bar">
                         <div class="progress-fill" id="progress-fill"></div>
                     </div>
-                    <p class="test-hint">点答案会自动跳到下一题，想改答案也可以随时点上一题返回。</p>
                 </div>
 
                 <div class="question-container">
@@ -149,13 +69,6 @@
                     </div>
                     <div class="question-text" id="question-text"></div>
                     <div class="options" id="options"></div>
-
-                    <div class="question-actions">
-                        <button class="btn btn-secondary" id="prev-question-btn-bottom" onclick="goToPreviousQuestion()">上一题</button>
-                        <button class="btn btn-primary" id="next-question-btn-bottom" onclick="goToNextQuestion()">下一题</button>
-                    </div>
-
-                    <p class="question-footnote">支持键盘 <code>1 / 2 / 3</code> 快速作答，左右方向键切题。</p>
                 </div>
             </div>
 
@@ -243,7 +156,7 @@
         </div>
 
         <footer class="footer">
-            <p>© 2026 互联网冲浪人格测试 · <span data-personality-count>21</span> 种图鉴人格 · 仅供娱乐</p>
+            <p>© 2026 互联网冲浪人格测试 · <span data-personality-count>18</span> 种图鉴人格 · 仅供娱乐</p>
         </footer>
     </div>
 
@@ -253,7 +166,7 @@
             <div class="personality-library-head">
                 <div>
                     <span class="section-kicker">人格总览</span>
-                    <h2><span data-personality-count>21</span> 种互联网冲浪人格</h2>
+                    <h2><span data-personality-count>18</span> 种互联网冲浪人格</h2>
                 </div>
                 <button class="library-close" onclick="togglePersonalityLibrary(false)" aria-label="关闭人格列表">×</button>
             </div>
@@ -268,9 +181,9 @@
         </div>
     </div>
 
-    <script src="js/dimensions.js?v=20260421-29"></script>
-    <script src="js/questions.js?v=20260421-29"></script>
-    <script src="js/types.js?v=20260421-29"></script>
-    <script src="js/app.js?v=20260421-29"></script>
+    <script src="js/dimensions.js?v=20260421-30"></script>
+    <script src="js/questions.js?v=20260421-30"></script>
+    <script src="js/types.js?v=20260421-30"></script>
+    <script src="js/app.js?v=20260421-30"></script>
 </body>
 </html>
