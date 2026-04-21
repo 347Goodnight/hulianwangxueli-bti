@@ -458,33 +458,54 @@ function getRarityMeta(rarity) {
   return rarityGuide[rarity] || { label: '未定义', color: '#999999' };
 }
 
-function shareResult() {
+async function shareResult() {
   const personality =
     personalityTypes.find((item) => item.code === currentResultCode) ||
     fallbackType;
   const shareText = `我在${appName}测出了【${personality.name}】。${personality.slogan}`;
   const shareUrl = configuredSiteUrl || window.location.href;
 
-  if (navigator.share) {
-    navigator
-      .share({
+  try {
+    const blob = await generateShareCard(personality, shareUrl);
+    const fileName = `${personality.code.toLowerCase()}-share-card.png`;
+    const file = new File([blob], fileName, { type: 'image/png' });
+
+    if (navigator.share && navigator.canShare?.({ files: [file] })) {
+      await navigator.share({
         title: `${appName} · ${personality.name}`,
         text: shareText,
-        url: shareUrl
-      })
-      .catch(() => {
-        copyToClipboard(`${shareText} ${shareUrl}`);
+        files: [file]
       });
-    return;
-  }
+      return;
+    }
 
-  copyToClipboard(`${shareText} ${shareUrl}`);
+    downloadBlob(blob, fileName);
+    copyToClipboard(`${shareText} ${shareUrl}`, {
+      message: '当前设备不支持直接转发图片，已下载分享图并复制链接。'
+    });
+  } catch (error) {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: `${appName} · ${personality.name}`,
+          text: shareText,
+          url: shareUrl
+        })
+        .catch(() => {
+          copyToClipboard(`${shareText} ${shareUrl}`);
+        });
+      return;
+    }
+
+    copyToClipboard(`${shareText} ${shareUrl}`);
+  }
 }
 
-function copyToClipboard(text) {
+function copyToClipboard(text, options = {}) {
+  const message = options.message || '分享文案已经复制到剪贴板。';
   if (navigator.clipboard?.writeText) {
     navigator.clipboard.writeText(text).then(() => {
-      window.alert('分享文案已经复制到剪贴板。');
+      window.alert(message);
     });
     return;
   }
@@ -495,7 +516,218 @@ function copyToClipboard(text) {
   textarea.select();
   document.execCommand('copy');
   document.body.removeChild(textarea);
-  window.alert('分享文案已经复制到剪贴板。');
+  window.alert(message);
+}
+
+async function generateShareCard(personality, shareUrl) {
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+
+  canvas.width = 1080;
+  canvas.height = 1440;
+
+  const gradient = ctx.createLinearGradient(0, 0, 1080, 1440);
+  gradient.addColorStop(0, '#fff8f2');
+  gradient.addColorStop(1, '#f4eadf');
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  ctx.fillStyle = 'rgba(255, 122, 89, 0.14)';
+  ctx.beginPath();
+  ctx.arc(920, 140, 180, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.fillStyle = 'rgba(79, 99, 112, 0.08)';
+  ctx.beginPath();
+  ctx.arc(160, 1180, 220, 0, Math.PI * 2);
+  ctx.fill();
+
+  drawRoundedRect(ctx, 64, 64, 952, 1312, 40, '#ffffff', 'rgba(23, 18, 15, 0.06)');
+  drawRoundedRect(ctx, 96, 110, 260, 68, 34, 'rgba(255, 122, 89, 0.12)');
+
+  ctx.fillStyle = '#df5c3c';
+  ctx.font = '700 28px "Microsoft YaHei", "PingFang SC", sans-serif';
+  ctx.fillText('互联网冲浪人格测试', 128, 154);
+
+  ctx.fillStyle = '#17120f';
+  ctx.font = '900 86px "Microsoft YaHei", "PingFang SC", sans-serif';
+  ctx.fillText(personality.name, 96, 292);
+
+  ctx.fillStyle = '#5f5249';
+  ctx.font = '600 34px "Microsoft YaHei", "PingFang SC", sans-serif';
+  wrapText(ctx, personality.slogan, 96, 364, 760, 50, 2);
+
+  drawRoundedRect(
+    ctx,
+    96,
+    460,
+    228,
+    228,
+    46,
+    personality.accent || '#ff7d61'
+  );
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '900 112px "Segoe UI Emoji", "Apple Color Emoji", sans-serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(personality.icon || '🧩', 210, 574);
+  ctx.textAlign = 'start';
+  ctx.textBaseline = 'alphabetic';
+
+  ctx.fillStyle = '#17120f';
+  ctx.font = '700 26px "Microsoft YaHei", "PingFang SC", sans-serif';
+  ctx.fillText(`${personality.code} · ${personality.category}`, 356, 506);
+
+  ctx.fillStyle = '#5f5249';
+  ctx.font = '500 28px "Microsoft YaHei", "PingFang SC", sans-serif';
+  wrapText(ctx, personality.description, 356, 560, 580, 42, 5);
+
+  ctx.fillStyle = '#17120f';
+  ctx.font = '700 28px "Microsoft YaHei", "PingFang SC", sans-serif';
+  ctx.fillText('冲浪标签', 96, 786);
+
+  let chipX = 96;
+  let chipY = 826;
+  personality.traits.slice(0, 4).forEach((trait) => {
+    const chipWidth = Math.max(120, ctx.measureText(trait).width + 44);
+    if (chipX + chipWidth > 984) {
+      chipX = 96;
+      chipY += 64;
+    }
+    drawRoundedRect(ctx, chipX, chipY, chipWidth, 44, 22, '#f8f3ee', 'rgba(23, 18, 15, 0.06)');
+    ctx.fillStyle = '#5f5249';
+    ctx.font = '600 22px "Microsoft YaHei", "PingFang SC", sans-serif';
+    ctx.fillText(trait, chipX + 22, chipY + 29);
+    chipX += chipWidth + 12;
+  });
+
+  drawRoundedRect(ctx, 96, 1036, 888, 250, 34, '#17120f');
+  ctx.fillStyle = '#fff8f2';
+  ctx.font = '800 40px "Microsoft YaHei", "PingFang SC", sans-serif';
+  ctx.fillText('扫码直接在线测试', 140, 1124);
+  ctx.fillStyle = 'rgba(255, 248, 242, 0.76)';
+  ctx.font = '500 24px "Microsoft YaHei", "PingFang SC", sans-serif';
+  ctx.fillText('分享这张图，别人扫一扫就能进入测试。', 140, 1168);
+
+  const qrImage = await loadQrImage(shareUrl);
+  ctx.drawImage(qrImage, 736, 1060, 190, 190);
+
+  ctx.fillStyle = 'rgba(255, 248, 242, 0.76)';
+  ctx.font = '500 20px "Microsoft YaHei", "PingFang SC", sans-serif';
+  ctx.fillText(stripUrlProtocol(shareUrl), 140, 1236);
+  ctx.fillText('测测你号里常驻的是哪路互联网人格。', 140, 1270);
+
+  return canvasToBlob(canvas);
+}
+
+async function loadQrImage(shareUrl) {
+  const qrUrl = `https://quickchart.io/qr?size=220&margin=1&text=${encodeURIComponent(
+    shareUrl
+  )}`;
+  const response = await fetch(qrUrl);
+  if (!response.ok) {
+    throw new Error('QR request failed');
+  }
+
+  const blob = await response.blob();
+  return loadImageFromBlob(blob);
+}
+
+function loadImageFromBlob(blob) {
+  return new Promise((resolve, reject) => {
+    const objectUrl = URL.createObjectURL(blob);
+    const image = new Image();
+    image.onload = () => {
+      URL.revokeObjectURL(objectUrl);
+      resolve(image);
+    };
+    image.onerror = (error) => {
+      URL.revokeObjectURL(objectUrl);
+      reject(error);
+    };
+    image.src = objectUrl;
+  });
+}
+
+function canvasToBlob(canvas) {
+  return new Promise((resolve, reject) => {
+    canvas.toBlob((blob) => {
+      if (!blob) {
+        reject(new Error('Canvas export failed'));
+        return;
+      }
+      resolve(blob);
+    }, 'image/png');
+  });
+}
+
+function drawRoundedRect(ctx, x, y, width, height, radius, fill, stroke) {
+  ctx.beginPath();
+  ctx.moveTo(x + radius, y);
+  ctx.lineTo(x + width - radius, y);
+  ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+  ctx.lineTo(x + width, y + height - radius);
+  ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+  ctx.lineTo(x + radius, y + height);
+  ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+  ctx.lineTo(x, y + radius);
+  ctx.quadraticCurveTo(x, y, x + radius, y);
+  ctx.closePath();
+
+  if (fill) {
+    ctx.fillStyle = fill;
+    ctx.fill();
+  }
+
+  if (stroke) {
+    ctx.strokeStyle = stroke;
+    ctx.lineWidth = 2;
+    ctx.stroke();
+  }
+}
+
+function wrapText(ctx, text, x, y, maxWidth, lineHeight, maxLines) {
+  const chars = text.split('');
+  let line = '';
+  let lineCount = 0;
+
+  for (let i = 0; i < chars.length; i += 1) {
+    const testLine = line + chars[i];
+    const isLastChar = i === chars.length - 1;
+
+    if (ctx.measureText(testLine).width > maxWidth && line) {
+      lineCount += 1;
+      if (lineCount === maxLines) {
+        ctx.fillText(`${line.slice(0, -1)}…`, x, y);
+        return;
+      }
+      ctx.fillText(line, x, y);
+      line = chars[i];
+      y += lineHeight;
+      continue;
+    }
+
+    line = testLine;
+
+    if (isLastChar) {
+      ctx.fillText(line, x, y);
+    }
+  }
+}
+
+function downloadBlob(blob, fileName) {
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = fileName;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
+
+function stripUrlProtocol(url) {
+  return url.replace(/^https?:\/\//, '').replace(/\/$/, '');
 }
 
 function updateRemainingPersonalityCount(currentCode) {
