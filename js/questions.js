@@ -1,4 +1,5 @@
 // 互联网冲浪人格测试 - 30 道短场景题
+
 const questions = [
   {
     id: 'q1',
@@ -13,11 +14,11 @@ const questions = [
   {
     id: 'q2',
     dim: 'M1',
-    text: '刷到“海王、杠精、Doomer”这种词，你？',
+    text: '刷到“海王、杠精、原批、沸羊羊”这些词，你？',
     options: [
-      { text: '看不懂就划走', value: 1 },
+      { text: '看不太懂，划走', value: 1 },
       { text: '先看评论区怎么用', value: 2 },
-      { text: '秒懂，甚至已经想接下一句', value: 3 }
+      { text: '秒懂，甚至已经想接一句', value: 3 }
     ]
   },
   {
@@ -53,11 +54,11 @@ const questions = [
   {
     id: 'q6',
     dim: 'M2',
-    text: '别人把你喜欢的东西讲得像垃圾，你？',
+    text: '别人把你喜欢的东西说得像垃圾，你？',
     options: [
       { text: '算了，犯不着', value: 1 },
       { text: '回一句纠正下', value: 2 },
-      { text: '上链接上截图上情绪', value: 3 }
+      { text: '上截图上链接上情绪', value: 3 }
     ]
   },
   {
@@ -123,31 +124,31 @@ const questions = [
   {
     id: 'q13',
     dim: 'M5',
-    text: '别人聊到你不懂的圈子，你？',
+    text: '别人一开口就是赛区黑话、角色厨、CP厨，你？',
     options: [
       { text: '懒得融入', value: 1 },
       { text: '先听听门道', value: 2 },
-      { text: '马上补课，不能显得外行', value: 3 }
+      { text: '立刻加入，不能显得外行', value: 3 }
     ]
   },
   {
     id: 'q14',
     dim: 'M5',
-    text: '你刷内容最容易被什么留住？',
+    text: '哪类内容最容易把你留住？',
     options: [
       { text: '实用信息', value: 1 },
       { text: '情绪和八卦', value: 2 },
-      { text: '圈内黑话和内部梗', value: 3 }
+      { text: '设定、角色和圈内黑话', value: 3 }
     ]
   },
   {
     id: 'q15',
     dim: 'M5',
-    text: '熟悉赛区的人又吵起来了，你？',
+    text: '你喜欢的圈子被外人踩了一脚，你？',
     options: [
       { text: '路过，不想沾', value: 1 },
-      { text: '看情况站个边', value: 2 },
-      { text: '自动代入，像自家起火', value: 3 }
+      { text: '回一句护一下', value: 2 },
+      { text: '直接代入，像自家着火', value: 3 }
     ]
   },
   {
@@ -173,11 +174,11 @@ const questions = [
   {
     id: 'q18',
     dim: 'M6',
-    text: '线下尴尬三秒，你会？',
+    text: '线下尬住三秒，你会？',
     options: [
       { text: '装没事', value: 1 },
       { text: '丢句冷笑话圆一下', value: 2 },
-      { text: '立刻上小品把场子扛住', value: 3 }
+      { text: '立刻上小品把场子抬住', value: 3 }
     ]
   },
   {
@@ -187,7 +188,7 @@ const questions = [
     options: [
       { text: '没感觉，继续刷', value: 1 },
       { text: '会不爽一会儿', value: 2 },
-      { text: '表面没事，回去越想越气', value: 3 }
+      { text: '表面没事，回去越想越炸', value: 3 }
     ]
   },
   {
@@ -243,31 +244,31 @@ const questions = [
   {
     id: 'q25',
     dim: 'M9',
-    text: '你买东西最容易被什么打动？',
+    text: '刷到“没房没车谈什么结婚”，你？',
     options: [
-      { text: '好用就行', value: 1 },
-      { text: '性价比和颜值都要', value: 2 },
-      { text: '气质、叙事和身份感', value: 3 }
+      { text: '这套太老土', value: 1 },
+      { text: '难听，但现实', value: 2 },
+      { text: '本来就该先把这些配齐', value: 3 }
     ]
   },
   {
     id: 'q26',
     dim: 'M9',
-    text: '刷到高质量男性、old money、质感生活，你？',
+    text: '刷到老钱、酒会、年轻女孩围着转那种视频，你？',
     options: [
-      { text: '太装了，划走', value: 1 },
-      { text: '看看就完', value: 2 },
-      { text: '收藏起来，当人生模板', value: 3 }
+      { text: '当抽象乐子看', value: 1 },
+      { text: '挺会包装的', value: 2 },
+      { text: '这才是男人该混成的样子', value: 3 }
     ]
   },
   {
     id: 'q27',
     dim: 'M9',
-    text: '你在网上最想经营哪种感觉？',
+    text: '你更认同哪种人生主线？',
     options: [
-      { text: '随便，别太蠢就行', value: 1 },
-      { text: '顺眼一点就够了', value: 2 },
-      { text: '让人一眼看出我是哪路人', value: 3 }
+      { text: '自己舒服最重要', value: 1 },
+      { text: '稳定工作加普通生活', value: 2 },
+      { text: '房车对象孩子一步都不能落', value: 3 }
     ]
   },
   {
