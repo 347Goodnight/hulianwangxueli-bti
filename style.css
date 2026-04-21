@@ -674,6 +674,34 @@ body {
     font-size: 16px;
 }
 
+.personality-roast {
+    margin-top: 16px;
+    padding: 14px 16px;
+    border-radius: 18px;
+    background: linear-gradient(180deg, rgba(43, 33, 29, 0.92), rgba(78, 45, 31, 0.92));
+    color: rgba(255, 244, 228, 0.95);
+    font-size: 15px;
+    line-height: 1.65;
+    border: 1px solid rgba(255, 203, 103, 0.16);
+    box-shadow: 0 14px 24px rgba(43, 33, 29, 0.12);
+}
+
+.personality-roast::before {
+    content: "贴吧补刀";
+    display: inline-flex;
+    align-items: center;
+    min-height: 26px;
+    padding: 0 10px;
+    margin-bottom: 10px;
+    border-radius: 999px;
+    background: rgba(255, 203, 103, 0.14);
+    color: #ffdd98;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
 .personality-card-footer {
     display: grid;
     grid-template-columns: 1.15fr 0.85fr;

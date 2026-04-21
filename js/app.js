@@ -265,6 +265,14 @@ function showResult(result) {
   document.getElementById('personality-name').textContent = personality.name;
   document.getElementById('personality-slogan').textContent = personality.slogan;
   document.getElementById('personality-desc').textContent = personality.description;
+  const roastElement = document.getElementById('personality-roast');
+  if (personality.roast) {
+    roastElement.textContent = personality.roast;
+    roastElement.removeAttribute('hidden');
+  } else {
+    roastElement.textContent = '';
+    roastElement.setAttribute('hidden', '');
+  }
 
   const traitsContainer = document.getElementById('personality-traits');
   traitsContainer.innerHTML = '';
@@ -598,8 +606,14 @@ function shareResult() {
   const personalitySlogan = document.getElementById('personality-slogan').textContent;
   const similarity = document.getElementById('similarity-percent').textContent;
   const shareUrl = getShareUrl();
+  const personality = personalityTypes.find((item) => item.code === currentResultCode) || fallbackType;
+  const customShareText = Array.isArray(personality.shareText) && personality.shareText.length > 0
+    ? personality.shareText[Math.floor(Math.random() * personality.shareText.length)]
+    : '';
 
-  const shareText = `我在${appName}里测出了【${personalityName}】人格，匹配度${similarity}！\n${personalitySlogan}\n\n快来测测你的学历人设：${shareUrl}`;
+  const shareText = customShareText
+    ? `${customShareText}\n匹配度：${similarity}\n${shareUrl}`
+    : `我在${appName}里测出了【${personalityName}】人格，匹配度${similarity}！\n${personalitySlogan}\n\n快来测测你的学历人设：${shareUrl}`;
 
   if (navigator.share) {
     navigator.share({
