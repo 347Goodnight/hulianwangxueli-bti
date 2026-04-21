@@ -11,7 +11,7 @@ let sharePreviewObjectUrl = '';
 let sharePreviewPayload = null;
 
 const AUTO_ADVANCE_DELAY = 120;
-const SHARE_QR_ASSET_PATH = 'assets/site-qr.svg?v=20260421-38';
+const SHARE_QR_ASSET_PATH = 'assets/site-qr.svg?v=20260421-46';
 
 const appName =
   document.querySelector('meta[name="application-name"]')?.content ||
@@ -30,6 +30,54 @@ const questionCountByDimension = questions.reduce((acc, question) => {
   acc[question.dim] = (acc[question.dim] || 0) + 1;
   return acc;
 }, {});
+
+const dimensionKeys = Object.keys(dimensionMeta);
+const dimensionRangeByKey = dimensionKeys.reduce((acc, dim) => {
+  const count = questionCountByDimension[dim] || 1;
+  acc[dim] = {
+    min: count * -2,
+    max: count * 2
+  };
+  return acc;
+}, {});
+
+const SIGNAL_WEIGHT_MULTIPLIER = 10;
+const SIGNAL_HIT_BONUS = 4;
+const DIMENSION_MATCH_BASE = 7;
+const DEFAULT_SIGNAL_FLOOR = 3;
+const signalFloorByType = {
+  APPLE: 2,
+  CLOWN: 2,
+  DANREN: 2,
+  DOOM: 2,
+  HAIWANG: 2,
+  LAOSHU: 2,
+  LIGONG: 2,
+  MONEY: 2,
+  NITIAN: 2,
+  PURE: 2,
+  VALO: 4,
+  GANG: 4,
+  XYY: 4,
+  WINNER: 4
+};
+const signalScaleByType = {
+  APPLE: 1.18,
+  CLOWN: 1.45,
+  DOOM: 1.2,
+  HAIWANG: 1.12,
+  LAOSHU: 1.15,
+  LIGONG: 1.18,
+  NITIAN: 1.1,
+  PURE: 1.22,
+  VALO: 0.72,
+  GANG: 0.82,
+  XYY: 0.82,
+  WINNER: 0.86,
+  JIAHAO: 0.92,
+  KOUHAI: 0.92,
+  GENSHIN: 0.9
+};
 
 document.addEventListener('DOMContentLoaded', () => {
   activeLibraryCode = personalityTypes[0]?.code || '';
@@ -133,12 +181,14 @@ function renderQuestion() {
 
 function selectOption(optionIndex) {
   const question = questions[currentQuestionIndex];
+  const selectedOption = question.options[optionIndex];
   const selectedQuestionIndex = currentQuestionIndex;
 
   answers[currentQuestionIndex] = {
     questionId: question.id,
     dimension: question.dim,
-    value: question.options[optionIndex].value,
+    score: selectedOption.score,
+    types: selectedOption.types || {},
     optionIndex
   };
 
@@ -232,67 +282,151 @@ function finishTest() {
 }
 
 function calculateResult() {
-  const dimensionScores = {};
-
-  Object.keys(dimensionMeta).forEach((dim) => {
-    dimensionScores[dim] = 0;
-  });
+  const dimensionScores = dimensionKeys.reduce((acc, dim) => {
+    acc[dim] = 0;
+    return acc;
+  }, {});
+  const typeSignalScores = {};
+  const typeSignalHits = {};
 
   answers.filter(Boolean).forEach((answer) => {
-    dimensionScores[answer.dimension] += answer.value;
+    dimensionScores[answer.dimension] += answer.score;
+
+    Object.entries(answer.types || {}).forEach(([code, weight]) => {
+      typeSignalScores[code] = (typeSignalScores[code] || 0) + weight;
+      typeSignalHits[code] = (typeSignalHits[code] || 0) + 1;
+    });
   });
 
+  const normalizedDimensions = {};
   const userPattern = {};
-  Object.keys(dimensionScores).forEach((dim) => {
-    userPattern[dim] = scoreToLevel(dim, dimensionScores[dim]);
+
+  dimensionKeys.forEach((dim) => {
+    const normalized = normalizeDimensionScore(dim, dimensionScores[dim]);
+    normalizedDimensions[dim] = normalized;
+    userPattern[dim] = scoreToLevel(normalized);
   });
 
-  let bestMatch = fallbackType;
-  let minDistance = Number.POSITIVE_INFINITY;
+  const rankedTypes = personalityTypes
+    .map((type) => {
+      const dimensionScore = calculateDimensionMatch(type, normalizedDimensions);
+      const rawSignalScore = typeSignalScores[type.code] || 0;
+      const signalScale = signalScaleByType[type.code] || 1;
+      const scaledSignalScore = rawSignalScore * signalScale;
+      const signalScore = scaledSignalScore * SIGNAL_WEIGHT_MULTIPLIER;
+      const hitBonus = (typeSignalHits[type.code] || 0) * SIGNAL_HIT_BONUS;
+      const conflictPenalty = calculateConflictPenalty(type, normalizedDimensions);
+      const signalFloor = signalFloorByType[type.code] || DEFAULT_SIGNAL_FLOOR;
+      const floorPenalty =
+        scaledSignalScore < signalFloor
+          ? (signalFloor - scaledSignalScore) * 12
+          : 0;
+      const totalScore =
+        dimensionScore +
+        signalScore +
+        hitBonus -
+        conflictPenalty -
+        floorPenalty +
+        (type.bias || 0);
 
-  personalityTypes.forEach((type) => {
-    const distance = calculatePatternDistance(userPattern, type.pattern);
-    if (distance < minDistance) {
-      minDistance = distance;
-      bestMatch = type;
-    }
-  });
+      return {
+        type,
+        totalScore,
+        dimensionScore,
+        rawSignalScore,
+        scaledSignalScore,
+        signalScore,
+        signalHits: typeSignalHits[type.code] || 0,
+        conflictPenalty,
+        floorPenalty
+      };
+    })
+    .sort((a, b) => b.totalScore - a.totalScore);
 
-  const maxDistance = Object.keys(userPattern).length * 2;
-  const similarity = Math.max(
-    0,
-    Math.round((1 - minDistance / maxDistance) * 100)
-  );
+  const bestMatch = rankedTypes[0];
+  const runnerUp = rankedTypes[1];
+  const isFallback =
+    !bestMatch ||
+    (bestMatch.rawSignalScore < 2 &&
+      bestMatch.signalHits < 2 &&
+      bestMatch.totalScore - (runnerUp?.totalScore || 0) < 5);
 
   return {
-    personality: similarity >= 50 ? bestMatch : fallbackType,
-    similarity,
+    personality: isFallback ? fallbackType : bestMatch.type,
+    similarity: calculateSimilarity(bestMatch, runnerUp, isFallback),
     dimensionScores,
-    userPattern
+    normalizedDimensions,
+    userPattern,
+    rankedTypes
   };
 }
 
-function scoreToLevel(dim, score) {
-  const questionCount = questionCountByDimension[dim] || 1;
-  const minScore = questionCount;
-  const maxScore = questionCount * 3;
-  const ratio = (score - minScore) / Math.max(1, maxScore - minScore);
+function normalizeDimensionScore(dim, score) {
+  const range = dimensionRangeByKey[dim];
+  if (!range) {
+    return 50;
+  }
 
-  if (ratio < 0.34) {
+  const normalized =
+    ((score - range.min) / Math.max(1, range.max - range.min)) * 100;
+
+  return clamp(Math.round(normalized), 0, 100);
+}
+
+function scoreToLevel(score) {
+  if (score < 34) {
     return 'L';
   }
-  if (ratio < 0.67) {
+  if (score < 67) {
     return 'M';
   }
   return 'H';
 }
 
-function calculatePatternDistance(patternA, patternB) {
-  const valueMap = { L: 1, M: 2, H: 3 };
+function calculateDimensionMatch(type, normalizedDimensions) {
+  return dimensionKeys.reduce((total, dim) => {
+    const target = profileValueToPercent(type.profile?.[dim] ?? 0);
+    const actual = normalizedDimensions[dim] ?? 50;
+    const weight = type.weights?.[dim] || 1;
+    const closeness = Math.max(0, 1 - Math.abs(actual - target) / 100);
 
-  return Object.keys(patternA).reduce((distance, dim) => {
-    return distance + Math.abs(valueMap[patternA[dim]] - valueMap[patternB[dim]]);
+    return total + closeness * DIMENSION_MATCH_BASE * weight;
   }, 0);
+}
+
+function calculateConflictPenalty(type, normalizedDimensions) {
+  return dimensionKeys.reduce((total, dim) => {
+    const target = profileValueToPercent(type.profile?.[dim] ?? 0);
+    const actual = normalizedDimensions[dim] ?? 50;
+    const weight = type.weights?.[dim] || 1;
+    const distance = Math.abs(actual - target);
+
+    if (distance < 55) {
+      return total;
+    }
+
+    return total + ((distance - 55) / 7) * weight;
+  }, 0);
+}
+
+function calculateSimilarity(bestMatch, runnerUp, isFallback) {
+  if (isFallback || !bestMatch) {
+    return 58;
+  }
+
+  const gap = bestMatch.totalScore - (runnerUp?.totalScore || 0);
+  const signalBoost = bestMatch.signalHits * 4;
+  const gapBoost = gap * 2;
+
+  return clamp(Math.round(62 + signalBoost + gapBoost), 62, 99);
+}
+
+function profileValueToPercent(value) {
+  return ((value + 2) / 4) * 100;
+}
+
+function clamp(value, min, max) {
+  return Math.min(max, Math.max(min, value));
 }
 
 function showResult(result) {
@@ -363,19 +497,17 @@ function showResult(result) {
   document.getElementById('similarity-percent').textContent =
     `${result.similarity}%`;
 
-  renderHighlights(result.dimensionScores, result.userPattern);
-  renderRadarChart(result.dimensionScores);
+  renderHighlights(result.normalizedDimensions, result.userPattern);
+  renderRadarChart(result.normalizedDimensions);
   updateRemainingPersonalityCount(personality.code);
   renderPersonalityLibrary();
 }
 
-function renderHighlights(dimensionScores, userPattern) {
+function renderHighlights(normalizedDimensions, userPattern) {
   const container = document.getElementById('personality-highlights');
-  const highlightList = Object.keys(dimensionMeta)
+  const highlightList = dimensionKeys
     .map((dim) => {
-      const count = questionCountByDimension[dim] || 1;
-      const score = dimensionScores[dim] || count;
-      const midpoint = count * 2;
+      const score = normalizedDimensions[dim] ?? 50;
 
       return {
         dim,
@@ -383,7 +515,7 @@ function renderHighlights(dimensionScores, userPattern) {
         level: userPattern[dim],
         label: dimensionGuide[userPattern[dim]].label,
         score,
-        emphasis: Math.abs(score - midpoint)
+        emphasis: Math.abs(score - 50)
       };
     })
     .sort((a, b) => b.emphasis - a.emphasis || b.score - a.score)
@@ -401,11 +533,11 @@ function renderHighlights(dimensionScores, userPattern) {
   });
 }
 
-function renderRadarChart(dimensionScores) {
+function renderRadarChart(normalizedDimensions) {
   const container = document.getElementById('radar-chart');
   const groupedModels = {};
 
-  Object.keys(dimensionMeta).forEach((dim) => {
+  dimensionKeys.forEach((dim) => {
     const meta = dimensionMeta[dim];
     if (!groupedModels[meta.model]) {
       groupedModels[meta.model] = [];
@@ -414,8 +546,7 @@ function renderRadarChart(dimensionScores) {
       dim,
       name: meta.name,
       icon: meta.icon,
-      score: dimensionScores[dim] || 0,
-      maxScore: (questionCountByDimension[dim] || 1) * 3
+      score: normalizedDimensions[dim] ?? 50
     });
   });
 
@@ -439,14 +570,14 @@ function renderRadarChart(dimensionScores) {
     items.forEach((item) => {
       const row = document.createElement('div');
       row.className = 'radar-dim-row';
-      const percentage = Math.round((item.score / item.maxScore) * 100);
+      const percentage = Math.round(item.score);
 
       row.innerHTML = `
         <span class="radar-dim-name">${item.icon} ${item.name}</span>
         <div class="radar-dim-bar">
           <div class="radar-dim-fill" style="width: ${percentage}%"></div>
         </div>
-        <span class="radar-dim-score">${item.score}/${item.maxScore}</span>
+        <span class="radar-dim-score">${percentage}%</span>
       `;
 
       dims.appendChild(row);
