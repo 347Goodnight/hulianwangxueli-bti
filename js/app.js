@@ -8,7 +8,7 @@ let activeLibraryCode = '';
 let librarySearchQuery = '';
 let autoAdvanceTimer = null;
 
-const AUTO_ADVANCE_DELAY = 90;
+const AUTO_ADVANCE_DELAY = 120;
 
 const appName =
   document.querySelector('meta[name="application-name"]')?.content ||
@@ -178,12 +178,9 @@ function updateQuestionActions() {
   const hasAnswer = Boolean(answers[currentQuestionIndex]);
   const isFirstQuestion = currentQuestionIndex === 0;
   const isLastQuestion = currentQuestionIndex === questions.length - 1;
-  const nextText = isLastQuestion ? '查看结果' : '下一题';
 
   setButtonState('prev-question-btn', isFirstQuestion, '上一题');
-  setButtonState('prev-question-btn-bottom', isFirstQuestion, '上一题');
-  setButtonState('next-question-btn', !hasAnswer, nextText);
-  setButtonState('next-question-btn-bottom', !hasAnswer, nextText);
+  setButtonState('next-question-btn', !hasAnswer, isLastQuestion ? '查看结果' : '下一题');
 }
 
 function setButtonState(id, disabled, text) {
@@ -228,7 +225,7 @@ function finishTest() {
   window.setTimeout(() => {
     const result = calculateResult();
     showResult(result);
-  }, 700);
+  }, 520);
 }
 
 function calculateResult() {
@@ -428,7 +425,7 @@ function renderRadarChart(dimensionScores) {
 
     section.innerHTML = `
       <div class="radar-model-head">
-        <h5>${modelInfo?.icon || '🧭'} ${modelName}</h5>
+        <h5>${modelInfo?.icon || '🧠'} ${modelName}</h5>
         <p>${modelInfo?.description || ''}</p>
       </div>
     `;
@@ -511,12 +508,14 @@ function togglePersonalityLibrary(show) {
   if (!overlay) {
     return;
   }
+
   const shouldShow = show === undefined ? overlay.hidden : show;
 
   overlay.hidden = !shouldShow;
-  document.body.style.overflow = shouldShow ? 'hidden' : '';
+  document.body.classList.toggle('library-open', shouldShow);
 
   if (shouldShow) {
+    overlay.scrollTop = 0;
     renderPersonalityLibrary();
   }
 }
@@ -574,61 +573,27 @@ function renderPersonalityLibrary() {
     activeLibraryCode = filteredTypes[0]?.code || personalityTypes[0]?.code || '';
   }
 
-  const featuredPersonality =
-    filteredTypes.find((type) => type.code === activeLibraryCode) ||
-    personalityTypes.find((type) => type.code === activeLibraryCode) ||
-    personalityTypes[0];
-
   summary.innerHTML = `
-    <div class="library-summary-card">
-      <span class="library-summary-label">当前图鉴</span>
-      <strong>${filteredTypes.length} 种人格</strong>
-      <span class="library-summary-text">这里可以直接看完整人格池，不用重新做题也能先逛一圈。</span>
-    </div>
     <div class="library-summary-card">
       <span class="library-summary-label">当前筛选</span>
       <strong>${activeLibraryCategory}</strong>
-      <span class="library-summary-text">${
-        librarySearchQuery ? `关键词：${librarySearchQuery}` : '还没输入关键词，先随便逛。'
-      }</span>
+    </div>
+    <div class="library-summary-card">
+      <span class="library-summary-label">命中人格</span>
+      <strong>${filteredTypes.length} 种</strong>
+    </div>
+    <div class="library-summary-card">
+      <span class="library-summary-label">搜索状态</span>
+      <strong>${librarySearchQuery ? `关键词：${librarySearchQuery}` : '未输入关键词'}</strong>
     </div>
   `;
-
-  if (featuredPersonality) {
-    const featuredCard = document.createElement('div');
-    featuredCard.className = 'library-featured-card';
-    featuredCard.style.setProperty(
-      '--featured-accent',
-      featuredPersonality.accent || '#ff6b4a'
-    );
-    featuredCard.innerHTML = `
-      <div class="library-featured-icon">${featuredPersonality.icon || '🧩'}</div>
-      <div class="library-featured-body">
-        <div class="library-featured-top">
-          <span class="library-card-rarity" data-rarity="${featuredPersonality.rarity}">
-            ${featuredPersonality.rarity}
-          </span>
-          <span class="library-card-category light-tag">${featuredPersonality.category}</span>
-        </div>
-        <h4>${featuredPersonality.name}</h4>
-        <p class="library-card-slogan">${featuredPersonality.slogan}</p>
-        <p class="library-card-desc">${featuredPersonality.description}</p>
-        <div class="library-card-traits">
-          ${featuredPersonality.traits
-            .map((trait) => `<span>${trait}</span>`)
-            .join('')}
-        </div>
-      </div>
-    `;
-    summary.appendChild(featuredCard);
-  }
 
   grid.innerHTML = '';
 
   if (filteredTypes.length === 0) {
     grid.innerHTML = `
       <div class="library-empty">
-        没搜到对应人格。可能关键词太偏，也可能这味太新，图鉴还没收录。
+        没搜到对应人格。换个关键词，或者先把筛选放宽一点。
       </div>
     `;
     return;
@@ -685,6 +650,12 @@ function renderPersonalityLibrary() {
 }
 
 document.addEventListener('keydown', (event) => {
+  const overlay = document.getElementById('personality-library-overlay');
+  if (event.key === 'Escape' && overlay && !overlay.hidden) {
+    togglePersonalityLibrary(false);
+    return;
+  }
+
   if (!pages.test.classList.contains('active')) {
     return;
   }

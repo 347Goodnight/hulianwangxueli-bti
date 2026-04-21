@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>互联网冲浪人格测试 | 抖音热梗、抽象全明星、评论区图鉴</title>
-    <meta name="description" content="互联网冲浪人格测试：30 道短场景题，基于抖音热梗、抽象全明星和评论区生态，测出你是哪种互联网冲浪人格。">
-    <meta name="keywords" content="互联网冲浪人格测试,抖音热梗,抽象全明星,人格测试,评论区,图鉴,SBTI">
+    <title>互联网冲浪人格测试 | 抖音热梗 SBTI 式人格图鉴</title>
+    <meta name="description" content="互联网冲浪人格测试：30 道短场景题，围绕抖音热梗、抽象文化、圈层黑话和情绪人设，测出你更像哪种互联网生物。">
+    <meta name="keywords" content="互联网冲浪人格测试,抖音热梗,SBTI,抽象文化,原批,Doomer,Old Money,人格测试">
     <meta name="application-name" content="互联网冲浪人格测试">
     <meta name="site-url" content="https://347goodnight.github.io/hulianwangxueli-bti/">
     <link rel="canonical" href="https://347goodnight.github.io/hulianwangxueli-bti/">
-    <link rel="stylesheet" href="style.css?v=20260421-30">
+    <link rel="stylesheet" href="style.css?v=20260421-31">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='88'>🌊</text></svg>">
 </head>
 <body>
@@ -20,54 +20,97 @@
         <div class="container">
             <div id="home-page" class="page active">
                 <section class="hero">
-                    <div class="hero-copy">
-                        <span class="eyebrow">30 题 · <span data-personality-count>18</span> 种人格 · 抖音热梗生态位测试</span>
-                        <h1 class="title">互联网冲浪人格测试</h1>
-                        <p class="subtitle">测你是性压抑、苹果人、嘉豪，还是瓦学弟。</p>
-                        <p class="hero-description">
-                            不是正经心理测试，就是把三大理论、抽象全明星、游戏赛区和评论区生态揉成一套结果卡。
-                        </p>
+                    <div class="hero-grid">
+                        <div class="hero-main">
+                            <span class="eyebrow">30 题 · <span data-personality-count>18</span> 种人格 · 抖音热梗生态位测试</span>
+                            <h1 class="title">互联网冲浪人格测试</h1>
+                            <p class="subtitle">把热梗、抽象、赛区黑话和情绪文学，压成一张 SBTI 式结果卡。</p>
+                            <p class="hero-description">
+                                不是测你正不正常，是测你更像哪路互联网生物。嘉豪、小丑、原批、Doomer、Old Money，谁才是你号里的常驻人格。
+                            </p>
 
-                        <div class="hero-points">
-                            <span>性压抑</span>
-                            <span>苹果人</span>
-                            <span>安卓人</span>
-                            <span>山姆门徒</span>
-                            <span>嘉豪</span>
-                            <span>瓦学弟</span>
-                            <span>GO学长</span>
-                            <span>老鼠人</span>
+                            <div class="hero-meta">
+                                <span>3 分钟左右</span>
+                                <span>短题快测</span>
+                                <span>结果页可分享</span>
+                            </div>
+
+                            <div class="hero-actions">
+                                <button class="btn btn-primary" onclick="startTest()">开始测试</button>
+                                <button class="btn btn-secondary btn-link" onclick="togglePersonalityLibrary(true)">先看全部人格</button>
+                            </div>
+
+                            <div class="hero-sample-tags">
+                                <span>性压抑</span>
+                                <span>嘉豪</span>
+                                <span>小丑</span>
+                                <span>Doomer</span>
+                                <span>原批</span>
+                                <span>Old Money</span>
+                            </div>
                         </div>
 
-                        <div class="hero-actions">
-                            <button class="btn btn-primary" onclick="startTest()">开始测试</button>
-                            <button class="btn btn-secondary btn-link" onclick="togglePersonalityLibrary(true)">先看全部人格</button>
-                        </div>
+                        <aside class="hero-aside" aria-label="测试预览">
+                            <div class="hero-panel hero-panel-primary">
+                                <span class="hero-panel-label">测试定位</span>
+                                <strong>抖音热梗 × 圈层黑话 × 情绪人设</strong>
+                                <p>不是真人心理学，主打一个你平时到底在网上怎么活。</p>
+                            </div>
 
-                        <p class="tip">选答案会自动下一题。测完可直接打开全部人格图鉴。</p>
+                            <div class="hero-panel-grid">
+                                <article class="hero-mini-card">
+                                    <span class="hero-mini-kicker">理论话术系</span>
+                                    <h3>性压抑 / 苹果人 / Old Money</h3>
+                                    <p>看你是靠腔调活着，还是靠话术撑场。</p>
+                                </article>
+                                <article class="hero-mini-card">
+                                    <span class="hero-mini-kicker">抽象情绪系</span>
+                                    <h3>嘉豪 / 小丑 / Doomer</h3>
+                                    <p>镜头感、破防感和表演欲，一张图里全露馅。</p>
+                                </article>
+                                <article class="hero-mini-card">
+                                    <span class="hero-mini-kicker">赛区圈层系</span>
+                                    <h3>瓦学弟 / GO学长 / 原批</h3>
+                                    <p>赛区口气一开，你的圈层味根本藏不住。</p>
+                                </article>
+                            </div>
+                        </aside>
                     </div>
                 </section>
             </div>
 
             <div id="test-page" class="page">
                 <div class="test-header">
-                    <div class="test-header-row">
-                        <button class="test-nav-btn" id="back-home-btn" onclick="returnHome()">← 首页</button>
-                        <div class="progress-text">
-                            <span id="current-question">1</span> / <span id="total-questions">30</span>
+                    <div class="test-header-layout">
+                        <div class="test-left-actions">
+                            <button class="test-nav-btn" id="back-home-btn" onclick="returnHome()">首页</button>
+                            <button class="test-nav-btn" id="prev-question-btn" onclick="goToPreviousQuestion()">上一题</button>
                         </div>
-                        <button class="test-nav-btn" id="prev-question-btn" onclick="goToPreviousQuestion()">上一题</button>
+
+                        <div class="test-progress-card">
+                            <span class="progress-kicker">冲浪进度</span>
+                            <div class="progress-text">
+                                <span id="current-question">1</span>
+                                <span class="progress-separator">/</span>
+                                <span id="total-questions">30</span>
+                            </div>
+                        </div>
+
+                        <button class="test-nav-btn test-nav-primary" id="next-question-btn" onclick="goToNextQuestion()">下一题</button>
                     </div>
+
                     <div class="progress-bar">
                         <div class="progress-fill" id="progress-fill"></div>
                     </div>
                 </div>
 
                 <div class="question-container">
-                    <div class="question-meta">
-                        <span class="question-badge">冲浪场景题</span>
+                    <div class="question-stage">
+                        <div class="question-meta">
+                            <span class="question-badge">冲浪场景题</span>
+                        </div>
+                        <div class="question-text" id="question-text"></div>
                     </div>
-                    <div class="question-text" id="question-text"></div>
                     <div class="options" id="options"></div>
                 </div>
             </div>
@@ -162,11 +205,11 @@
 
     <div class="personality-library-overlay" id="personality-library-overlay" hidden>
         <div class="personality-library-backdrop" onclick="togglePersonalityLibrary(false)"></div>
-        <div class="personality-library-panel">
+        <div class="personality-library-panel" role="dialog" aria-modal="true" aria-labelledby="personality-library-title">
             <div class="personality-library-head">
                 <div>
                     <span class="section-kicker">人格总览</span>
-                    <h2><span data-personality-count>18</span> 种互联网冲浪人格</h2>
+                    <h2 id="personality-library-title"><span data-personality-count>18</span> 种互联网冲浪人格</h2>
                 </div>
                 <button class="library-close" onclick="togglePersonalityLibrary(false)" aria-label="关闭人格列表">×</button>
             </div>
@@ -181,9 +224,9 @@
         </div>
     </div>
 
-    <script src="js/dimensions.js?v=20260421-30"></script>
-    <script src="js/questions.js?v=20260421-30"></script>
-    <script src="js/types.js?v=20260421-30"></script>
-    <script src="js/app.js?v=20260421-30"></script>
+    <script src="js/dimensions.js?v=20260421-31"></script>
+    <script src="js/questions.js?v=20260421-31"></script>
+    <script src="js/types.js?v=20260421-31"></script>
+    <script src="js/app.js?v=20260421-31"></script>
 </body>
 </html>

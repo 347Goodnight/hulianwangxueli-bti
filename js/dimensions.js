@@ -2,104 +2,109 @@
 
 const dimensionMeta = {
   M1: {
-    name: '热梗雷达',
-    model: '梗感系统',
+    name: '梗感雷达',
+    model: '热梗感应',
     icon: '📡',
-    description: '你刷到新梗时反应有多快'
+    description: '你接新梗和识别语境的速度'
   },
   M2: {
     name: '对线火力',
-    model: '梗感系统',
-    icon: '🔥',
-    description: '你在评论区抬杠和反击的强度'
+    model: '热梗感应',
+    icon: '⚔️',
+    description: '你在评论区抬杠和还嘴的强度'
   },
   M3: {
-    name: '阴阳段位',
-    model: '梗感系统',
-    icon: '🗡️',
-    description: '你说话有多会拐弯扎人'
+    name: '人设腔调',
+    model: '话术镜头',
+    icon: '🎭',
+    description: '你说话和发内容时有多讲究“那味”'
   },
   M4: {
-    name: '冲浪浓度',
-    model: '冲浪强度',
-    icon: '🌊',
-    description: '你一天有多少时间泡在网上'
+    name: '网瘾浓度',
+    model: '冲浪习惯',
+    icon: '📱',
+    description: '你一天里有多少时间泡在平台上'
   },
   M5: {
-    name: '整活欲望',
-    model: '冲浪强度',
-    icon: '🎬',
-    description: '你有多想把平静场面搞出节目效果'
+    name: '圈层执念',
+    model: '冲浪习惯',
+    icon: '🕳️',
+    description: '你对赛区黑话和圈层认同的黏度'
   },
   M6: {
-    name: '复读扩散',
-    model: '冲浪强度',
-    icon: '📣',
-    description: '你转发复读热梗的积极程度'
+    name: '整活欲望',
+    model: '话术镜头',
+    icon: '🪄',
+    description: '你有多想把平淡场面整出节目效果'
   },
   M7: {
-    name: '破防系数',
+    name: '破防阈值',
     model: '情绪波动',
     icon: '💥',
-    description: '你被戳到之后会不会当场急眼'
+    description: '你被点名或被戳到时的耐受度'
   },
   M8: {
-    name: '吃瓜参与',
+    name: '情绪底色',
     model: '情绪波动',
-    icon: '🍉',
-    description: '你面对热搜反转时的围观和拱火欲'
+    icon: '🌧️',
+    description: '你冲浪时更偏乐观、钝感还是内耗'
   },
   M9: {
-    name: '人设表演',
-    model: '人设运营',
-    icon: '🎭',
-    description: '你在网上经营自己人设的力度'
+    name: '精神消费',
+    model: '人设资产',
+    icon: '💸',
+    description: '你买单的是功能，还是叙事和身份感'
   },
   M10: {
-    name: '断网反应',
-    model: '人设运营',
-    icon: '📵',
-    description: '你离开网络后会不会浑身难受'
+    name: '切片依赖',
+    model: '人设资产',
+    icon: '🎬',
+    description: '你有多依赖切片、总结和二手语境'
   }
 };
 
 const modelMeta = {
-  '梗感系统': {
+  '热梗感应': {
     icon: '🧠',
     color: '#ff7a59',
-    description: '看梗、接梗、回怼时的原生反应'
+    description: '你闻梗、接梗、对线时的原生反应'
   },
-  '冲浪强度': {
+  '话术镜头': {
+    icon: '🎥',
+    color: '#7c5cff',
+    description: '你说话有没有戏、有没有人设、有没有“味”'
+  },
+  '冲浪习惯': {
     icon: '🌊',
     color: '#3a86ff',
-    description: '你刷手机、造梗、复读的投入程度'
+    description: '你上网的时长、圈层投入和活跃程度'
   },
   '情绪波动': {
-    icon: '⚡',
+    icon: '💢',
     color: '#ff4d6d',
-    description: '你看热搜和被点名时的情绪起伏'
+    description: '你会不会被互联网轻易拿捏心态'
   },
-  '人设运营': {
+  '人设资产': {
     icon: '🪞',
-    color: '#7c5cff',
-    description: '你在网上扮演谁，以及离不开谁'
+    color: '#c9722b',
+    description: '你在网上消费什么，又想把自己活成什么'
   }
 };
 
 const dimensionGuide = {
   L: {
     label: '低',
-    description: '偏冷静，没那么上头',
+    description: '偏冷静，没那么容易上头',
     color: '#64748b'
   },
   M: {
     label: '中',
-    description: '正常冲浪，还没完全入戏',
+    description: '正常冲浪，还没完全入魔',
     color: '#f59e0b'
   },
   H: {
     label: '高',
-    description: '重度在线，已经长在网里了',
+    description: '重度在线，很多反应已经平台化了',
     color: '#ef4444'
   }
 };
