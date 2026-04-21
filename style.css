@@ -734,7 +734,7 @@ button{
 }
 
 .radar-svg{
-  width:min(100%,392px);
+  width:min(100%,420px);
   height:auto;
   filter:drop-shadow(0 12px 24px rgba(223,92,60,.08));
 }
@@ -760,6 +760,18 @@ button{
   fill:var(--primary);
   stroke:#fff;
   stroke-width:2;
+}
+
+.radar-axis-text{
+  fill:var(--text);
+  font-size:15px;
+  font-weight:800;
+}
+
+.radar-axis-value{
+  fill:var(--text-secondary);
+  font-size:12px;
+  font-weight:700;
 }
 
 .radar-axis-labels{

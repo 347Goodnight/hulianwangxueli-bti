@@ -639,13 +639,29 @@ function renderRadarChart(groupedDimensions) {
     return;
   }
 
-  const chartSize = 320;
+  const chartSize = 420;
   const center = chartSize / 2;
-  const radius = 116;
+  const radius = 122;
   const ringRatios = [0.2, 0.4, 0.6, 0.8, 1];
   const pointList = groupedDimensions.map((item, index) =>
     getRadarPoint(index, groupedDimensions.length, item.score / 100, center, radius)
   );
+  const axisLabels = groupedDimensions.map((item, index) => {
+    const labelPoint = getRadarPoint(
+      index,
+      groupedDimensions.length,
+      1.24,
+      center,
+      radius
+    );
+
+    return {
+      ...item,
+      x: labelPoint.x,
+      y: labelPoint.y,
+      anchor: getRadarLabelAnchor(labelPoint.x, center)
+    };
+  });
   const polygonPoints = pointList
     .map(({ x, y }) => `${x.toFixed(1)},${y.toFixed(1)}`)
     .join(' ');
@@ -690,6 +706,21 @@ function renderRadarChart(groupedDimensions) {
             `<circle class="radar-point" cx="${x.toFixed(1)}" cy="${y.toFixed(
               1
             )}" r="5"></circle>`
+        )
+        .join('')}
+      ${axisLabels
+        .map(
+          (item) => `
+            <text
+              class="radar-axis-text"
+              x="${item.x.toFixed(1)}"
+              y="${item.y.toFixed(1)}"
+              text-anchor="${item.anchor}"
+            >
+              <tspan x="${item.x.toFixed(1)}" dy="0">${item.name}</tspan>
+              <tspan class="radar-axis-value" x="${item.x.toFixed(1)}" dy="18">${item.score}%</tspan>
+            </text>
+          `
         )
         .join('')}
     </svg>
@@ -740,6 +771,14 @@ function getRadarPoint(index, total, ratio, center, radius) {
     x: center + Math.cos(angle) * distance,
     y: center + Math.sin(angle) * distance
   };
+}
+
+function getRadarLabelAnchor(x, center) {
+  if (Math.abs(x - center) < 18) {
+    return 'middle';
+  }
+
+  return x < center ? 'end' : 'start';
 }
 
 function getRarityMeta(rarity) {
