@@ -6,6 +6,9 @@ let currentResultCode = '';
 let activeLibraryCategory = '全部';
 let activeLibraryCode = '';
 let librarySearchQuery = '';
+let autoAdvanceTimer = null;
+
+const AUTO_ADVANCE_DELAY = 90;
 
 const appName =
   document.querySelector('meta[name="application-name"]')?.content ||
@@ -26,9 +29,7 @@ const questionCountByDimension = questions.reduce((acc, question) => {
 }, {});
 
 document.addEventListener('DOMContentLoaded', () => {
-  if (!activeLibraryCode && personalityTypes.length > 0) {
-    activeLibraryCode = personalityTypes[0].code;
-  }
+  activeLibraryCode = personalityTypes[0]?.code || '';
 
   const searchInput = document.getElementById('personality-library-search');
   searchInput.value = librarySearchQuery;
@@ -38,8 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   syncStats();
-  updateProgressBar();
   renderPersonalityLibrary();
+  updateProgressBar();
 });
 
 function syncStats() {
@@ -56,6 +57,8 @@ function syncNumber(selector, value) {
 }
 
 function startTest() {
+  clearAutoAdvance();
+  togglePersonalityLibrary(false);
   currentQuestionIndex = 0;
   answers = new Array(questions.length).fill(null);
   showPage('test');
@@ -66,31 +69,49 @@ function restartTest() {
   startTest();
 }
 
+function returnHome() {
+  const hasProgress = answers.some(Boolean);
+  if (
+    hasProgress &&
+    !window.confirm('返回首页会丢掉这次答题进度，确定返回吗？')
+  ) {
+    return;
+  }
+
+  clearAutoAdvance();
+  togglePersonalityLibrary(false);
+  showPage('home');
+}
+
 function showPage(pageName) {
   Object.values(pages).forEach((page) => {
     page.classList.remove('active');
   });
   pages[pageName].classList.add('active');
+  window.scrollTo(0, 0);
 }
 
 function renderQuestion() {
+  clearAutoAdvance();
+
   const question = questions[currentQuestionIndex];
   const savedAnswer = answers[currentQuestionIndex];
+  const optionsContainer = document.getElementById('options');
 
-  document.getElementById('current-question').textContent =
-    String(currentQuestionIndex + 1);
+  document.getElementById('current-question').textContent = String(
+    currentQuestionIndex + 1
+  );
   document.getElementById('total-questions').textContent = String(
     questions.length
   );
   document.getElementById('question-text').textContent = question.text;
 
-  const optionsContainer = document.getElementById('options');
   optionsContainer.innerHTML = '';
-
   question.options.forEach((option, index) => {
     const optionButton = document.createElement('button');
     optionButton.type = 'button';
     optionButton.className = 'option';
+
     if (savedAnswer?.optionIndex === index) {
       optionButton.classList.add('selected');
     }
@@ -109,6 +130,8 @@ function renderQuestion() {
 
 function selectOption(optionIndex) {
   const question = questions[currentQuestionIndex];
+  const selectedQuestionIndex = currentQuestionIndex;
+
   answers[currentQuestionIndex] = {
     questionId: question.id,
     dimension: question.dim,
@@ -121,6 +144,28 @@ function selectOption(optionIndex) {
   });
 
   updateQuestionActions();
+
+  clearAutoAdvance();
+  autoAdvanceTimer = window.setTimeout(() => {
+    if (selectedQuestionIndex !== currentQuestionIndex) {
+      return;
+    }
+
+    if (!answers[selectedQuestionIndex]) {
+      return;
+    }
+
+    goToNextQuestion();
+  }, AUTO_ADVANCE_DELAY);
+}
+
+function clearAutoAdvance() {
+  if (!autoAdvanceTimer) {
+    return;
+  }
+
+  window.clearTimeout(autoAdvanceTimer);
+  autoAdvanceTimer = null;
 }
 
 function updateProgressBar() {
@@ -152,6 +197,7 @@ function setButtonState(id, disabled, text) {
 }
 
 function goToPreviousQuestion() {
+  clearAutoAdvance();
   if (currentQuestionIndex === 0) {
     return;
   }
@@ -161,6 +207,7 @@ function goToPreviousQuestion() {
 }
 
 function goToNextQuestion() {
+  clearAutoAdvance();
   if (!answers[currentQuestionIndex]) {
     return;
   }
@@ -175,12 +222,13 @@ function goToNextQuestion() {
 }
 
 function finishTest() {
+  clearAutoAdvance();
   showPage('loading');
 
   window.setTimeout(() => {
     const result = calculateResult();
     showResult(result);
-  }, 900);
+  }, 700);
 }
 
 function calculateResult() {
@@ -217,7 +265,7 @@ function calculateResult() {
   );
 
   return {
-    personality: similarity >= 48 ? bestMatch : fallbackType,
+    personality: similarity >= 50 ? bestMatch : fallbackType,
     similarity,
     dimensionScores,
     userPattern
@@ -228,8 +276,7 @@ function scoreToLevel(dim, score) {
   const questionCount = questionCountByDimension[dim] || 1;
   const minScore = questionCount;
   const maxScore = questionCount * 3;
-  const denominator = Math.max(1, maxScore - minScore);
-  const ratio = (score - minScore) / denominator;
+  const ratio = (score - minScore) / Math.max(1, maxScore - minScore);
 
   if (ratio < 0.34) {
     return 'L';
@@ -242,6 +289,7 @@ function scoreToLevel(dim, score) {
 
 function calculatePatternDistance(patternA, patternB) {
   const valueMap = { L: 1, M: 2, H: 3 };
+
   return Object.keys(patternA).reduce((distance, dim) => {
     return distance + Math.abs(valueMap[patternA[dim]] - valueMap[patternB[dim]]);
   }, 0);
@@ -261,22 +309,29 @@ function showResult(result) {
   showPage('result');
 
   personalityCard.setAttribute('data-rarity', personality.rarity);
-  personalityCard.style.setProperty('--card-accent', personality.accent || '#ff6b4a');
+  personalityCard.style.setProperty(
+    '--card-accent',
+    personality.accent || '#ff6b4a'
+  );
 
   document.getElementById('rarity-badge').textContent = personality.rarity;
   document
     .getElementById('rarity-badge')
     .setAttribute('data-rarity', personality.rarity);
-  document.getElementById('personality-series').textContent = '互联网冲浪人格图鉴';
+  document.getElementById('personality-series').textContent =
+    '互联网冲浪人格图鉴';
   document.getElementById('personality-code').textContent = personality.code;
   document.getElementById('personality-rank-label').textContent = rarity.label;
-  document.getElementById('personality-category').textContent = personality.category;
+  document.getElementById('personality-category').textContent =
+    personality.category;
   document.getElementById(
     'personality-rarity-text'
   ).textContent = `${personality.rarity} · ${rarity.label}`;
   document.getElementById('personality-name').textContent = personality.name;
-  document.getElementById('personality-slogan').textContent = personality.slogan;
-  document.getElementById('personality-desc').textContent = personality.description;
+  document.getElementById('personality-slogan').textContent =
+    personality.slogan;
+  document.getElementById('personality-desc').textContent =
+    personality.description;
   document.getElementById(
     'personality-image-caption'
   ).textContent = `${personality.category} · ${personality.name}`;
@@ -290,7 +345,9 @@ function showResult(result) {
   }
 
   imageContainer.innerHTML = `
-    <div class="personality-emblem" style="--emblem-accent: ${personality.accent || '#ff6b4a'}">
+    <div class="personality-emblem" style="--emblem-accent: ${
+      personality.accent || '#ff6b4a'
+    }">
       <span>${personality.icon || '🧩'}</span>
     </div>
   `;
@@ -303,7 +360,8 @@ function showResult(result) {
     traitsContainer.appendChild(chip);
   });
 
-  document.getElementById('similarity-percent').textContent = `${result.similarity}%`;
+  document.getElementById('similarity-percent').textContent =
+    `${result.similarity}%`;
 
   renderHighlights(result.dimensionScores, result.userPattern);
   renderRadarChart(result.dimensionScores);
@@ -318,6 +376,7 @@ function renderHighlights(dimensionScores, userPattern) {
       const count = questionCountByDimension[dim] || 1;
       const score = dimensionScores[dim] || count;
       const midpoint = count * 2;
+
       return {
         dim,
         name: dimensionMeta[dim].name,
@@ -361,6 +420,7 @@ function renderRadarChart(dimensionScores) {
   });
 
   container.innerHTML = '';
+
   Object.entries(groupedModels).forEach(([modelName, items]) => {
     const modelInfo = modelMeta[modelName];
     const section = document.createElement('section');
@@ -398,15 +458,14 @@ function renderRadarChart(dimensionScores) {
 }
 
 function getRarityMeta(rarity) {
-  return rarityGuide[rarity] || { label: '未知', color: '#999999' };
+  return rarityGuide[rarity] || { label: '未定义', color: '#999999' };
 }
 
 function shareResult() {
   const personality =
-    personalityTypes.find((item) => item.code === currentResultCode) || fallbackType;
-  const shareText = personality.shareText?.length
-    ? personality.shareText[Math.floor(Math.random() * personality.shareText.length)]
-    : `我在${appName}测出了【${personality.name}】。${personality.slogan}`;
+    personalityTypes.find((item) => item.code === currentResultCode) ||
+    fallbackType;
+  const shareText = `我在${appName}测出了【${personality.name}】。${personality.slogan}`;
   const shareUrl = configuredSiteUrl || window.location.href;
 
   if (navigator.share) {
@@ -443,21 +502,21 @@ function copyToClipboard(text) {
 }
 
 function updateRemainingPersonalityCount(currentCode) {
-  const remaining = Math.max(
-    0,
-    personalityTypes.length - (currentCode ? 1 : 0)
-  );
+  const remaining = Math.max(0, personalityTypes.length - (currentCode ? 1 : 0));
   syncNumber('[data-remaining-personality-count]', remaining);
 }
 
 function togglePersonalityLibrary(show) {
   const overlay = document.getElementById('personality-library-overlay');
-  const nextState = show === undefined ? overlay.hidden : !show;
+  if (!overlay) {
+    return;
+  }
+  const shouldShow = show === undefined ? overlay.hidden : show;
 
-  overlay.hidden = nextState;
-  document.body.style.overflow = nextState ? '' : 'hidden';
+  overlay.hidden = !shouldShow;
+  document.body.style.overflow = shouldShow ? 'hidden' : '';
 
-  if (!nextState) {
+  if (shouldShow) {
     renderPersonalityLibrary();
   }
 }
@@ -496,7 +555,7 @@ function renderPersonalityLibrary() {
   const filteredTypes = personalityTypes.filter((type) => {
     const categoryMatch =
       activeLibraryCategory === '全部' || type.category === activeLibraryCategory;
-    const keywordBucket = [
+    const searchSpace = [
       type.name,
       type.code,
       type.category,
@@ -506,7 +565,8 @@ function renderPersonalityLibrary() {
       .join(' ')
       .toLowerCase();
     const searchMatch =
-      !librarySearchQuery || keywordBucket.includes(librarySearchQuery);
+      !librarySearchQuery || searchSpace.includes(librarySearchQuery);
+
     return categoryMatch && searchMatch;
   });
 
@@ -523,7 +583,7 @@ function renderPersonalityLibrary() {
     <div class="library-summary-card">
       <span class="library-summary-label">当前图鉴</span>
       <strong>${filteredTypes.length} 种人格</strong>
-      <span class="library-summary-text">按分类和关键词筛一遍，基本能把你的朋友圈都装进去。</span>
+      <span class="library-summary-text">这里可以直接看完整人格池，不用重新做题也能先逛一圈。</span>
     </div>
     <div class="library-summary-card">
       <span class="library-summary-label">当前筛选</span>
@@ -554,7 +614,9 @@ function renderPersonalityLibrary() {
         <p class="library-card-slogan">${featuredPersonality.slogan}</p>
         <p class="library-card-desc">${featuredPersonality.description}</p>
         <div class="library-card-traits">
-          ${featuredPersonality.traits.map((trait) => `<span>${trait}</span>`).join('')}
+          ${featuredPersonality.traits
+            .map((trait) => `<span>${trait}</span>`)
+            .join('')}
         </div>
       </div>
     `;
@@ -566,7 +628,7 @@ function renderPersonalityLibrary() {
   if (filteredTypes.length === 0) {
     grid.innerHTML = `
       <div class="library-empty">
-        没搜到对应人格。要么你关键词太偏，要么这味太新，平台还没收录。
+        没搜到对应人格。可能关键词太偏，也可能这味太新，图鉴还没收录。
       </div>
     `;
     return;

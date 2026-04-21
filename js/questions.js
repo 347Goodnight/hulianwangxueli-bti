@@ -7,29 +7,29 @@ const questions = [
     dim: 'M1',
     text: '新梗刚冒头，你一般？',
     options: [
-      { text: '三天后才知道大家在笑什么', value: 1 },
-      { text: '先存着看看，过两天再用', value: 2 },
-      { text: '当天就能接上，还能顺手魔改', value: 3 }
+      { text: '过两天才知道大家在笑什么', value: 1 },
+      { text: '先看评论补课，再决定跟不跟', value: 2 },
+      { text: '当天就能接上，顺手还能魔改', value: 3 }
     ]
   },
   {
     id: 'q2',
     dim: 'M1',
-    text: '评论区突然满屏同一句怪话，你？',
+    text: '评论区突然刷满“嘉豪”“瓦学弟”，你？',
     options: [
       { text: '看不懂，直接划走', value: 1 },
-      { text: '先看两眼，慢慢猜意思', value: 2 },
-      { text: '秒懂出处，甚至想跟一句', value: 3 }
+      { text: '先潜水摸背景，再决定站哪边', value: 2 },
+      { text: '秒懂出处，顺手跟一句', value: 3 }
     ]
   },
   {
     id: 'q3',
     dim: 'M1',
-    text: '朋友发来一张抽象梗图，你会？',
+    text: '刷到峰哥、户晨风那种抽象视频，你？',
     options: [
-      { text: '问他这图到底在干吗', value: 1 },
-      { text: '大概懂，但笑得不算痛快', value: 2 },
-      { text: '立刻回敬三张同等级的', value: 3 }
+      { text: '划走，不做阅读理解', value: 1 },
+      { text: '先存着，回头再慢慢懂', value: 2 },
+      { text: '当场切评论区狠狠干梗', value: 3 }
     ]
   },
 
@@ -37,21 +37,21 @@ const questions = [
   {
     id: 'q4',
     dim: 'M2',
-    text: '评论区有人阴阳你，你？',
+    text: '评论区有人嘴你没网感，你？',
     options: [
-      { text: '算了，拉黑省事', value: 1 },
-      { text: '回一句，点到为止', value: 2 },
-      { text: '开战，今晚谁都别睡', value: 3 }
+      { text: '懒得理，随他讲', value: 1 },
+      { text: '回一句，意思意思', value: 2 },
+      { text: '今天必须狠狠干到他静音', value: 3 }
     ]
   },
   {
     id: 'q5',
     dim: 'M2',
-    text: '群里有人硬杠一个离谱观点，你？',
+    text: '群里有人硬装懂哥，你？',
     options: [
       { text: '看戏，不下场', value: 1 },
-      { text: '提醒一句差不多得了', value: 2 },
-      { text: '我来，让他知道什么叫加练', value: 3 }
+      { text: '轻轻戳一句，提醒到位', value: 2 },
+      { text: '接管现场，给他上强度', value: 3 }
     ]
   },
   {
@@ -60,8 +60,8 @@ const questions = [
     text: '直播间钓鱼怪开始带节奏，你？',
     options: [
       { text: '退出，不陪玩', value: 1 },
-      { text: '发个问号试探一下', value: 2 },
-      { text: '当场接管弹幕，把他冲烂', value: 3 }
+      { text: '试探两句，看他多能演', value: 2 },
+      { text: '直接开麦，当弹幕总教头', value: 3 }
     ]
   },
 
@@ -69,31 +69,31 @@ const questions = [
   {
     id: 'q7',
     dim: 'M3',
-    text: '朋友又来晒新手机，你一般？',
+    text: '朋友又晒新手机，你通常？',
     options: [
-      { text: '真不错，恭喜', value: 1 },
-      { text: '可以啊，预算挺自由', value: 2 },
-      { text: '不会吧，这年头还得特意晒这个', value: 3 }
+      { text: '恭喜，真心的', value: 1 },
+      { text: '可以啊，挺会买', value: 2 },
+      { text: '哇，苹果人味已经溢出屏幕了', value: 3 }
     ]
   },
   {
     id: 'q8',
     dim: 'M3',
-    text: '有人发言很蠢，但你懒得明说，你会？',
+    text: '有人发言离谱，但你懒得明骂，你会？',
     options: [
-      { text: '那就不说', value: 1 },
-      { text: '委婉提醒一下', value: 2 },
-      { text: '先夸一句，再把刀递进去', value: 3 }
+      { text: '懒得回，算了', value: 1 },
+      { text: '委婉提醒一句', value: 2 },
+      { text: '先捧后刀，让他回家复盘', value: 3 }
     ]
   },
   {
     id: 'q9',
     dim: 'M3',
-    text: '你最常见的说话方式是？',
+    text: '你最常用的说话方式是？',
     options: [
-      { text: '有啥说啥，不拐弯', value: 1 },
-      { text: '看场合，偶尔夹点味', value: 2 },
-      { text: '正常说话太亏，必须带刺', value: 3 }
+      { text: '有话直说，不拐弯', value: 1 },
+      { text: '看人下菜碟，适度来点味', value: 2 },
+      { text: '正常说话太亏，必须拐着扎', value: 3 }
     ]
   },
 
@@ -101,31 +101,31 @@ const questions = [
   {
     id: 'q10',
     dim: 'M4',
-    text: '你每天刷手机大概多久？',
+    text: '睁眼第一件事通常是？',
     options: [
-      { text: '碎片时间随便看看', value: 1 },
-      { text: '有空就刷，挺稳定', value: 2 },
-      { text: '除了睡觉基本都在线', value: 3 }
+      { text: '先起床，不碰手机', value: 1 },
+      { text: '看眼消息再说', value: 2 },
+      { text: '先把抖音和热搜巡逻一遍', value: 3 }
     ]
   },
   {
     id: 'q11',
     dim: 'M4',
-    text: '早上睁眼第一件事通常是？',
+    text: '凌晨一点的你，更像？',
     options: [
-      { text: '先起床，不碰手机', value: 1 },
-      { text: '看眼消息再说', value: 2 },
-      { text: '先刷两轮热搜和抖音', value: 3 }
+      { text: '已经睡了，明天再冲浪', value: 1 },
+      { text: '补两眼更新就撤', value: 2 },
+      { text: '吃着拼好饭，在评论区巡逻', value: 3 }
     ]
   },
   {
     id: 'q12',
     dim: 'M4',
-    text: '凌晨一点的你，多半在？',
+    text: '周末没网两小时，你？',
     options: [
-      { text: '睡了，互联网明天再见', value: 1 },
-      { text: '偶尔补两眼更新', value: 2 },
-      { text: '在不同平台来回巡逻', value: 3 }
+      { text: '正好清净一下', value: 1 },
+      { text: '有点空，但还能忍', value: 2 },
+      { text: '像被拔了氧气管', value: 3 }
     ]
   },
 
@@ -133,11 +133,11 @@ const questions = [
   {
     id: 'q13',
     dim: 'M5',
-    text: '群聊突然冷场，你会？',
+    text: '群聊突然冷场了，你会？',
     options: [
-      { text: '那就让它冷着', value: 1 },
+      { text: '让它死，不救', value: 1 },
       { text: '发个表情包续命', value: 2 },
-      { text: '必须起锅烧油，整点动静', value: 3 }
+      { text: '起锅烧油，必须把场子炸热', value: 3 }
     ]
   },
   {
@@ -145,19 +145,19 @@ const questions = [
     dim: 'M5',
     text: '朋友发自拍，你评论区通常？',
     options: [
-      { text: '点赞走人', value: 1 },
-      { text: '夸一句顺便玩个轻梗', value: 2 },
-      { text: '现场写台词，把楼带歪', value: 3 }
+      { text: '点赞路过', value: 1 },
+      { text: '夸一句，顺手玩个梗', value: 2 },
+      { text: '直接写口播文案带节奏', value: 3 }
     ]
   },
   {
     id: 'q15',
     dim: 'M5',
-    text: '现实里有点尴尬时，你第一反应？',
+    text: '现实里突然尴尬三秒，你？',
     options: [
-      { text: '沉默糊过去', value: 1 },
-      { text: '讲个冷笑话缓一下', value: 2 },
-      { text: '直接把自己当节目做', value: 3 }
+      { text: '沉默混过去', value: 1 },
+      { text: '讲个冷笑话补一下', value: 2 },
+      { text: '当场把自己做成节目效果', value: 3 }
     ]
   },
 
@@ -165,21 +165,21 @@ const questions = [
   {
     id: 'q16',
     dim: 'M6',
-    text: '某句热梗火起来后，你？',
+    text: '一句热梗火了以后，你？',
     options: [
-      { text: '基本不用，嫌吵', value: 1 },
-      { text: '熟了才偶尔跟一句', value: 2 },
-      { text: '逮到谁都要复读一遍', value: 3 }
+      { text: '嫌土，不跟', value: 1 },
+      { text: '熟了才偶尔用一下', value: 2 },
+      { text: '逮谁跟谁复读', value: 3 }
     ]
   },
   {
     id: 'q17',
     dim: 'M6',
-    text: '朋友发了个爆款模板，你会？',
+    text: '朋友发来爆款模板，你？',
     options: [
-      { text: '看过就算了', value: 1 },
-      { text: '顺手转给一两个熟人', value: 2 },
-      { text: '全平台扩散，生怕别人没看到', value: 3 }
+      { text: '看完算了', value: 1 },
+      { text: '转给熟人试试水', value: 2 },
+      { text: '群聊评论区一起铺开', value: 3 }
     ]
   },
   {
@@ -189,7 +189,7 @@ const questions = [
     options: [
       { text: '自己慢慢组织语言', value: 1 },
       { text: '原创和套梗一半一半', value: 2 },
-      { text: '拿现成热句往上一套就完事', value: 3 }
+      { text: '拿现成热句往上一盖', value: 3 }
     ]
   },
 
@@ -199,29 +199,29 @@ const questions = [
     dim: 'M7',
     text: '有人回你一句“急了”，你？',
     options: [
-      { text: '无所谓，继续吃饭', value: 1 },
-      { text: '有点烦，但还能忍', value: 2 },
-      { text: '你别说，还真被点着了', value: 3 }
+      { text: '没感觉，继续吃饭', value: 1 },
+      { text: '有点不爽，但能忍', value: 2 },
+      { text: '别说，还真被点着了', value: 3 }
     ]
   },
   {
     id: 'q20',
     dim: 'M7',
-    text: '刷到别人晒工资、对象、假期，你？',
+    text: '刷到别人晒工资、对象、offer，你？',
     options: [
-      { text: '划走，和我没关系', value: 1 },
-      { text: '酸两秒，然后继续活', value: 2 },
-      { text: '不装了，心态已经裂开', value: 3 }
+      { text: '划走，关我屁事', value: 1 },
+      { text: '酸两秒，继续活', value: 2 },
+      { text: '不装了，心态直接裂开', value: 3 }
     ]
   },
   {
     id: 'q21',
     dim: 'M7',
-    text: '你发的内容被群嘲时，一般？',
+    text: '你发的内容被群嘲时，你通常？',
     options: [
-      { text: '爱笑笑，懒得删', value: 1 },
+      { text: '爱笑笑，不解释', value: 1 },
       { text: '嘴上没事，心里记账', value: 2 },
-      { text: '开始解释，越解释越上头', value: 3 }
+      { text: '开始长篇自证，越写越上头', value: 3 }
     ]
   },
 
@@ -229,21 +229,21 @@ const questions = [
   {
     id: 'q22',
     dim: 'M8',
-    text: '热搜上两拨人撕起来了，你？',
+    text: '热搜两拨人狠狠干起来了，你？',
     options: [
-      { text: '看个标题就走', value: 1 },
-      { text: '蹲评论区，补补前情', value: 2 },
-      { text: '全链路追更，顺手点火', value: 3 }
+      { text: '看标题就走', value: 1 },
+      { text: '先进评论区补前情', value: 2 },
+      { text: '全链路追更，顺手拱火', value: 3 }
     ]
   },
   {
     id: 'q23',
     dim: 'M8',
-    text: '遇到明显钓鱼帖，你通常？',
+    text: '碰到明显钓鱼帖，你一般？',
     options: [
-      { text: '无视，不上当', value: 1 },
-      { text: '先看看有没有人中招', value: 2 },
-      { text: '故意陪他演，等着收网', value: 3 }
+      { text: '无视，不上钩', value: 1 },
+      { text: '先看别人怎么翻车', value: 2 },
+      { text: '故意陪演，等他露馅', value: 3 }
     ]
   },
   {
@@ -251,9 +251,9 @@ const questions = [
     dim: 'M8',
     text: '一个瓜开始反转，你第一反应？',
     options: [
-      { text: '行吧，和我无关', value: 1 },
+      { text: '爱咋咋地，和我无关', value: 1 },
       { text: '回去补一下时间线', value: 2 },
-      { text: '太香了，今晚必须跟完整套', value: 3 }
+      { text: '太香了，今晚必须吃全套', value: 3 }
     ]
   },
 
@@ -261,11 +261,11 @@ const questions = [
   {
     id: 'q25',
     dim: 'M9',
-    text: '你网上和现实里的你，像吗？',
+    text: '你网上和现实里像吗？',
     options: [
       { text: '差不多，没必要演', value: 1 },
-      { text: '会调一下滤镜，但不离谱', value: 2 },
-      { text: '完全两个人，主打一个账号人格', value: 3 }
+      { text: '会调一点滤镜，但不离谱', value: 2 },
+      { text: '两个人，号里这个更会演', value: 3 }
     ]
   },
   {
@@ -274,18 +274,18 @@ const questions = [
     text: '发动态前你最在意什么？',
     options: [
       { text: '想发就发，不排练', value: 1 },
-      { text: '文案顺一点就行', value: 2 },
-      { text: '必须有氛围、有立场、有人设', value: 3 }
+      { text: '顺眼就行，别太糙', value: 2 },
+      { text: '必须有氛围、有站位、有号感', value: 3 }
     ]
   },
   {
     id: 'q27',
     dim: 'M9',
-    text: '别人说你“挺有号感”，你会？',
+    text: '别人说你“这味太冲浪了”，你会？',
     options: [
-      { text: '莫名其妙，我就是我', value: 1 },
-      { text: '也许吧，多少会包装一下', value: 2 },
-      { text: '谢谢认可，我的人设本来就很完整', value: 3 }
+      { text: '我就正常上网', value: 1 },
+      { text: '多少带点吧', value: 2 },
+      { text: '谢谢认可，这就是我精修过的人设', value: 3 }
     ]
   },
 
@@ -293,31 +293,31 @@ const questions = [
   {
     id: 'q28',
     dim: 'M10',
-    text: '如果今天彻底断网，你会？',
+    text: '手机只剩 5% 电时，你？',
     options: [
-      { text: '正好清净一天', value: 1 },
-      { text: '不太习惯，但还能过', value: 2 },
-      { text: '整个人像被拔了网线', value: 3 }
+      { text: '没电就没电', value: 1 },
+      { text: '先省着回消息', value: 2 },
+      { text: '满世界找充电口，像在抢救自己', value: 3 }
     ]
   },
   {
     id: 'q29',
     dim: 'M10',
-    text: '手机只剩 5% 电时，你？',
+    text: '如果今天彻底断网，你会？',
     options: [
-      { text: '随缘，没电就没电', value: 1 },
-      { text: '先留着回消息', value: 2 },
-      { text: '拼命找充电口，像在抢救自己', value: 3 }
+      { text: '当休假，挺好', value: 1 },
+      { text: '不习惯，但能活', value: 2 },
+      { text: '整个人像被踢出世界', value: 3 }
     ]
   },
   {
     id: 'q30',
     dim: 'M10',
-    text: '周末不刷任何平台，对你来说？',
+    text: '周末完全不刷平台，对你来说？',
     options: [
-      { text: '挺好，脑子终于能静一静', value: 1 },
+      { text: '挺舒服，脑子终于能静一静', value: 1 },
       { text: '能做到，但会手痒', value: 2 },
-      { text: '不可能，完全不可能', value: 3 }
+      { text: '不可能，根本不可能', value: 3 }
     ]
   }
 ];
