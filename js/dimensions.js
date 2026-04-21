@@ -80,6 +80,44 @@ const modelMeta = {
   }
 };
 
+const resultDimensionGroups = [
+  {
+    key: 'TREND',
+    name: '梗感接入',
+    icon: '🛰️',
+    dims: ['RADAR', 'CIRCLE'],
+    description: '你识梗、接话和混进语境的速度'
+  },
+  {
+    key: 'FIREPOWER',
+    name: '开火冲动',
+    icon: '🔥',
+    dims: ['FIRE', 'DRAMA'],
+    description: '你在网上回嘴、补刀和加戏的本能'
+  },
+  {
+    key: 'PERSONA',
+    name: '人设浓度',
+    icon: '🎭',
+    dims: ['AURA', 'PROJECTION'],
+    description: '你把气口、镜头感和投射叙事套进自我的程度'
+  },
+  {
+    key: 'IMMERSION',
+    name: '赛博沉浸',
+    icon: '🌐',
+    dims: ['ONLINE', 'MOOD'],
+    description: '你泡在平台里以及被内容带情绪的深度'
+  },
+  {
+    key: 'RELATION',
+    name: '关系投射',
+    icon: '💘',
+    dims: ['RELATE'],
+    description: '你有多容易把暧昧、真心和拿捏代进去'
+  }
+];
+
 const dimensionGuide = {
   L: {
     label: '收着刷',
@@ -99,5 +137,10 @@ const dimensionGuide = {
 };
 
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { dimensionMeta, modelMeta, dimensionGuide };
+  module.exports = {
+    dimensionMeta,
+    modelMeta,
+    resultDimensionGroups,
+    dimensionGuide
+  };
 }

@@ -9,21 +9,21 @@ const personalityTypes = [
     accent: '#ff6f7c',
     rarity: 'SSR',
     profile: {
-      RADAR: 2,
+      RADAR: 1,
       FIRE: 0,
-      AURA: 1,
+      AURA: 0,
       ONLINE: 1,
       CIRCLE: 0,
-      DRAMA: 1,
-      MOOD: 1,
-      RELATE: 1,
+      DRAMA: 0,
+      MOOD: 0,
+      RELATE: 2,
       PROJECTION: 2
     },
     weights: {
-      AURA: 1.1,
-      DRAMA: 1.1,
-      RELATE: 1.15,
-      PROJECTION: 1.45
+      AURA: 1,
+      DRAMA: 1,
+      RELATE: 1.3,
+      PROJECTION: 1.55
     },
     bias: 1,
     slogan: '别人看观点，你已经默认一切的根本都是链接。',
@@ -67,19 +67,20 @@ const personalityTypes = [
     accent: '#58a86b',
     rarity: 'N',
     profile: {
-      RADAR: 0,
-      FIRE: 2,
+      RADAR: -1,
+      FIRE: 1,
       AURA: -1,
       ONLINE: 0,
       CIRCLE: -1,
-      DRAMA: -1,
+      DRAMA: -2,
       MOOD: -1,
       RELATE: -1,
       PROJECTION: -1
     },
     weights: {
-      FIRE: 1.45,
-      AURA: 1.1
+      FIRE: 1.5,
+      AURA: 1.25,
+      PROJECTION: 1.15
     },
     bias: 0,
     slogan: '你的人设不是被系统定义的，是靠反苹果完成的。',
@@ -154,18 +155,18 @@ const personalityTypes = [
     profile: {
       RADAR: 2,
       FIRE: 2,
-      AURA: 0,
+      AURA: 1,
       ONLINE: 0,
       CIRCLE: -1,
-      DRAMA: 0,
+      DRAMA: 2,
       MOOD: -1,
-      RELATE: 0,
+      RELATE: -1,
       PROJECTION: -1
     },
     weights: {
-      RADAR: 1.1,
       FIRE: 1.45,
-      DRAMA: 1
+      AURA: 1.2,
+      DRAMA: 1.35
     },
     bias: 0,
     slogan: '你嘴上的战绩比现实履历厚，气势一开像已经赢完了。',
@@ -181,20 +182,19 @@ const personalityTypes = [
     accent: '#7c4dff',
     rarity: 'R',
     profile: {
-      RADAR: 2,
+      RADAR: 1,
       FIRE: 0,
       AURA: 2,
       ONLINE: 1,
       CIRCLE: 0,
       DRAMA: 2,
       MOOD: 0,
-      RELATE: 0,
-      PROJECTION: 0
+      RELATE: -1,
+      PROJECTION: -1
     },
     weights: {
-      RADAR: 1.05,
-      AURA: 1.6,
-      DRAMA: 1.25,
+      AURA: 1.7,
+      DRAMA: 1.35,
       ONLINE: 1
     },
     bias: 1,
@@ -275,15 +275,15 @@ const personalityTypes = [
       CIRCLE: -1,
       DRAMA: 2,
       MOOD: 1,
-      RELATE: 1,
+      RELATE: 0,
       PROJECTION: -1
     },
     weights: {
-      DRAMA: 1.65,
-      MOOD: 1.05,
-      RELATE: 1.05
+      DRAMA: 1.75,
+      MOOD: 1.1,
+      RELATE: 0.95
     },
-    bias: 1,
+    bias: 2,
     slogan: '每次都说下次不这样了，下次还是第一时间对号入座。',
     description: '你最擅长的事，就是在还没搞清情况的时候先把自己代进去。别人一句模糊的话，你能脑补十集剧情；嘴上说算了，心里已经把自己演成了受害者、反派和观众三合一。',
     roast: '你不是共情能力强，你是太会主动给自己加戏。',
@@ -418,18 +418,18 @@ const personalityTypes = [
       AURA: 0,
       ONLINE: 0,
       CIRCLE: -1,
-      DRAMA: 2,
-      MOOD: 2,
+      DRAMA: 1,
+      MOOD: 1,
       RELATE: 2,
       PROJECTION: 2
     },
     weights: {
-      DRAMA: 1.25,
-      MOOD: 1.25,
-      RELATE: 1.35,
-      PROJECTION: 1.25
+      DRAMA: 1.1,
+      MOOD: 1.1,
+      RELATE: 1.45,
+      PROJECTION: 1.4
     },
-    bias: 2,
+    bias: 1,
     slogan: '你不是单纯深情，你是能把服从、付出和自我感动一条龙做完。',
     description: '你这挂最典型的症状，就是永远在为女神跑前跑后，嘴上说我自愿，心里还是盼着哪天能被回头看一眼。你很会牺牲、很会脑补、也很会把自己的吃亏包装成真爱，主打一个龟得体面，舔得认真。',
     roast: '你不是恋爱脑，你是把被吊着走也过成了英雄叙事。',
@@ -474,17 +474,18 @@ const personalityTypes = [
     profile: {
       RADAR: 2,
       FIRE: 2,
-      AURA: 0,
+      AURA: -1,
       ONLINE: 0,
       CIRCLE: -1,
-      DRAMA: -1,
+      DRAMA: -2,
       MOOD: 0,
       RELATE: -2,
       PROJECTION: -2
     },
     weights: {
-      RADAR: 1.15,
-      FIRE: 1.55
+      RADAR: 1.25,
+      FIRE: 1.55,
+      RELATE: 1.15
     },
     bias: 2,
     slogan: '别人想交流，你先想找他哪句不严谨。',

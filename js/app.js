@@ -50,30 +50,73 @@ const signalFloorByType = {
   CLOWN: 2,
   DANREN: 2,
   DOOM: 2,
+  FEI: 4,
   HAIWANG: 2,
   LAOSHU: 2,
   LIGONG: 2,
   MONEY: 2,
   PURE: 2,
+  KOUHAI: 4,
   VALO: 4,
   GANG: 4,
-  XYY: 4
+  XYY: 3
 };
 const signalScaleByType = {
   APPLE: 1.3,
-  CLOWN: 0.95,
+  CLOWN: 0.92,
   DOOM: 1.28,
   HAIWANG: 0.98,
   LAOSHU: 1.28,
   LIGONG: 1.35,
   MONEY: 0.82,
-  PURE: 1.25,
+  PURE: 1.14,
   VALO: 0.72,
-  GANG: 0.82,
-  XYY: 0.82,
-  JIAHAO: 0.72,
-  KOUHAI: 1.04,
+  GANG: 0.9,
+  XYY: 0.9,
+  JIAHAO: 0.86,
+  KOUHAI: 0.9,
+  FEI: 1.06,
+  ANDROID: 0.94,
   GENSHIN: 0.9
+};
+const typeSignatureRules = {
+  ANDROID: [
+    { dim: 'FIRE', mode: 'min', value: 64, bonus: 4 },
+    { dim: 'AURA', mode: 'max', value: 48, bonus: 3 },
+    { dim: 'PROJECTION', mode: 'max', value: 48, bonus: 2 }
+  ],
+  KOUHAI: [
+    { dim: 'FIRE', mode: 'min', value: 60, bonus: 4 },
+    { dim: 'DRAMA', mode: 'min', value: 58, bonus: 5 },
+    { dim: 'AURA', mode: 'min', value: 52, bonus: 4 }
+  ],
+  GANG: [
+    { dim: 'RADAR', mode: 'min', value: 66, bonus: 5 },
+    { dim: 'FIRE', mode: 'min', value: 66, bonus: 5 },
+    { dim: 'RELATE', mode: 'max', value: 42, bonus: 4 },
+    { dim: 'AURA', mode: 'max', value: 56, bonus: 2 }
+  ],
+  CLOWN: [
+    { dim: 'DRAMA', mode: 'min', value: 68, bonus: 4 },
+    { dim: 'MOOD', mode: 'min', value: 58, bonus: 4 },
+    { dim: 'RELATE', mode: 'between', min: 42, max: 70, bonus: 3 }
+  ],
+  FEI: [
+    { dim: 'RELATE', mode: 'min', value: 70, bonus: 7 },
+    { dim: 'PROJECTION', mode: 'min', value: 68, bonus: 5 },
+    { dim: 'MOOD', mode: 'min', value: 60, bonus: 4 }
+  ],
+  XYY: [
+    { dim: 'PROJECTION', mode: 'min', value: 68, bonus: 5 },
+    { dim: 'RELATE', mode: 'min', value: 60, bonus: 4 },
+    { dim: 'AURA', mode: 'between', min: 42, max: 70, bonus: 3 }
+  ],
+  JIAHAO: [
+    { dim: 'AURA', mode: 'min', value: 68, bonus: 5 },
+    { dim: 'DRAMA', mode: 'min', value: 66, bonus: 5 },
+    { dim: 'RELATE', mode: 'max', value: 56, bonus: 3 },
+    { dim: 'PROJECTION', mode: 'max', value: 60, bonus: 2 }
+  ]
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -313,6 +356,10 @@ function calculateResult() {
       const signalScore = scaledSignalScore * SIGNAL_WEIGHT_MULTIPLIER;
       const hitBonus = (typeSignalHits[type.code] || 0) * SIGNAL_HIT_BONUS;
       const conflictPenalty = calculateConflictPenalty(type, normalizedDimensions);
+      const signatureBonus = calculateSignatureBonus(
+        type.code,
+        normalizedDimensions
+      );
       const signalFloor = signalFloorByType[type.code] || DEFAULT_SIGNAL_FLOOR;
       const floorPenalty =
         scaledSignalScore < signalFloor
@@ -324,6 +371,7 @@ function calculateResult() {
         hitBonus -
         conflictPenalty -
         floorPenalty +
+        signatureBonus +
         (type.bias || 0);
 
       return {
@@ -335,7 +383,8 @@ function calculateResult() {
         signalScore,
         signalHits: typeSignalHits[type.code] || 0,
         conflictPenalty,
-        floorPenalty
+        floorPenalty,
+        signatureBonus
       };
     })
     .sort((a, b) => b.totalScore - a.totalScore);
@@ -353,6 +402,7 @@ function calculateResult() {
     similarity: calculateSimilarity(bestMatch, runnerUp, isFallback),
     dimensionScores,
     normalizedDimensions,
+    groupedDimensions: calculateResultDimensionGroups(normalizedDimensions),
     userPattern,
     rankedTypes
   };
@@ -406,6 +456,35 @@ function calculateConflictPenalty(type, normalizedDimensions) {
   }, 0);
 }
 
+function calculateSignatureBonus(typeCode, normalizedDimensions) {
+  const rules = typeSignatureRules[typeCode];
+  if (!rules?.length) {
+    return 0;
+  }
+
+  return rules.reduce((total, rule) => {
+    const score = normalizedDimensions[rule.dim] ?? 50;
+
+    if (rule.mode === 'min' && score >= rule.value) {
+      return total + rule.bonus;
+    }
+
+    if (rule.mode === 'max' && score <= rule.value) {
+      return total + rule.bonus;
+    }
+
+    if (
+      rule.mode === 'between' &&
+      score >= rule.min &&
+      score <= rule.max
+    ) {
+      return total + rule.bonus;
+    }
+
+    return total;
+  }, 0);
+}
+
 function calculateSimilarity(bestMatch, runnerUp, isFallback) {
   if (isFallback || !bestMatch) {
     return 58;
@@ -424,6 +503,22 @@ function profileValueToPercent(value) {
 
 function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
+}
+
+function calculateResultDimensionGroups(normalizedDimensions) {
+  return resultDimensionGroups.map((group) => {
+    const scores = group.dims.map((dim) => normalizedDimensions[dim] ?? 50);
+    const score = Math.round(
+      scores.reduce((total, value) => total + value, 0) / scores.length
+    );
+
+    return {
+      ...group,
+      score,
+      level: scoreToLevel(score),
+      parts: group.dims.map((dim) => dimensionMeta[dim].name)
+    };
+  });
 }
 
 function showResult(result) {
@@ -495,7 +590,7 @@ function showResult(result) {
     `${result.similarity}%`;
 
   renderHighlights(result.normalizedDimensions, result.userPattern);
-  renderRadarChart(result.normalizedDimensions);
+  renderRadarChart(result.groupedDimensions);
   updateRemainingPersonalityCount(personality.code);
   renderPersonalityLibrary();
 }
@@ -530,59 +625,113 @@ function renderHighlights(normalizedDimensions, userPattern) {
   });
 }
 
-function renderRadarChart(normalizedDimensions) {
+function renderRadarChart(groupedDimensions) {
   const container = document.getElementById('radar-chart');
-  const groupedModels = {};
+  if (!container) {
+    return;
+  }
 
-  dimensionKeys.forEach((dim) => {
-    const meta = dimensionMeta[dim];
-    if (!groupedModels[meta.model]) {
-      groupedModels[meta.model] = [];
-    }
-    groupedModels[meta.model].push({
-      dim,
-      name: meta.name,
-      icon: meta.icon,
-      score: normalizedDimensions[dim] ?? 50
-    });
-  });
+  const chartSize = 320;
+  const center = chartSize / 2;
+  const radius = 116;
+  const ringRatios = [0.2, 0.4, 0.6, 0.8, 1];
+  const pointList = groupedDimensions.map((item, index) =>
+    getRadarPoint(index, groupedDimensions.length, item.score / 100, center, radius)
+  );
+  const polygonPoints = pointList
+    .map(({ x, y }) => `${x.toFixed(1)},${y.toFixed(1)}`)
+    .join(' ');
 
   container.innerHTML = '';
+  container.className = 'radar-chart radar-chart-ready';
 
-  Object.entries(groupedModels).forEach(([modelName, items]) => {
-    const modelInfo = modelMeta[modelName];
-    const section = document.createElement('section');
-    section.className = 'radar-model-section';
+  const visual = document.createElement('div');
+  visual.className = 'radar-visual';
+  visual.innerHTML = `
+    <svg class="radar-svg" viewBox="0 0 ${chartSize} ${chartSize}" aria-label="五维度雷达图">
+      ${ringRatios
+        .map((ratio) => {
+          const ringPoints = groupedDimensions
+            .map((_, index) =>
+              getRadarPoint(index, groupedDimensions.length, ratio, center, radius)
+            )
+            .map(({ x, y }) => `${x.toFixed(1)},${y.toFixed(1)}`)
+            .join(' ');
 
-    section.innerHTML = `
-      <div class="radar-model-head">
-        <h5>${modelInfo?.icon || '🧠'} ${modelName}</h5>
-        <p>${modelInfo?.description || ''}</p>
-      </div>
-    `;
+          return `<polygon class="radar-ring" points="${ringPoints}"></polygon>`;
+        })
+        .join('')}
+      ${groupedDimensions
+        .map((_, index) => {
+          const { x, y } = getRadarPoint(
+            index,
+            groupedDimensions.length,
+            1,
+            center,
+            radius
+          );
+          return `<line class="radar-axis-line" x1="${center}" y1="${center}" x2="${x.toFixed(
+            1
+          )}" y2="${y.toFixed(1)}"></line>`;
+        })
+        .join('')}
+      <polygon class="radar-area" points="${polygonPoints}"></polygon>
+      ${pointList
+        .map(
+          ({ x, y }) =>
+            `<circle class="radar-point" cx="${x.toFixed(1)}" cy="${y.toFixed(
+              1
+            )}" r="5"></circle>`
+        )
+        .join('')}
+    </svg>
+  `;
 
-    const dims = document.createElement('div');
-    dims.className = 'radar-dims';
-
-    items.forEach((item) => {
-      const row = document.createElement('div');
-      row.className = 'radar-dim-row';
-      const percentage = Math.round(item.score);
-
-      row.innerHTML = `
-        <span class="radar-dim-name">${item.icon} ${item.name}</span>
-        <div class="radar-dim-bar">
-          <div class="radar-dim-fill" style="width: ${percentage}%"></div>
+  const labels = document.createElement('div');
+  labels.className = 'radar-axis-labels';
+  labels.innerHTML = groupedDimensions
+    .map(
+      (item) => `
+        <div class="radar-axis-pill">
+          <span>${item.icon} ${item.name}</span>
+          <strong>${item.score}%</strong>
         </div>
-        <span class="radar-dim-score">${percentage}%</span>
+      `
+    )
+    .join('');
+
+  const detailGrid = document.createElement('div');
+  detailGrid.className = 'radar-detail-grid';
+  detailGrid.innerHTML = groupedDimensions
+    .map((item) => {
+      const guide = dimensionGuide[item.level];
+      return `
+        <article class="radar-detail-card" data-level="${item.level}">
+          <div class="radar-detail-top">
+            <span class="highlight-value" data-value="${item.level}">${guide.label}</span>
+            <span class="radar-detail-score">${item.score}%</span>
+          </div>
+          <h5>${item.icon} ${item.name}</h5>
+          <p>${item.description}</p>
+          <span class="radar-detail-meta">由 ${item.parts.join(' + ')} 聚合</span>
+        </article>
       `;
+    })
+    .join('');
 
-      dims.appendChild(row);
-    });
+  container.appendChild(visual);
+  container.appendChild(labels);
+  container.appendChild(detailGrid);
+}
 
-    section.appendChild(dims);
-    container.appendChild(section);
-  });
+function getRadarPoint(index, total, ratio, center, radius) {
+  const angle = (-Math.PI / 2) + (Math.PI * 2 * index) / total;
+  const distance = radius * ratio;
+
+  return {
+    x: center + Math.cos(angle) * distance,
+    y: center + Math.sin(angle) * distance
+  };
 }
 
 function getRarityMeta(rarity) {
