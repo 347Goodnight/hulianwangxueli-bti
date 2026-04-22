@@ -87,7 +87,7 @@ button{
 }
 
 .container{
-  padding:12px 0 8px;
+  padding:8px 0 4px;
 }
 
 .page{
@@ -113,7 +113,7 @@ button{
   position:relative;
   overflow:hidden;
   min-height:0;
-  padding:28px 24px 20px;
+  padding:18px 18px 12px;
   border-radius:var(--radius-lg);
   background:
     radial-gradient(circle at top center, rgba(255,170,132,.22), transparent 22rem),
@@ -126,7 +126,7 @@ button{
   width:min(1220px,100%);
   min-height:0;
   margin:0 auto;
-  padding:34px 40px 22px;
+  padding:24px 34px 12px;
   border-radius:30px;
   box-shadow:
     0 26px 70px rgba(52,31,18,.11),
@@ -167,7 +167,7 @@ button{
   display:grid;
   grid-template-columns:minmax(0,760px) minmax(180px,1fr);
   gap:48px;
-  align-items:center;
+  align-items:start;
   justify-content:space-between;
 }
 
@@ -222,7 +222,7 @@ button{
 
 .title{
   max-width:none;
-  margin-top:16px;
+  margin-top:12px;
   font-size:clamp(46px,5vw,78px);
   line-height:.88;
   letter-spacing:-.055em;
@@ -235,12 +235,12 @@ button{
 }
 
 .title span + span{
-  margin-top:6px;
+  margin-top:2px;
 }
 
 .subtitle{
   max-width:21ch;
-  margin-top:14px;
+  margin-top:10px;
   color:#2d231d;
   font-size:clamp(18px,1.65vw,22px);
   line-height:1.5;
@@ -260,7 +260,7 @@ button{
 }
 
 .hero-meta{
-  margin-top:16px;
+  margin-top:12px;
   justify-content:flex-start;
 }
 
@@ -287,12 +287,12 @@ button{
   flex-wrap:wrap;
   justify-content:flex-start;
   gap:14px;
-  margin-top:22px;
+  margin-top:16px;
 }
 
 .hero-note{
   max-width:38ch;
-  margin-top:14px;
+  margin-top:10px;
   color:var(--text-secondary);
   font-size:12px;
   line-height:1.65;
@@ -1363,7 +1363,7 @@ button{
 }
 
 .footer{
-  padding:0 0 10px;
+  padding:0 0 2px;
   margin-top:0;
   text-align:center;
   color:var(--text-muted);
@@ -1384,12 +1384,12 @@ button{
 
   .hero{
     min-height:auto;
-    padding:24px 20px 18px;
+    padding:18px 16px 12px;
   }
 
   .hero-home{
     width:min(840px,100%);
-    padding:26px 20px 18px;
+    padding:20px 18px 12px;
     border-radius:28px;
   }
 
@@ -1420,6 +1420,14 @@ button{
     justify-content:center;
   }
 
+  .hero-meta{
+    margin-top:12px;
+  }
+
+  .hero-actions{
+    margin-top:16px;
+  }
+
   .personality-library-grid{
     grid-template-columns:repeat(2,minmax(0,1fr));
   }
@@ -1432,8 +1440,8 @@ button{
   }
 
   .container{
-    padding-top:8px;
-    padding-bottom:10px;
+    padding-top:6px;
+    padding-bottom:4px;
   }
 
   .hero,
@@ -1447,12 +1455,12 @@ button{
 
   .hero{
     min-height:auto;
-    padding:12px 10px 10px;
+    padding:10px 8px 8px;
   }
 
   .hero-home{
     width:100%;
-    padding:16px 10px 10px;
+    padding:14px 10px 8px;
     border-radius:22px;
   }
 
@@ -1467,7 +1475,7 @@ button{
   }
 
   .title{
-    margin-top:12px;
+    margin-top:10px;
     font-size:clamp(28px,9vw,34px);
     line-height:.96;
   }
@@ -1484,7 +1492,7 @@ button{
 
   .hero-meta{
     gap:8px;
-    margin-top:14px;
+    margin-top:10px;
   }
 
   .hero-meta span{
@@ -1495,7 +1503,7 @@ button{
 
   .hero-note{
     max-width:none;
-    margin-top:10px;
+    margin-top:8px;
     font-size:12px;
   }
 
@@ -1505,7 +1513,7 @@ button{
   }
 
   .hero-actions{
-    margin-top:14px;
+    margin-top:12px;
   }
 
   .btn,
@@ -1759,6 +1767,6 @@ button{
   }
 
   .footer{
-    padding:6px 0 10px;
+    padding:2px 0 4px;
   }
 }
