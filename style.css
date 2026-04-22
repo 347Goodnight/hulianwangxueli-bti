@@ -53,9 +53,7 @@ button{
 }
 
 .page-shell{
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
+  min-height:auto;
 }
 
 .ambient{
@@ -84,12 +82,12 @@ button{
 
 .container,
 .footer{
-  width:min(1120px,calc(100% - 32px));
+  width:min(980px,calc(100% - 32px));
   margin:0 auto;
 }
 
 .container{
-  padding:18px 0 18px;
+  padding:14px 0 10px;
 }
 
 .page{
@@ -115,7 +113,7 @@ button{
   position:relative;
   overflow:hidden;
   min-height:0;
-  padding:44px 40px 36px;
+  padding:34px 32px 24px;
   border-radius:var(--radius-lg);
   background:
     radial-gradient(circle at top center, rgba(255,170,132,.22), transparent 22rem),
@@ -125,11 +123,11 @@ button{
 }
 
 .hero-home{
-  width:min(840px,100%);
+  width:min(760px,100%);
   min-height:0;
   margin:0 auto;
-  padding:40px 36px 30px;
-  border-radius:36px;
+  padding:30px 28px 18px;
+  border-radius:32px;
   box-shadow:
     0 26px 70px rgba(52,31,18,.11),
     0 8px 24px rgba(52,31,18,.05),
@@ -156,9 +154,9 @@ button{
   content:"";
   position:absolute;
   left:50%;
-  top:8%;
-  width:420px;
-  height:420px;
+  top:6%;
+  width:340px;
+  height:340px;
   transform:translateX(-50%);
   border-radius:50%;
   background:radial-gradient(circle, rgba(255,255,255,.36) 0, rgba(255,255,255,0) 68%);
@@ -225,8 +223,8 @@ button{
 
 .title{
   max-width:none;
-  margin-top:18px;
-  font-size:clamp(38px,4.4vw,60px);
+  margin-top:16px;
+  font-size:clamp(34px,4vw,54px);
   line-height:.95;
   letter-spacing:-.055em;
   font-weight:900;
@@ -243,9 +241,9 @@ button{
 
 .subtitle{
   max-width:24ch;
-  margin-top:18px;
+  margin-top:14px;
   color:#2d231d;
-  font-size:clamp(18px,1.7vw,20px);
+  font-size:clamp(17px,1.45vw,19px);
   line-height:1.55;
   letter-spacing:-.02em;
   text-wrap:balance;
@@ -263,7 +261,7 @@ button{
 }
 
 .hero-meta{
-  margin-top:20px;
+  margin-top:16px;
   justify-content:center;
 }
 
@@ -290,15 +288,15 @@ button{
   flex-wrap:wrap;
   justify-content:center;
   gap:14px;
-  margin-top:28px;
+  margin-top:22px;
 }
 
 .hero-note{
   max-width:34ch;
-  margin-top:18px;
+  margin-top:14px;
   color:var(--text-secondary);
-  font-size:13px;
-  line-height:1.7;
+  font-size:12px;
+  line-height:1.65;
 }
 
 .btn,
@@ -1366,7 +1364,7 @@ button{
 }
 
 .footer{
-  padding:0 0 14px;
+  padding:0 0 10px;
   margin-top:0;
   text-align:center;
   color:var(--text-muted);
@@ -1382,18 +1380,18 @@ button{
 @media (max-width:960px){
   .container,
   .footer{
-    width:min(100%,calc(100% - 20px));
+    width:min(100%,calc(100% - 18px));
   }
 
   .hero{
     min-height:auto;
-    padding:28px;
+    padding:24px 20px 18px;
   }
 
   .hero-home{
-    width:min(760px,100%);
-    padding:34px 24px 30px;
-    border-radius:30px;
+    width:min(680px,100%);
+    padding:26px 20px 18px;
+    border-radius:28px;
   }
 
   .hero-grid,
@@ -1408,12 +1406,12 @@ button{
   }
 
   .title{
-    font-size:clamp(34px,7vw,52px);
+    font-size:clamp(32px,6.3vw,46px);
   }
 
   .subtitle{
     max-width:22ch;
-    font-size:clamp(16px,2.8vw,19px);
+    font-size:clamp(15px,2.5vw,18px);
   }
 
   .personality-library-grid{
@@ -1429,7 +1427,7 @@ button{
 
   .container{
     padding-top:8px;
-    padding-bottom:16px;
+    padding-bottom:10px;
   }
 
   .hero,
@@ -1443,13 +1441,13 @@ button{
 
   .hero{
     min-height:auto;
-    padding:16px 14px 14px;
+    padding:12px 10px 10px;
   }
 
   .hero-home{
     width:100%;
-    padding:18px 12px 14px;
-    border-radius:26px;
+    padding:16px 10px 10px;
+    border-radius:22px;
   }
 
   .hero-main{
@@ -1463,8 +1461,8 @@ button{
   }
 
   .title{
-    margin-top:14px;
-    font-size:clamp(30px,10vw,38px);
+    margin-top:12px;
+    font-size:clamp(28px,9vw,34px);
     line-height:.96;
   }
 
@@ -1474,13 +1472,13 @@ button{
 
   .subtitle{
     max-width:none;
-    font-size:14px;
-    line-height:1.65;
+    font-size:13px;
+    line-height:1.6;
   }
 
   .hero-meta{
     gap:8px;
-    margin-top:16px;
+    margin-top:14px;
   }
 
   .hero-meta span{
@@ -1491,7 +1489,7 @@ button{
 
   .hero-note{
     max-width:none;
-    margin-top:14px;
+    margin-top:10px;
     font-size:12px;
   }
 
@@ -1501,7 +1499,7 @@ button{
   }
 
   .hero-actions{
-    margin-top:18px;
+    margin-top:14px;
   }
 
   .btn,
@@ -1755,6 +1753,6 @@ button{
   }
 
   .footer{
-    padding:8px 0 14px;
+    padding:6px 0 10px;
   }
 }
