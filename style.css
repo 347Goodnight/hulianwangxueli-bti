@@ -53,7 +53,10 @@ button{
 }
 
 .page-shell{
-  min-height:auto;
+  min-height:100vh;
+  min-height:100dvh;
+  display:flex;
+  flex-direction:column;
 }
 
 .ambient{
@@ -87,6 +90,9 @@ button{
 }
 
 .container{
+  flex:1;
+  display:flex;
+  flex-direction:column;
   padding:8px 0 4px;
 }
 
@@ -96,6 +102,13 @@ button{
 
 .page.active{
   display:block;
+}
+
+#home-page.page.active{
+  display:flex;
+  flex:1;
+  align-items:center;
+  justify-content:center;
 }
 
 .hero,
@@ -123,10 +136,13 @@ button{
 }
 
 .hero-home{
-  width:min(1220px,100%);
-  min-height:0;
+  width:min(1260px,100%);
+  min-height:clamp(520px,72vh,760px);
   margin:0 auto;
-  padding:24px 34px 12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:26px 40px 20px;
   border-radius:30px;
   box-shadow:
     0 26px 70px rgba(52,31,18,.11),
@@ -165,10 +181,12 @@ button{
 .hero-grid{
   position:relative;
   display:grid;
-  grid-template-columns:minmax(0,760px) minmax(180px,1fr);
-  gap:48px;
-  align-items:start;
-  justify-content:space-between;
+  grid-template-columns:minmax(0,1fr);
+  gap:0;
+  align-items:center;
+  justify-items:center;
+  width:100%;
+  min-height:100%;
 }
 
 .hero-main{
@@ -180,11 +198,12 @@ button{
   display:flex;
   flex-direction:column;
   justify-content:center;
-  align-items:flex-start;
-  min-height:0;
-  max-width:760px;
+  align-items:center;
+  min-height:100%;
+  max-width:860px;
   padding:0;
-  text-align:left;
+  margin:0 auto;
+  text-align:center;
 }
 
 .hero-main::before{
@@ -221,8 +240,8 @@ button{
 }
 
 .title{
-  max-width:none;
-  margin-top:12px;
+  max-width:10ch;
+  margin-top:8px;
   font-size:clamp(46px,5vw,78px);
   line-height:.88;
   letter-spacing:-.055em;
@@ -239,8 +258,8 @@ button{
 }
 
 .subtitle{
-  max-width:21ch;
-  margin-top:10px;
+  max-width:18ch;
+  margin-top:8px;
   color:#2d231d;
   font-size:clamp(18px,1.65vw,22px);
   line-height:1.5;
@@ -261,7 +280,7 @@ button{
 
 .hero-meta{
   margin-top:12px;
-  justify-content:flex-start;
+  justify-content:center;
 }
 
 .hero-meta span,
@@ -285,17 +304,18 @@ button{
 .hero-actions{
   display:flex;
   flex-wrap:wrap;
-  justify-content:flex-start;
+  justify-content:center;
   gap:14px;
   margin-top:16px;
 }
 
 .hero-note{
-  max-width:38ch;
+  max-width:42ch;
   margin-top:10px;
   color:var(--text-secondary);
   font-size:12px;
   line-height:1.65;
+  text-align:center;
 }
 
 .btn,
@@ -1363,7 +1383,7 @@ button{
 }
 
 .footer{
-  padding:0 0 2px;
+  padding:6px 0 10px;
   margin-top:0;
   text-align:center;
   color:var(--text-muted);
@@ -1388,8 +1408,10 @@ button{
   }
 
   .hero-home{
-    width:min(840px,100%);
-    padding:20px 18px 12px;
+    width:min(920px,100%);
+    min-height:min(620px,calc(100vh - 88px));
+    min-height:min(620px,calc(100dvh - 88px));
+    padding:22px 24px 16px;
     border-radius:28px;
   }
 
@@ -1411,7 +1433,7 @@ button{
   }
 
   .subtitle{
-    max-width:22ch;
+    max-width:20ch;
     font-size:clamp(15px,2.5vw,18px);
   }
 
@@ -1460,7 +1482,8 @@ button{
 
   .hero-home{
     width:100%;
-    padding:14px 10px 8px;
+    min-height:auto;
+    padding:16px 12px 10px;
     border-radius:22px;
   }
 
@@ -1475,7 +1498,8 @@ button{
   }
 
   .title{
-    margin-top:10px;
+    max-width:11ch;
+    margin-top:8px;
     font-size:clamp(28px,9vw,34px);
     line-height:.96;
   }
@@ -1485,7 +1509,7 @@ button{
   }
 
   .subtitle{
-    max-width:none;
+    max-width:18ch;
     font-size:13px;
     line-height:1.6;
   }
@@ -1767,6 +1791,6 @@ button{
   }
 
   .footer{
-    padding:2px 0 4px;
+    padding:8px 0 6px;
   }
 }
